@@ -32,32 +32,32 @@ class PostController extends Controller
     public function store(StorePost $request)
     {   
 
-            $tags = $request->names;
+        $tags = $request->names;
 
-    foreach ($tags as $tag) {
-       $tag_data[] =[
-        'name' => $tag,
-    ];     
-}
+        foreach ($tags as $tag) {
+         $tag_data[] =[
+            'name' => $tag,
+        ];     
+    }
 
-DB::table("tags")->insertOrIgnore($tag_data);
+    DB::table("tags")->insertOrIgnore($tag_data);
 
-return 'success';
+    return 'success';
 
         // The incoming request is valid...
 
         // Retrieve the validated input data...
         //$validated = $request->validated();
 
-      $slug = Str::slug($request->title, '-');
+    $slug = Str::slug($request->title, '-');
 
-      $post = new Post;
+    $post = new Post;
 
-      $post->title = $request->title;
-      $post->description = $request->description;
-      $post->slug = $slug;
+    $post->title = $request->title;
+    $post->description = $request->description;
+    $post->slug = $slug;
 
-      if ($request->status === true) {
+    if ($request->status === true) {
         $post->status = true; 
     } else {
         $post->status = false;
@@ -68,13 +68,13 @@ return 'success';
 
 
 
-$slug_check = Post::where('slug', $post->slug)->first();
+    $slug_check = Post::where('slug', $post->slug)->first();
 
        // return $slug_check;
 
-$post->save(); 
+    $post->save(); 
 
-$post->tags()->attach($request->tags);
+    $post->tags()->attach($request->tags);
 }
 
 
@@ -100,19 +100,19 @@ $post->tags()->attach($request->tags);
     {   
 
         // Get data updated by ID
-     $post = Post::find($id);
+       $post = Post::find($id);
 
         // The incoming request is valid...
 
         // Retrieve the validated input data...
-     $validated = $request->validated();
+       $validated = $request->validated();
 
 
-     $post->title = $request->title;
-     $post->description = $request->description;
-     $post->edited = true;
+       $post->title = $request->title;
+       $post->description = $request->description;
+       $post->edited = true;
 
-     if ($request->status === true) {
+       if ($request->status === true) {
         $post->status = true; 
     } else {
         $post->status = false;
