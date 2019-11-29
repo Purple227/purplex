@@ -1,0 +1,9 @@
+{
+    "/js/app-backend.js": "/js/app-backend.js",
+    "/css/frontend/bulma.css": "/css/frontend/bulma.css",
+    "/css/frontend/fontawesome.css": "/css/frontend/fontawesome.css",
+    "/css/backend/bulma.css": "/css/backend/bulma.css",
+    "/css/backend/fontawesome.css": "/css/backend/fontawesome.css",
+    "/css/animate.css": "/css/animate.css",
+    "/js/app-frontend.js": "/js/app-frontend.js"
+}

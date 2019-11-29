@@ -1,0 +1,14 @@
+
+
+//backgroung gradient 
+%gradient_background
+{
+  background: linear-gradient(to bottom right, $death-pink, $dark-purple );
+}
+
+//Reuse center
+%center
+{
+display: flex;
+justify-content: center;
+}

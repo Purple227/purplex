@@ -1,0 +1,95 @@
+
+
+//Import fontawesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+//colors
+@import "partials/_color.scss";
+
+//Responsive
+@import "partials/_responsive.scss";
+
+//Reuse
+@import "partials/_reuse.scss";
+
+
+//dashboard navbar icon styling
+.fa-envelope, .fa-bell, .fa-user
+{
+	color: $green;
+	position: relative;
+	font-size: 24px;
+	margin: 10px;
+	@include tablet {
+		margin: auto;
+	}
+}
+
+//dashboard aside navba left r styling
+.fa-table, .fa-edit, .fa-running, .fa-plus-circle
+{
+	color: $green;
+	font-size: 20px;
+	margin-top: 1em;
+}
+
+//dashboard right icon styling
+.fa-money-check-alt, .fa-share-alt, .fa-mail-bulk
+{
+	color: $lighter-green;
+	margin: 8px;
+	@extend %center;
+}
+
+
+
+//Form icons styling
+.fa-file-signature
+{
+	color: $green;
+}
+
+//Table icons
+.fa-edit, .fa-trash, .fa-eye
+{
+	margin: 8px;
+}
+
+//Pagination circle
+.fa-circle
+{
+	font-size: 22px;
+}
+
+
+
+/***************************************************************************************
+This the classs controlling the notification dot by the icon. Screaming out loud .
+****************************************************************************************/
+.notify_dot
+{
+	font-weight: bolder;
+	color: $death-pink;
+	font-size: 2em;
+	position: absolute;
+	bottom: 12px;
+	right: -2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

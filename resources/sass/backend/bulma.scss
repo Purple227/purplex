@@ -1,0 +1,446 @@
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+//colors
+@import "partials/_color.scss";
+
+//bulma component
+@import "partials/_bulma_component.scss";
+
+
+// Bulma
+@import "~bulma/bulma";
+
+//Responsive
+@import "partials/_responsive.scss";
+
+//reuse
+@import "partials/_reuse.scss";
+
+html, body
+{
+	@extend %gradient_background;
+}
+
+.navbar-menu
+{
+	@include desktop
+	{
+		display: block;
+	}
+}
+
+.navbar-brand .navbar-item
+{
+	margin-left: 1em;
+}
+
+.navbar-dropdown, .dropdown-content
+{
+	background-color: $corn-silk;
+}
+
+.navbar-item a:hover
+{
+	background-color: $corn-silk;
+}
+
+.navbar-item a
+{
+	font-weight: bold;
+}
+
+
+.menu
+{
+	background-color: $dark-purple-light;
+	padding: 1em;
+}
+
+.menu .menu-list a
+{
+	color: $corn-silk;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.menu .menu-list .is-active
+{
+	background-color: $green;
+	color: $white;
+}
+
+.menu .menu-list a:hover
+{
+	background-color: $green;
+}
+
+.is-bold
+{
+	font-weight: bold;
+}
+
+.menu .menu-list a .tag
+{
+	background-color: $corn-silk;
+}
+
+.card-footer-item:hover
+{
+	color: $death-pink;
+}
+
+.aside_hover:hover
+{
+	color: $black;
+}
+
+.message .message-header p
+{
+	text-align: center;
+}
+
+.input, .textarea
+{
+	background-color: $corn-silk;
+}
+
+.label, .file-name
+{
+	color: $corn-silk;
+	font-weight: bold;
+}
+
+.file-cta
+{
+	background-color: $corn-silk;
+}
+
+.redundancy
+{
+	background-color: $dark-purple;
+	padding: 5px;
+}
+
+.table
+{
+	color: $corn-silk;
+	background-color: $dark-purple;
+}
+
+.box, .aside_bg
+{	
+	background-color: $dark-purple;
+	position: relative;
+}
+
+.is_bordered
+{
+	border: 5px solid $green;
+}
+
+.is_borderless
+{
+	border: none;
+}
+
+.is-current
+{
+	font-size: 20px;
+}
+
+/****************************************************************************************************
+     MY ADDITIONAL HELPERS
+*****************************************************************************************************/
+
+::selection {
+	color: #FFFFFF;
+	background-color: #993366;
+}
+
+
+a:hover
+{
+	transition: 500ms;
+}
+
+.container_mobile
+{
+	padding: 1em;
+	@include desktop 
+	{
+		margin-top: 3em;
+	}
+}
+
+
+.is_hidden_mobile_tablet
+{
+	@include tablet 
+	{
+		display: none;
+	}
+}
+
+.mobile_menu
+{
+	color: $death-pink;
+}
+
+.column_2_bg
+{
+	background-color: $dark-purple-light;
+}
+
+.column_10_bg, .card
+{
+	background-color: $lighter-purple;
+}
+
+.green
+{
+	color: $green;
+}
+
+.green_bg
+{
+	background-color: $green;
+}
+
+.corn_silk
+{
+	color: $corn_silk;
+}
+
+.corn_silk_bg
+{
+	background-color: $corn_silk;
+}
+
+.button
+{
+	background-color: $corn_silk;
+}
+
+.play_play
+{
+	border-left: 2px solid $corn-silk;
+	margin-left: 1em;
+}
+
+.table_wrapper_plus
+{
+	@extend %center;
+}
+
+/****************************************************************************************************
+     Chart Styling
+*****************************************************************************************************/
+
+.doughnut_chart
+{
+	height: 300px;
+	background-color: $dark-purple;
+	padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  Targeting a paticular tag with a selector or highlighter
+p::selection {
+color: red;
+background-color: pink;
+}
+
+a[href="http://www.cafesoylentgreen.com"]{
+color: green;
+font-weight: bold;
+}
+
+//selecting link pointing out of your site with specific style
+This selector won’t work for any secure connections over SSL—that is, any links that begin with https://. To create a style that affects those as well, you could create a group selector (page 49) like this:
+    a[href^="http://"], a[href^="https://"]
+
+ a[href$=".pdf"]
+The full style might look something like this:
+    a[href$=".pdf"] {
+      background: url(doc_icon.png) no-repeat;
+      padding-left: 15px;
+};
+
+Just pay attention to that cool selector: $= translates to “ends with.” You can use this selector to format links that point to Word docs ([a href$=".doc"]), movies (a [href$=".mp4"]), and so on.
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+@charset "utf-8";
+
+//colors
+@import "partials/_color.scss";
+
+//Some bulma component
+@import "partials/_bulma_component.scss";
+
+
+// Bulma
+@import "~bulma/bulma";
+
+//Responsive
+@import "partials/_responsive.scss";
+
+//Responsive
+@import "partials/_typography.scss";
+
+
+//reuse
+@import "partials/_reuse.scss";
+
+
+.is-dark
+{
+	@extend %gradient_background;
+	font-weight: bold;
+}
+
+.navbar-item
+{
+	font-weight: bold;
+}
+
+.is-active, a:hover
+{
+	border-top: solid 2px $death-pink;
+	color: $death-pink;
+	transition: 500ms;
+	@include tablet {
+		display: inline-block;
+	}
+}
+
+.footer
+{
+	color: $corn-silk;
+	margin-top: 15px;
+}
+
+.navbar-menu
+{
+	border-top: none;
+}
+
+.project_card
+{
+	margin: 8px;
+}
+
+
+/****************************************************************************************************
+		 MY ADDITIONAL HELPERS
+*****************************************************************************************************/
+
+::selection {
+	color: #FFFFFF;
+	background-color: #993366;
+}
+
+.my_center
+{
+	@extend %center;
+}
+
+a:hover
+{
+	color: $death_pink;
+}
+
+.is_hidden_mobile_tablet
+{
+	@include tablet {
+		display: none;
+	}
+}
+
+.container_mobile
+{
+	padding: 1em;
+	@include desktop {
+		margin-top: 3em;
+	}
+}
+
+.mobile_menu_design
+{
+	color: $death-pink;
+}
+
+.mobile_icon_center
+{
+	@extend %center;
+	@include desktop {
+		display: none;
+	}
+}
+
+.bold
+{
+	font-weight: bold;
+}
+
+.death_pink
+{
+	color: $death_pink;
+}
+
+.project_card
+{
+	margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

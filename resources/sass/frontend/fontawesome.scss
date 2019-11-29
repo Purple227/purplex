@@ -1,0 +1,32 @@
+
+//colors
+@import "partials/_color.scss";
+
+//Import fontawesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+/// Brand icons
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+.fa-facebook-square, .fa-linkedin, .fa-phone-alt
+{
+	color : $white;
+}
+
+
+//Solid icons
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+.fa, .fas
+{
+	color: $death_pink;
+}
+
+
+
+
+
+
+
+
+
+
+

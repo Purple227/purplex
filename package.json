@@ -1,0 +1,42 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.9.0",
+        "axios": "^0.18.1",
+        "cross-env": "^5.2.1",
+        "laravel-mix": "^4.0.7",
+        "lodash": "^4.17.5",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.15.2",
+        "sass-loader": "^7.1.0",
+        "vue": "^2.5.17",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@tinymce/tinymce-vue": "^3.0.1",
+        "animate.css": "^3.7.2",
+        "bulma": "^0.7.5",
+        "chart.js": "^2.8.0",
+        "moment": "^2.24.0",
+        "tinymce": "^5.0.15",
+        "validate.js": "^0.13.1",
+        "vue-axios": "^2.1.4",
+        "vue-chartjs": "^3.4.2",
+        "vue-input-tag": "^2.0.6",
+        "vue-moment": "^4.0.0",
+        "vue-router": "^3.0.6",
+        "vue-tinymce-editor": "^1.6.2",
+        "vuejs-datepicker": "^1.6.2",
+        "vuelidate": "^0.7.4",
+        "vuex": "^3.1.1"
+    }
+}
