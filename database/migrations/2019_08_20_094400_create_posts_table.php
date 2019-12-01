@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('image')->default('default.png');
             $table->text('description');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->integer('view')->default(0);
             $table->boolean('edited')->default(false);
             $table->boolean('status')->default(false);

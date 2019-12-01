@@ -70,7 +70,7 @@
 </div>
 
 <label class="checkbox">
-  <input type="checkbox" value="1" name="status">
+  <input type="checkbox" value="0" name="status">
   published
 </label>
 
