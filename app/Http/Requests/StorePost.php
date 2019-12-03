@@ -26,8 +26,7 @@ class StorePost extends FormRequest
         return [
             'title' => ['required', 'max:255'],
             'description' => ['required'],
-            //'image' => ['nullable', 'max:255'],
-            //'tag' => ['required'],
+            'image' => ['nullable', 'file', 'image', 'mimes:jpeg,png,gif,webp', 'max:2048'],
         ];
     }
 }

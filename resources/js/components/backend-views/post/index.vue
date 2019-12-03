@@ -42,7 +42,7 @@
 								<tr>
 									<th class="has-text-success"><abbr title="Number">No</abbr></th>
 									<th class="has-text-centered has-text-success is_hidden_mobile_tablet"> Title </th>
-									<th class="has-text-success has-text-centered"> Views </th>
+									<th class="has-text-success has-text-centered"> Status </th>
 									<th class="has-text-success has-text-centered"> Created </th>
 									<th class="has-text-success has-text-centered"> Action </th>
 								</tr>
@@ -52,7 +52,7 @@
 								<tr>
 									<th class="has-text-success"><abbr title="Number">No</abbr></th>
 									<th class="has-text-centered has-text-success is_hidden_mobile_tablet"> Title </th>
-									<th class="has-text-success has-text-centered"> Views </th>
+									<th class="has-text-success has-text-centered"> Status </th>
 									<th class="has-text-success has-text-centered"> Created </th>
 									<th class="has-text-success has-text-centered"> Action </th>
 								</tr>
@@ -60,37 +60,15 @@
 
 							<tbody> <!-- tbody tag open -->
 
-								<tr>
-									<th class="has-text-success"> 1 </th>
-									<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah... </td>
-									<td class="has-text-centered"> 54 </td>
-									<td class=""> 3 Oct </td>
+								<tr v-for="post in posts" :key="post.id">
+									<th class="has-text-success"> {{ post.id }} </th>
+									<td class="is_hidden_mobile_tablet"> {{ post.title }} </td>
+									<td class="has-text-centered"> {{ post.status }} </td>
+									<td class=""> {{ post.created_at }} </td>
+									<td class=""></td>
 									<td class="has-text-centered">  <i class="fas fa-eye has-text-success"></i> <i class="fas fa-trash has-text-success"></i> <i class="fas fa-edit has-text-success"></i> </td>
 								</tr>
 
-								<tr>
-									<th class="has-text-success"> 2 </th>
-									<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah... </td>
-									<td class="has-text-centered"> 32 </td>
-									<td class=""> 4 Oct </td>
-									<td class="has-text-centered">  <i class="fas fa-eye has-text-success"></i> <i class="fas fa-trash has-text-success"></i> <i class="fas fa-edit has-text-success"></i> </td>
-								</tr>
-
-								<tr>
-									<th class="has-text-success"> 3 </th>
-									<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah... </td>
-									<td class="has-text-centered"> 22 </td>
-									<td class=""> 3 Oct </td>
-									<td class="has-text-centered">  <i class="fas fa-eye has-text-success"></i> <i class="fas fa-trash has-text-success"></i> <i class="fas fa-edit has-text-success"></i> </td>
-								</tr>
-
-								<tr>
-									<th class="has-text-success"> 4 </th>
-									<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah...  </td>
-									<td class="has-text-centered"> 22 </td>
-									<td class=""> 3 Oct </td>
-									<td class="has-text-centered">  <i class="fas fa-eye has-text-success"></i> <i class="fas fa-trash has-text-success"></i> <i class="fas fa-edit has-text-success"></i> </td>
-								</tr>
 							</tbody>  <!-- tbody tag close -->
 						</table>  <!-- Table tag close -->
 
@@ -115,3 +93,27 @@
 	</div>  <!-- Card tag close -->
 
 </template>
+
+
+<script>
+
+export default {
+	
+	data() {
+
+		return{
+			posts: []
+		}
+	},
+
+	mounted() {
+		let api = '/api/admin/post';
+		this.axios
+		.get(api).then((response) => {
+			this.posts = response.data
+		})
+	},
+
+}
+
+</script>

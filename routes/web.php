@@ -39,7 +39,7 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
   | Method:         GET , adminHome() 
   | Description:    This my router view outlet for admin panel
   */
-  #Route::get('/{dashboard}', 'AdminHomeController@adminHome')->where('dashboard', '.*');
+  //Route::get('/{dashboard}', 'AdminHomeController@adminHome')->where('dashboard', '.*');
   
 });
 

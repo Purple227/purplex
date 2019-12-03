@@ -8,7 +8,8 @@ use App\Model\Post;
 use App\Http\Requests\StorePost;
 use App\Model\Tag;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 
 class PostController extends Controller
@@ -20,7 +21,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //return view('play');
+        
+        $posts = Post::all();
+        return response()->json($posts);
     }
 
     /**
@@ -54,13 +57,27 @@ class PostController extends Controller
 
     //Handling slug
     $slug = Str::slug($request->title, '-');
-    $truncated = Str::limit($slug, 30);
+    $truncated = Str::limit($slug, 48);
 
+    //Handling image
+    $image = $request->file('image');
+    if (isset($image)) {
+        $image_name = $slug.'.'.$image->getClientOriginalExtension();
+    } else {
+        $image_name = 'default.png';
+    }
+    if (!Storage::disk('public')->exists('blog')) {
+        Storage::disk('public')->makeDirectory('blog');
+    }
+    // create instance and resize
+    $image_resize = Image::make($image)->resize(600,350)->stream();
+    Storage::disk('public')->put('blog/'.$image_name,$image_resize);
 
+    //Creating the new object that will be save to database
     $post = new Post;
-
     $post->title = $request->title;
     $post->description = $request->description;
+    $post->image = $image_name;
 
 
     if (isset($request->status)) {
@@ -107,33 +124,45 @@ class PostController extends Controller
     public function update(StorePost $request, $id)
     {   
 
-        // Get data updated by ID
-       $post = Post::find($id);
+    $post = Post::find('id');    
 
-        // The incoming request is valid...
+      // The incoming request is valid...
 
-        // Retrieve the validated input data...
-       $validated = $request->validated();
+    // Retrieve the validated input data...
+        $validated = $request->validated();
+
+        //Tags save to database
+        $tags = $request->names;
+        foreach ($tags as $tag) {
+         $tag_data[] =Tag::firstOrCreate([
+            'name' => $tag,
+            'slug' => $tag
+        ]);     
+     } 
+
+     //I collected the tag id
+     $tag_count = count($tag_data);
+     for ($i=0; $i<$tag_count; $i++) { 
+        $tag_id[] = $tag_data[$i]['id'];
+    }
 
 
-       $post->title = $request->title;
-       $post->description = $request->description;
-       $post->edited = true;
+    $post->title = $request->title;
+    $post->description = $request->description;
+    $post->email = true;
 
-       if ($request->status === true) {
+
+    if (isset($request->status)) {
         $post->status = true; 
     } else {
         $post->status = false;
     }
-/*
-        DB::table('tags')->insert([
-            ['name' => '$request->name' ],
-            ['slug' => '$request->name' ],
-        ]);
-*/
-        $post->save(); 
 
-        $post->tags()->attach($request->tags);
+    $post->save();  
+
+    // A blast tag id get inserted here for many to many relationship
+    $post->tags()->attach($tag_id);
+
     }
 
     /**

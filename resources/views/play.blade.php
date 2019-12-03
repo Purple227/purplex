@@ -17,7 +17,7 @@
 
 <body>
 
-        <form action="{{ route('post.store') }}" method="POST" > <!-- Form tag open -->
+        <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data"> <!-- Form tag open -->
 
           @csrf
 
@@ -37,7 +37,7 @@
 
  <div class="file has-name is-right">
   <label class="file-label">
-    <input class="file-input" type="file" name="resume">
+    <input class="file-input" type="file" name="image">
     <span class="file-cta">
       <span class="file-icon">
         <i class="fas fa-upload"></i>
