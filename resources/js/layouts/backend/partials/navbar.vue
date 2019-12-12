@@ -18,78 +18,9 @@
         </router-link>
       </div>
 
-
-      <div class="dropdown level-item" v-bind:class="{ 'is-active': !isActive }" v-on:click="isActive = !isActive">
-        <div class="dropdown-trigger">
-          <i class="fas fa-envelope">  <span class="notify_dot"> . </span>  </i>
-        </div>
-
-        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-          <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
-              Overview
-            </a>
-            <a href="#" class="dropdown-item">
-              Modifiers
-            </a>
-            <a href="#" class="dropdown-item">
-              Grid
-            </a>
-            <a href="#" class="dropdown-item">
-              Form
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="dropdown level-item" v-bind:class="{ 'is-active': !isActive }" v-on:click="isActive = !isActive">
-        <div class="dropdown-trigger">
-          <i class="fas fa-bell">  <span class="notify_dot"> . </span>  </i>  
-        </div>
-
-        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-          <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
-              Overview
-            </a>
-            <a href="#" class="dropdown-item">
-              Modifiers
-            </a>
-            <a href="#" class="dropdown-item">
-              Grid
-            </a>
-            <a href="#" class="dropdown-item">
-              Form
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="dropdown level-item">
-        <div class="dropdown-trigger">
-          <i class="fas fa-user"> </i>
-        </div>
-
-        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-          <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
-              Overview
-            </a>
-            <a href="#" class="dropdown-item">
-              Modifiers
-            </a>
-            <a href="#" class="dropdown-item">
-              Grid
-            </a>
-            <a href="#" class="dropdown-item">
-              Form
-            </a>
-          </div>
-        </div>
-      </div>
+      <drop-down-envelope> </drop-down-envelope>
+      <drop-down-bell> </drop-down-bell>
+      <drop-down-user> </drop-down-user>
 
     </nav>
 
@@ -98,7 +29,6 @@
 
     <div class="navbar-end is_hidden_mobile_tablet">
       <div class="navbar-item">
-
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-item">
@@ -149,6 +79,7 @@
       </div>
     </div>
 
+
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-item">
        <i class="fas fa-user"> </i>        
@@ -172,12 +103,10 @@
   </div>
 
 
-
 </div>
 </div>
 
 </nav>
-
 
 
 </template>
@@ -186,18 +115,30 @@
 <script>
 import DynamicClassHandler from '../../../mixins/dynamic-class-handler'
 
+import DropDownEnvelope from './drop-down/drop-down-envelope.vue'
+import DropDownBell from './drop-down/drop-down-bell.vue'
+import DropDownUser from './drop-down/drop-down-user.vue'
+
+
 export default{
 
- mixins: [
+  components: {
+    'drop-down-envelope': DropDownEnvelope,
+    'drop-down-bell': DropDownBell,
+    'drop-down-user': DropDownUser,
+  },
+
+
+  mixins: [
   DynamicClassHandler
- ],
+  ],
 
 
-data() {
-  return{
-    
-  }
-},
+  data() {
+    return{
+
+    }
+  },
 
 }
 </script>

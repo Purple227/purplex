@@ -146,6 +146,26 @@ class PostController extends Controller
         $tag_id[] = $tag_data[$i]['id'];
     }
 
+    //Handling image
+    $image = $request->file('image');
+    if (isset($image)) {
+        $image_name = $slug.'.'.$image->getClientOriginalExtension();
+    } else {
+        $image_name = 'default.png';
+    }
+    if (!Storage::disk('public')->exists('blog')) {
+        Storage::disk('public')->makeDirectory('blog');
+    }
+
+    //delete old post image
+    if(Storage::disk('public')->exists('blog/'.$post->image))
+    {
+        Storage::disk('public')->delete('blog/'.$post->image);
+    }
+
+    // create instance and resize
+    $image_resize = Image::make($image)->resize(600,350)->stream();
+    Storage::disk('public')->put('blog/'.$image_name,$image_resize);
 
     $post->title = $request->title;
     $post->description = $request->description;

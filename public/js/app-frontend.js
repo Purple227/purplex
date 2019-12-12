@@ -1904,14 +1904,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_dynamic_class_handler__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
-      email: null
+      emailHolder: {
+        email: null
+      }
     };
   },
   validations: {
@@ -1923,7 +1924,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submitForm: function submitForm() {
       var api = '/api/subscriber';
-      this.axios.post(api, this.email).then(function (response) {//this.$router.push({name: 'list-projects'})
+      this.axios.post(api, this.emailHolder).then(function (response) {
+        console.log('success');
       });
     }
   }
@@ -2572,6 +2574,100 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 
 /***/ }),
 
+/***/ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-clickaway/dist/vue-clickaway.common.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue = 'default' in Vue ? Vue['default'] : Vue;
+
+var version = '2.2.2';
+
+var compatible = (/^2\./).test(Vue.version);
+if (!compatible) {
+  Vue.util.warn('VueClickaway ' + version + ' only supports Vue 2.x, and does not support Vue ' + Vue.version);
+}
+
+
+
+// @SECTION: implementation
+
+var HANDLER = '_vue_clickaway_handler';
+
+function bind(el, binding, vnode) {
+  unbind(el);
+
+  var vm = vnode.context;
+
+  var callback = binding.value;
+  if (typeof callback !== 'function') {
+    if (true) {
+      Vue.util.warn(
+        'v-' + binding.name + '="' +
+        binding.expression + '" expects a function value, ' +
+        'got ' + callback
+      );
+    }
+    return;
+  }
+
+  // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+  var initialMacrotaskEnded = false;
+  setTimeout(function() {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function(ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener('click', el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener('click', el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  bind: bind,
+  update: function(el, binding) {
+    if (binding.value === binding.oldValue) return;
+    bind(el, binding);
+  },
+  unbind: unbind,
+};
+
+var mixin = {
+  directives: { onClickaway: directive },
+};
+
+exports.version = version;
+exports.directive = directive;
+exports.mixin = mixin;
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/frontend-views/about.vue?vue&type=template&id=0b4139bc&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/frontend-views/about.vue?vue&type=template&id=0b4139bc& ***!
@@ -2945,23 +3041,27 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.email,
-                            expression: "email"
+                            value: _vm.emailHolder.email,
+                            expression: "emailHolder.email"
                           }
                         ],
                         staticClass: "input is-small",
                         attrs: {
                           type: "email",
-                          placeholder: " Subscriber",
+                          placeholder: " Subscribe",
                           required: ""
                         },
-                        domProps: { value: _vm.email },
+                        domProps: { value: _vm.emailHolder.email },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.email = $event.target.value
+                            _vm.$set(
+                              _vm.emailHolder,
+                              "email",
+                              $event.target.value
+                            )
                           }
                         }
                       }),
@@ -3091,7 +3191,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "control" }, [
       _c(
-        "a",
+        "button",
         { staticClass: "button is-dark is-small", attrs: { type: "submit" } },
         [
           _c("i", {
@@ -3176,13 +3276,9 @@ var render = function() {
             "div",
             {
               staticClass: "navbar-burger burger level-item ",
-              class: { "is-active": !_vm.isActive },
+              class: { "is-active": _vm.isActive },
               attrs: { "data-target": "navbarExampleTransparentExample" },
-              on: {
-                click: function($event) {
-                  _vm.isActive = !_vm.isActive
-                }
-              }
+              on: { click: _vm.addActiveClass }
             },
             [
               _c("span", { staticClass: "mobile_menu_design level-item" }),
@@ -3201,13 +3297,9 @@ var render = function() {
         "div",
         {
           staticClass: "navbar-menu",
-          class: { "is-active": !_vm.isActive },
+          class: { "is-active": _vm.isActive },
           attrs: { id: "navbarExampleTransparentExample" },
-          on: {
-            click: function($event) {
-              _vm.isActive = !_vm.isActive
-            }
-          }
+          on: { click: _vm.addActiveClass }
         },
         [
           _c(
@@ -20600,16 +20692,23 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_clickaway__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-clickaway */ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
+/* harmony import */ var vue_clickaway__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_clickaway__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [vue_clickaway__WEBPACK_IMPORTED_MODULE_0__["mixin"]],
   data: function data() {
     return {
-      isActive: true,
+      isActive: false,
       isHidden: 'is-hidden'
     };
   },
   methods: {
     addActiveClass: function addActiveClass() {
       this.isActive = !this.isActive;
+    },
+    away: function away() {
+      this.isActive = false;
     }
   }
 });

@@ -76,7 +76,7 @@ Route::group(['namespace'=>'Frontend' ], function()
   | Method:         Post
   | Description:    This hit the store method for storing email
   */
-  Route::post('subscriber', 'SubscriberController@store')->name('subscriber');
+  Route::post('subscriber', 'SubscriberController@store');
 
   });
 

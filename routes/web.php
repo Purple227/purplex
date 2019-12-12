@@ -13,7 +13,7 @@
 */
 
 //play 
- Route::get('/', function () {
+/* Route::get('/', function () {
     return view('play');
 });
 
@@ -39,7 +39,7 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
   | Method:         GET , adminHome() 
   | Description:    This my router view outlet for admin panel
   */
-  //Route::get('/{dashboard}', 'AdminHomeController@adminHome')->where('dashboard', '.*');
+  Route::get('/{dashboard}', 'AdminHomeController@adminHome')->where('dashboard', '.*');
   
 });
 
@@ -66,7 +66,7 @@ Route::namespace('Frontend')->group(function () {
   | Method:         GET , index() 
   | Description:    This my router view outlet for user interface
   */
-  //Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+  Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 
 });
 

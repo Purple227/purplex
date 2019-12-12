@@ -11,20 +11,11 @@ use App\Model\Subscriber;
 class SubscriberController extends Controller
 {
     
-    public function store(StoreSubscriber $request)
+    public function store(Request $request)
     {
 
-    	// The incoming request is valid...
-
-        // Retrieve the validated input data...
-        $validated = $request->validated();
-
-
-        $subscriber = new Subscriber;
-
-        $subscriber->email = $request->email;
-
-        $subscriber->save();
+	// Retrieve email by name, or create it if it doesn't exist...
+	$save_email = Subscriber::firstOrCreate(['email' => $request->email]);
 
     }
 

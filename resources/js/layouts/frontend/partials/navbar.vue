@@ -12,7 +12,7 @@
 		<nav class="navbar is-transparent nav-desktop"> <!-- nav tag start -->
 
 			<span class="level is-mobile is-hidden-desktop is-hidden-fullhd">
-				<div class="navbar-burger burger level-item " v-bind:class="{ 'is-active': !isActive }" v-on:click="isActive = !isActive" data-target="navbarExampleTransparentExample">
+				<div class="navbar-burger burger level-item " v-bind:class="{ 'is-active': isActive }" v-on:click="addActiveClass" data-target="navbarExampleTransparentExample">
 					<span class="mobile_menu_design level-item"></span>
 					<span class="mobile_menu_design level-item"></span>
 					<span class="mobile_menu_design level-item"></span>
@@ -34,7 +34,7 @@
 			</span>
 
 
-			<div id="navbarExampleTransparentExample" class="navbar-menu" v-bind:class="{ 'is-active': !isActive }" v-on:click="isActive = !isActive"> <!-- navbar menu tag open -->
+			<div id="navbarExampleTransparentExample" class="navbar-menu" v-bind:class="{ 'is-active': isActive }" v-on:click="addActiveClass"> <!-- navbar menu tag open -->
 
 				<div class="navbar-start">
 					<!-- Social icons start mobile-->

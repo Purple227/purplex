@@ -10,14 +10,15 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-<link href="{{ asset('css/backend/bulma.css') }}" rel="stylesheet">
+<link href="{{ asset('css/frontend/bulma.css') }}" rel="stylesheet">
 
 
 </head>
 
 <body>
+  <!--
 
-        <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data"> <!-- Form tag open -->
+        <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data"> 
 
           @csrf
 
@@ -78,7 +79,53 @@
     <button class="button is-link is-light "> Submit </button>
   </div>
 
-        </form>  <!-- Form tag close -->
+        </form> -->
+
+
+
+
+
+
+
+
+
+          
+
+            <div class="field has-addons">
+
+              <div class="control has-icons-left has-icons-right is-expanded">
+
+        <form action="{{ route('subscriber') }}" method="POST" > 
+          @csrf
+
+
+                <input class="input is-small" type="email" name="email" placeholder=" Subscriber" required="">
+
+                <span class="icon is-medium is-left">
+                  <i class="fas fa-envelope fa-lg"></i>
+                </span>
+
+              </div>
+
+              <div class="control">
+                <button class="button is-dark is-small" type="submit">
+                  <i class="fas fa-long-arrow-alt-right has-text-white fa-lg"> </i>
+                </button>
+              </div>
+
+            </div>
+
+          </form>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

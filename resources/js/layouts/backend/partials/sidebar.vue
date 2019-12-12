@@ -3,7 +3,7 @@
 	<aside class="menu is-block">
 
 
-<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" v-bind:class="{ 'is-active': !isActive }" v-on:click="isActive = !isActive">
+<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" v-bind:class="{ 'is-active': isActive }" v-on:click="addActiveClass">
   <span aria-hidden="true" class="mobile_menu"></span>
   <span aria-hidden="true" class="mobile_menu"></span>
   <span aria-hidden="true" class="mobile_menu"></span>
@@ -11,7 +11,7 @@
 
 
 
-<div class="navbar-menu " v-bind:class="{ 'is-active': !isActive }" v-on:click="isActive = !isActive"> <!-- mobile menu wrapper open -->
+<div class="navbar-menu " v-bind:class="{ 'is-active': isActive }" v-on:click="addActiveClass"> <!-- mobile menu wrapper open -->
 
 		<i class="fas fa-edit is-bold fa-lg">  Create </i> 
 		<ul class="menu-list">

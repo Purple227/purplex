@@ -12,7 +12,6 @@
 			</div>  <!-- Column  tag close -->
 
 
-
 			<div class="column is-10-desktop is-9-tablet column_10_bg"> <!-- Column  tag open -->
 				<router-view> </router-view>
 			</div> <!-- Column  tag close -->

@@ -112,7 +112,7 @@ methods: {
 		this.axios.post(api, this.projectForm)
 		
 		.then((response) => {
-			this.$router.push({name: 'list-projects'})
+			console.log('success')
 		})
 	}
 },

@@ -136,7 +136,7 @@ import DoughnutChart from "./chart/doughnut-chart";
 export default {
   //name: "App",
   components: {
-  	DoughnutChart
+  	DoughnutChart,
   },
 
   data() {

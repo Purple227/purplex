@@ -1,10 +1,13 @@
 
+import { mixin as clickaway } from 'vue-clickaway';
+
 export default {
+	  mixins: [ clickaway ],
 
 data() {
 
 	return{
-			isActive: true,
+			isActive: false,
 		    isHidden: 'is-hidden',
 		}
 	},
@@ -13,7 +16,11 @@ data() {
 
     addActiveClass() {
       this.isActive = !this.isActive;
-    }
+    },
+
+    away: function() {
+      this.isActive = false;
+    },
 
   },
 

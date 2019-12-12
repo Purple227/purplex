@@ -58,12 +58,11 @@
 					<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
 
 
-
 						<div class="field has-addons">
 
 							<div class="control has-icons-left has-icons-right is-expanded">
 
-								<input class="input is-small" type="email" v-model="email" placeholder=" Subscriber" required="">
+								<input class="input is-small" type="email" v-model="emailHolder.email" placeholder=" Subscribe" required="">
 
 								<span class="icon is-medium is-left">
 									<i class="fas fa-envelope fa-lg"></i>
@@ -77,9 +76,9 @@
 							</div>
 
 							<div class="control">
-								<a class="button is-dark is-small" type="submit">
+								<button class="button is-dark is-small" type="submit">
 									<i class="fas fa-long-arrow-alt-right has-text-white fa-lg"> </i>
-								</a>
+								</button>
 							</div>
 
 						</div>
@@ -123,11 +122,14 @@ export default {
 
 	mixins: [
 	dynamicClassToggler
-    ],
+	],
 
-	data: function () {
-		return {
-			email: null,
+	data() {
+		return{
+
+			emailHolder:{
+				email: null,
+			},
 		}
 	},
 
@@ -136,18 +138,19 @@ export default {
 			required,
 			email,
 		}
-},
+	},
 
-methods: {
-	submitForm() {
+	methods: {
+		submitForm() {
 
-		let api = '/api/subscriber';
-		this.axios.post(api, this.email)
-		.then((response) => {
-			//this.$router.push({name: 'list-projects'})
-		})
-	}
-},
+			let api = '/api/subscriber';
+			this.axios.post(api, this.emailHolder)
+
+			.then((response) => {
+				console.log('success')
+			})
+		}
+	},
 
 }
 
