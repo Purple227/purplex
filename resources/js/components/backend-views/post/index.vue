@@ -8,15 +8,11 @@
 
 				<div class="redundancy"> <!-- Redundancy tag open -->
 
-
 					<header class="card-header level">
 
 						<p class="card-header-title green">
 							Post Table
 						</p>
-
-
-
 
 						<div class="field has-addons">
 							<div class="control has-icons-left">

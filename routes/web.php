@@ -1,17 +1,6 @@
 <?php
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 //play 
 /* Route::get('/', function () {
     return view('play');
@@ -39,7 +28,7 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
   | Method:         GET , adminHome() 
   | Description:    This my router view outlet for admin panel
   */
-  Route::get('/{dashboard}', 'AdminHomeController@adminHome')->where('dashboard', '.*');
+  Route::get('/{dashboard}', 'AdminHomeController@adminOutlet')->where('dashboard', '.*');
   
 });
 

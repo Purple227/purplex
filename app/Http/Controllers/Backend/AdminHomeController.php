@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 
 class AdminHomeController extends Controller
 {
-    public function adminHome()
-    {
+    public function adminOutlet()
+    {	
     	return view('backend');
     }
 }

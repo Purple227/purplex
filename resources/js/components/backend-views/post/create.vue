@@ -10,65 +10,83 @@
 			</p>
 		</header>
 
-
 		<div class="card-content"> <!-- card content tag open -->
 			<div class="content">
 
-				<form v-on:submit.prevent="processForm"> <!-- Form tag open -->
+				<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
 
-				<div class="field">
-					<label class="label"> Title: <span class="is-pulled-right"> 32/250 </span> </label>
-					<p class="control has-icons-left has-icons-right">
-						<input class="input is-success is-focused" type="email" placeholder="Title" >
-						<span class="icon is-small is-left">
-							<i class="fas fa-heading has-text-success"></i>
-						</span>
-						<span class="icon is-small is-right">
-							<i class="fas fa-check has-text-success"></i>
-							<!-- i class="fas fa-exclamation-triangle has-text-link"--><!--/i-->
-						</span>
-					</p>
-				</div>
+					<div class="field" v-if="formStep.step == 1">
 
-
-				<div class="file has-name is-boxed is-centered">
-					<label class="file-label">
-						<input class="file-input" type="file" name="resume">
-						<span class="file-cta">
-							<span class="file-icon">
-								<i class="fas fa-upload"></i>
+						<label class="label"> Title <span class="has-text-link"> * </span> <span class="is-pulled-right"> 32/ {{ $v.postForm.title.$params.maxLength.max }} </span> </label>						
+						<div class="control has-icons-left has-icons-right">
+							<input class="input is-success" type="text" v-model.trim="postForm.title" placeholder="Title here" required autofocus autocomplete="on" >
+							<span class="icon is-small is-left">
+								<i class="fas fa-heading has-text-success"></i>
 							</span>
-							<span class="file-label is-bold">
-								Upload image
+							<span class="icon is-small is-right">
+								<i class="fas fa-exclamation-triangle has-text-link" v-if="$v.postForm.title.$invalid"> </i>
+								<i class="fas fa-check has-text-success" v-else> </i>
 							</span>
-						</span>
-						<span class="file-name">
-							Screen Shot 2017-07-29 at 15.54.25.png
-						</span>
-					</label>
-				</div>
+						</div>
 
+					</div>
 
-				<!-- Tag will be placed here -->
+					<div class="field"  v-if="formStep.step == 2">
+						<label class="label"> description <span class="has-text-link"> * </span>   					
+							<span class="help is-danger is-pulled-right" v-if="$v.postForm.description.$invalid"> Not minimium than {{ $v.postForm.description.$params.minLength.min }} characters </span>
+							<span class="help is-success is-pulled-right" v-else> You straight </span>
+						</label>
+						<div class="control">
+							<tinymce-editor v-model.trim="postForm.description" :init="initValue"> </tinymce-editor>
+						</div>
+					</div>
 
+					<div class="field" v-if="formStep.step == 3">
+						<div class="control">
+							<div class="select is-multiple">
+								<select multiple size="8">
+									<option value="Argentina">Argentina</option>
+									<option value="Bolivia">Bolivia</option>
+									<option value="Brazil">Brazil</option>
+									<option value="Chile">Chile</option>
+									<option value="Colombia">Colombia</option>
+									<option value="Ecuador">Ecuador</option>
+									<option value="Guyana">Guyana</option>
+									<option value="Paraguay">Paraguay</option>
+									<option value="Peru">Peru</option>
+									<option value="Suriname">Suriname</option>
+									<option value="Uruguay">Uruguay</option>
+									<option value="Venezuela">Venezuela</option>
+								</select>
+							</div>
+						</div>
+					</div>
 
-				<label class="label"> description: <span class="is-pulled-right"> 250 </span> </label>
-				<textarea class="textarea is-success" placeholder=" description "></textarea>
+					<div class="field is-grouped is-grouped-right">
+						<p class="control">
+							<a class="button is-primary" v-if="formStep.step != 1" v-on:click.prevent="prevous">
+								Previous
+							</a>
+						</p>
 
+						<p class="control">
+							<a class="button is-primary"  v-if="formStep.step != formStep.totalStep" v-on:click.prevent="next">
+								Next
+							</a>
+						</p>
 
-		<footer class="card-footer">
-			<button class="card-footer-item button green is-bold is_borderless" style="background-color: #340659;"> Submit Project</button>
+						<p class="control">
+							<a class="button is-primary"  v-if="formStep.step == formStep.totalStep" v-on:click.prevent="next">
+								Submit
+							</a>
+						</p>
 
-			<router-link :to="{name: 'dashboard'}" class="card-footer-item is-bold green" active-class='is-active' exact> Cancel </router-link> 
-		</footer>
+					</div>
 
-	</form> <!-- Form tag close -->
-
+				</form>  <!-- Form tag close -->
 
 			</div>
 		</div>  <!-- card content tag close -->
-
-
 
 	</div>  <!-- Card tag close -->
 
@@ -80,23 +98,39 @@
 
 <script>
 
+import DynamicClassHandler from '../../../mixins/dynamic-class-handler'
+import Editor from '../../../mixins/tinymce-editor'
+
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default{
 
+	mixins: [
+	Editor,
+	DynamicClassHandler
+	],
+
 	data() {
 		return{
+			formStep: {
+				step: 1,
+				totalStep: 3,
+			},
 
-			projectForm:{
+			postForm:{
 				title: "",
+				image: [],
+				imageName: '',
+				status: false,
 				description: "",
+				tag: [],
 			},
 		}
 	},
 
 
 	validations: {
-		projectForm: {
+		postForm: {
 			title: {
 				required,
 				minLength: minLength(10),
@@ -105,15 +139,28 @@ export default{
 			description: {
 				required,
 				minLength: minLength(30)
-			}
+			},
+			image: {
+				required,
+				maxLength: maxLength(47)
+			},
 		}
 	},
-	
+
 	methods: {
+
+		next() {
+			this.formStep.step++;
+		},
+
+		prevous() {
+			this.formStep.step--;
+		},
+
 		submitForm() {
-			let uri = 'http://127.0.0.1:8000/admin/projects';
-			this.axios.get(uri, this.projectForm).then((response) => {
-				this.$router.push({name: 'list-projects'})
+			let uri = 'http://127.0.0.1:8000/admin/posts';
+			this.axios.get(uri, this.postForm).then((response) => {
+    			console.log(response.headers);
 			})
 		}
 	},

@@ -112,7 +112,7 @@
 				</div>  <!-- Box tag close -->
 
 				<div class="box"> <!-- Box tag open -->
-					<i class=" fas fa-mail-bulk fa-4x">  </i>  <span class=" corn_silk is-bold"> 26,000  </span>
+					<i class=" fas fa-mail-bulk fa-4x">  </i>  <span class=" corn_silk is-bold"> {{ dashboardDatas.subscriberCount }}  </span>
 					<a class="button is-bold is-block green is-size-7-tablet"> Email Listing </a>
 				</div>  <!-- Box tag close -->
 
@@ -129,6 +129,8 @@
 
 </template>
 
+
+
 <script>
 
 import DoughnutChart from "./chart/doughnut-chart";
@@ -141,6 +143,12 @@ export default {
 
   data() {
   	return {
+
+  		dashboardDatas:
+  		{
+  			subscriberCount: null,
+  			mostReadPost: [],
+  		},
 
 	  chartOptions: { // chart option calibrace syntax open 
 
@@ -179,7 +187,17 @@ export default {
 		]
 	}
 };
-  }  // chart option calibrace syntax close
+  },  // chart option calibrace syntax close
+
+  	mounted() {
+		let api = '/api/admin/dashboard';
+		this.axios
+		.get(api).then((response) => {
+			this.dashboardDatas.subscriberCount =response.data[2];
+			this.dashboardDatas.mostReadPost =response.data[3];
+			console.log(this.dashboardDatas.mostReadPost)
+		})
+	},
 
 };
 </script>

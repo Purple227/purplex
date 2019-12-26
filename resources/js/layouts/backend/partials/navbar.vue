@@ -18,91 +18,18 @@
         </router-link>
       </div>
 
+      <!-- Mobile interface code goes here -->
       <drop-down-envelope> </drop-down-envelope>
       <drop-down-bell> </drop-down-bell>
       <drop-down-user> </drop-down-user>
 
     </nav>
 
-
-    <!-- Mobile interface code goes here -->
-
-    <div class="navbar-end is_hidden_mobile_tablet">
+    <div class="navbar-end  is_hidden_mobile_tablet">
       <div class="navbar-item">
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-item">
-           <i class="fas fa-envelope">  <span class="notify_dot"> . </span>  </i>        
-         </a>
-
-         <div class="navbar-dropdown">
-
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-
-        </div>
-      </div>
-
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-item">
-         <i class="fas fa-bell">  <span class="notify_dot"> . </span>  </i>        
-       </a>
-
-       <div class="navbar-dropdown">
-
-        <a class="navbar-item">
-          About
-        </a>
-        <a class="navbar-item">
-          Jobs
-        </a>
-        <a class="navbar-item">
-          Contact
-        </a>
-        <hr class="navbar-divider">
-        <a class="navbar-item">
-          Report an issue
-        </a>
-
-      </div>
-    </div>
-
-
-    <div class="navbar-item has-dropdown is-hoverable">
-      <a class="navbar-item">
-       <i class="fas fa-user"> </i>        
-     </a>
-
-     <div class="navbar-dropdown">
-      <a class="navbar-item">
-        About
-      </a>
-      <a class="navbar-item">
-        Jobs
-      </a>
-      <a class="navbar-item">
-        Contact
-      </a>
-      <hr class="navbar-divider">
-      <a class="navbar-item">
-        Report an issue
-      </a>
-    </div>
-  </div>
-
-
+      <drop-down-envelope> </drop-down-envelope>
+      <drop-down-bell> </drop-down-bell>
+      <drop-down-user> </drop-down-user>
 </div>
 </div>
 

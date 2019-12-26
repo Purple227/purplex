@@ -45,8 +45,6 @@
 						<router-link :to="{name: 'dashboard'}" class="card-footer-item is-bold green" active-class='is-active' exact> Cancel </router-link> 
 					</footer>
 
-
-
 				</form>  <!-- Form tag close -->
 
 			</div>

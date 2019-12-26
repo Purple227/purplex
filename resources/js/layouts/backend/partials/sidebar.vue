@@ -2,8 +2,8 @@
 
 	<aside class="menu is-block">
 
-
 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" v-bind:class="{ 'is-active': isActive }" v-on:click="addActiveClass">
+
   <span aria-hidden="true" class="mobile_menu"></span>
   <span aria-hidden="true" class="mobile_menu"></span>
   <span aria-hidden="true" class="mobile_menu"></span>
@@ -33,7 +33,7 @@
 		<ul class="menu-list">
 			<li>
 				<router-link :to="{name: 'list-posts'}" active-class='is-active' exact>
-					Posts <span class="tag is-pulled-right"> 12 </span>
+					Posts <span class="tag is-pulled-right"> {{ dashboardSidebarDatas.postCount }} </span>
 				</router-link>
 			</li>
 
@@ -45,7 +45,7 @@
 
 						<li>
 				<a class=" ">
-					Tags <span class="tag is-pulled-right"> 34 </span>
+					Tags <span class="tag is-pulled-right"> {{ dashboardSidebarDatas.tagCount }} </span>
 				</a>
 			</li>
 		</ul>
@@ -91,6 +91,7 @@
 </template>
 
 
+
 <script>
 
 import dynamicClassToggler from '../../../mixins/dynamic-class-handler'
@@ -98,9 +99,9 @@ import ProfileImage from './profile-image.vue'
 
 export default {
 
-mixins: [
+	mixins: [
 	dynamicClassToggler
-],
+	],
 
 
 	components:
@@ -108,11 +109,28 @@ mixins: [
 		ProfileImage,
 	},
 
-  data() {
-    return {
-      
-    }
-  },
+	data() {
+		return {
+
+			dashboardSidebarDatas:
+			{
+			postCount: null,
+  			tagCount: null,
+			},
+
+		}
+	},
+
+
+  	mounted() {
+		let api = '/api/admin/dashboard';
+		this.axios
+		.get(api).then((response) => {
+			this.dashboardSidebarDatas.postCount = response.data[0];
+			this.dashboardSidebarDatas.tagCount =response.data[1];
+		})
+	},
+
 
 }
 </script>

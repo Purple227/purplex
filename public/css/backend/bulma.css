@@ -12187,16 +12187,11 @@ body {
   }
 }
 
-.navbar-brand .navbar-item {
+.navbar-brand {
   margin-left: 1em;
 }
 
-.navbar-dropdown,
 .dropdown-content {
-  background-color: #FFF8DC;
-}
-
-.navbar-item a:hover {
   background-color: #FFF8DC;
 }
 
@@ -12257,6 +12252,10 @@ body {
 
 .file-cta {
   background-color: #FFF8DC;
+}
+
+.file {
+  margin-top: 4%;
 }
 
 .redundancy {

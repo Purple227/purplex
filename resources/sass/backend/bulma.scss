@@ -28,17 +28,12 @@ html, body
 	}
 }
 
-.navbar-brand .navbar-item
+.navbar-brand
 {
 	margin-left: 1em;
 }
 
-.navbar-dropdown, .dropdown-content
-{
-	background-color: $corn-silk;
-}
-
-.navbar-item a:hover
+.dropdown-content
 {
 	background-color: $corn-silk;
 }
@@ -112,6 +107,11 @@ html, body
 .file-cta
 {
 	background-color: $corn-silk;
+}
+
+.file
+{
+	margin-top: 4%;
 }
 
 .redundancy

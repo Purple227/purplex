@@ -14,7 +14,7 @@
 					</div> <!-- First column tag close -->
 
 					<div class="column"> <!-- Second column tag start -->
-						<div class="dropdown is-hoverable is-up">
+						<div class="dropdown is-up" v-bind:class="{ 'is-active': isActive }"  v-on-clickaway="away" @click="addActiveClass">
 							<div class="dropdown-trigger">
 
 								<span class="screen-test">
@@ -22,7 +22,7 @@
 								</span>
 
 								<span class="icon is-small">
-									<i class="fas fa-angle-up" aria-hidden="true"></i>
+									<i class="fas " v-bind:class="[isActive ? 'fa-angle-down' : 'fa-angle-up']" aria-hidden="true"></i>
 								</span>
 							</div>
 

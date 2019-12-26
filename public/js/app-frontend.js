@@ -3014,7 +3014,41 @@ var render = function() {
         _c("div", { staticClass: "columns" }, [
           _vm._m(0),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "column" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "on-clickaway",
+                    rawName: "v-on-clickaway",
+                    value: _vm.away,
+                    expression: "away"
+                  }
+                ],
+                staticClass: "dropdown is-up",
+                class: { "is-active": _vm.isActive },
+                on: { click: _vm.addActiveClass }
+              },
+              [
+                _c("div", { staticClass: "dropdown-trigger" }, [
+                  _c("span", { staticClass: "screen-test" }, [
+                    _vm._v("\n\t\t\t\t\t\t\t\tSite-links \n\t\t\t\t\t\t\t")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon is-small" }, [
+                    _c("i", {
+                      staticClass: "fas ",
+                      class: [_vm.isActive ? "fa-angle-down" : "fa-angle-up"],
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "column" }, [
             _c(
@@ -3107,75 +3141,48 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c("div", { staticClass: "dropdown is-hoverable is-up" }, [
-        _c("div", { staticClass: "dropdown-trigger" }, [
-          _c("span", { staticClass: "screen-test" }, [
-            _vm._v("\n\t\t\t\t\t\t\t\tSite-links \n\t\t\t\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "icon is-small" }, [
-            _c("i", {
-              staticClass: "fas fa-angle-up",
-              attrs: { "aria-hidden": "true" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu",
-            attrs: { id: "dropdown-menu4", role: "menu" }
-          },
-          [
-            _c("div", { staticClass: "dropdown-content" }, [
-              _c("div", { staticClass: "dropdown-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: {
-                      target: "_blank",
-                      href: "http://127.0.0.1:8000/admin/dashboard",
-                      "active-class": "is-active",
-                      exact: ""
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t\t\t\tDashboard\n\t\t\t\t\t\t\t\t\t"
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("a", { staticClass: "dropdown-item" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\tOther dropdown item\n\t\t\t\t\t\t\t\t\t"
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t\t\t\tDropdown item\n\t\t\t\t\t\t\t\t\t"
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("a", { staticClass: "dropdown-item" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\tOther dropdown item\n\t\t\t\t\t\t\t\t\t"
-                  )
-                ])
-              ])
+    return _c(
+      "div",
+      {
+        staticClass: "dropdown-menu",
+        attrs: { id: "dropdown-menu4", role: "menu" }
+      },
+      [
+        _c("div", { staticClass: "dropdown-content" }, [
+          _c("div", { staticClass: "dropdown-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: {
+                  target: "_blank",
+                  href: "http://127.0.0.1:8000/admin/dashboard",
+                  "active-class": "is-active",
+                  exact: ""
+                }
+              },
+              [_vm._v("\n\t\t\t\t\t\t\t\t\t\tDashboard\n\t\t\t\t\t\t\t\t\t")]
+            ),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item" }, [
+              _vm._v(
+                "\n\t\t\t\t\t\t\t\t\t\tOther dropdown item\n\t\t\t\t\t\t\t\t\t"
+              )
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("\n\t\t\t\t\t\t\t\t\t\tDropdown item\n\t\t\t\t\t\t\t\t\t")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item" }, [
+              _vm._v(
+                "\n\t\t\t\t\t\t\t\t\t\tOther dropdown item\n\t\t\t\t\t\t\t\t\t"
+              )
             ])
-          ]
-        )
-      ])
-    ])
+          ])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
