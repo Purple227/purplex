@@ -13,20 +13,13 @@
 
 <div class="navbar-menu " v-bind:class="{ 'is-active': isActive }" v-on:click="addActiveClass"> <!-- mobile menu wrapper open -->
 
-		<i class="fas fa-edit is-bold fa-lg">  Create </i> 
+		<i class="fas fa-edit is-bold fa-lg is-marginless">  Create </i> 
 		<ul class="menu-list">
 			<li>
 				<router-link :to="{name: 'create-post'}" active-class='is-active' exact>
 					 Post
 				</router-link>
 			</li>
-
-			<li>
-				<router-link :to="{name: 'create-project'}" active-class='is-active' exact>
-					Project 
-				</router-link>
-			</li>
-
 		</ul>
 
 		<i class="fas fa-table is-bold fa-lg">  Tables </i> 
@@ -38,12 +31,6 @@
 			</li>
 
 			<li>
-				<router-link :to="{name: 'list-projects'}" active-class='is-active' exact>
-					Projects <span class="tag is-pulled-right"> 4 </span>
-				</router-link>
-			</li>
-
-						<li>
 				<a class=" ">
 					Tags <span class="tag is-pulled-right"> {{ dashboardSidebarDatas.tagCount }} </span>
 				</a>
@@ -66,12 +53,6 @@
 			<li>
 				<a class=" ">
 					About
-				</a>
-			</li>
-
-			<li>
-				<a class=" ">
-					Support
 				</a>
 			</li>
 

@@ -3232,25 +3232,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -100368,7 +100349,7 @@ var render = function() {
         "div",
         {
           staticClass: "navbar-brand is_hidden_mobile_tablet",
-          staticStyle: { "margin-left": "1%" }
+          staticStyle: { "margin-left": "4px" }
         },
         [
           _c(
@@ -100538,7 +100519,7 @@ var render = function() {
         on: { click: _vm.addActiveClass }
       },
       [
-        _c("i", { staticClass: "fas fa-edit is-bold fa-lg" }, [
+        _c("i", { staticClass: "fas fa-edit is-bold fa-lg is-marginless" }, [
           _vm._v("  Create ")
         ]),
         _vm._v(" "),
@@ -100556,24 +100537,6 @@ var render = function() {
                   }
                 },
                 [_vm._v("\n\t\t\t\t\t Post\n\t\t\t\t")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            [
-              _c(
-                "router-link",
-                {
-                  attrs: {
-                    to: { name: "create-project" },
-                    "active-class": "is-active",
-                    exact: ""
-                  }
-                },
-                [_vm._v("\n\t\t\t\t\tProject \n\t\t\t\t")]
               )
             ],
             1
@@ -100603,29 +100566,6 @@ var render = function() {
                     _vm._v(
                       " " + _vm._s(_vm.dashboardSidebarDatas.postCount) + " "
                     )
-                  ])
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            [
-              _c(
-                "router-link",
-                {
-                  attrs: {
-                    to: { name: "list-projects" },
-                    "active-class": "is-active",
-                    exact: ""
-                  }
-                },
-                [
-                  _vm._v("\n\t\t\t\t\tProjects "),
-                  _c("span", { staticClass: "tag is-pulled-right" }, [
-                    _vm._v(" 4 ")
                   ])
                 ]
               )
@@ -100681,10 +100621,6 @@ var staticRenderFns = [
     return _c("ul", { staticClass: "menu-list" }, [
       _c("li", [
         _c("a", { staticClass: " " }, [_vm._v("\n\t\t\t\t\tAbout\n\t\t\t\t")])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { staticClass: " " }, [_vm._v("\n\t\t\t\t\tSupport\n\t\t\t\t")])
       ]),
       _vm._v(" "),
       _c("li", [

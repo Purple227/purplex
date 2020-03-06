@@ -11737,6 +11737,10 @@ body {
   margin-left: 1em;
 }
 
+.nabar-link:hover {
+  background-color: #FFF8DC;
+}
+
 .dropdown-content {
   background-color: #FFF8DC;
 }

@@ -33,6 +33,11 @@ html, body
 	margin-left: 1em;
 }
 
+.nabar-link:hover
+{
+	background-color: $corn-silk;
+}
+
 .dropdown-content
 {
 	background-color: $corn-silk;
@@ -42,7 +47,6 @@ html, body
 {
 	font-weight: bold;
 }
-
 
 .menu
 {
