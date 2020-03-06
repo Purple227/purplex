@@ -3,7 +3,7 @@
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
 
-    <div class="navbar-brand is_hidden_mobile_tablet">
+    <div class="navbar-brand is_hidden_mobile_tablet" style="margin-left: 1%;">
       <router-link :to="{name: 'dashboard'}" class="is-size-4 is-bold navbar-item has-text-success" active-class='is-active' exact>
         Dashboard
       </router-link>
@@ -27,9 +27,9 @@
 
     <div class="navbar-end  is_hidden_mobile_tablet">
       <div class="navbar-item">
-      <drop-down-envelope> </drop-down-envelope>
-      <drop-down-bell> </drop-down-bell>
-      <drop-down-user> </drop-down-user>
+      <drop-down-envelope class="navbar-link"> </drop-down-envelope>
+      <drop-down-bell class="navbar-link"> </drop-down-bell>
+      <drop-down-user class="navbar-link"> </drop-down-user>
 </div>
 </div>
 
