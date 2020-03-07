@@ -5938,8 +5938,12 @@ readers do not read off random characters that represent icons */
   .fa-envelope,
   .fa-bell,
   .fa-user {
-    margin: auto;
+    margin-top: auto;
   }
+}
+
+.nav_icon_mobile {
+  margin-top: 1%;
 }
 
 .fa-table,

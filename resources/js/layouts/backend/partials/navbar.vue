@@ -4,7 +4,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
 
     <div class="navbar-brand is_hidden_mobile_tablet" style="margin-left: 4px;">
-      <router-link :to="{name: 'dashboard'}" class="is-size-4 is-bold navbar-item has-text-success" active-class='is-active' exact>
+      <router-link :to="{name: 'dashboard'}" class="is-size-4 is-bold navbar-item has-text-success fa" active-class='is-active' exact>
         Dashboard
       </router-link>
     </div> 
@@ -13,15 +13,15 @@
     <nav class="level is-mobile is-hidden-desktop is-hidden-fullhd">
 
       <div class="is-bold" style="margin-left: 5px">
-        <router-link :to="{name: 'dashboard'}" class="is-size-4 has-text-success" active-class='is-active' exact>
+        <router-link :to="{name: 'dashboard'}" class="is-size-4 has-text-success fa" active-class='is-active' exact>
           Dashboard
         </router-link>
       </div>
 
       <!-- Mobile interface code goes here -->
-      <drop-down-envelope> </drop-down-envelope>
-      <drop-down-bell> </drop-down-bell>
-      <drop-down-user> </drop-down-user>
+      <drop-down-envelope class='nav_icon_mobile'> </drop-down-envelope>
+      <drop-down-bell class='nav_icon_mobile'> </drop-down-bell>
+      <drop-down-user class='nav_icon_mobile'> </drop-down-user>
 
     </nav>
 

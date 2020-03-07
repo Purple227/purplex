@@ -37,7 +37,7 @@
 							<thead>  <!-- thead tag open -->
 								<tr>
 									<th class="has-text-success"><abbr title="Number">No</abbr></th>
-									<th class="has-text-centered has-text-success is_hidden_mobile_tablet"> Title </th>
+									<th class="has-text-centered has-text-success "> Title </th>
 									<th class="has-text-success has-text-centered"> Status </th>
 									<th class="has-text-success has-text-centered"> Created </th>
 									<th class="has-text-success has-text-centered"> Action </th>
@@ -47,7 +47,7 @@
 							<tfoot>  <!-- tfoot tag open -->
 								<tr>
 									<th class="has-text-success"><abbr title="Number">No</abbr></th>
-									<th class="has-text-centered has-text-success is_hidden_mobile_tablet"> Title </th>
+									<th class="has-text-centered has-text-success"> Title </th>
 									<th class="has-text-success has-text-centered"> Status </th>
 									<th class="has-text-success has-text-centered"> Created </th>
 									<th class="has-text-success has-text-centered"> Action </th>
@@ -58,7 +58,7 @@
 
 								<tr v-for="post in posts" :key="post.id">
 									<th class="has-text-success"> {{ post.id }} </th>
-									<td class="is_hidden_mobile_tablet"> {{ post.title }} </td>
+									<td class=""> {{ post.title }} </td>
 									<td class="has-text-centered"> {{ post.status }} </td>
 									<td class=""> {{ post.created_at }} </td>
 									<td class=""></td>

@@ -15,7 +15,7 @@
 @import "partials/_reuse.scss";
 
 
-//dashboard navbar icon styling
+//Navbar icon styling
 .fa-envelope, .fa-bell, .fa-user
 {
 	color: $green;
@@ -23,11 +23,16 @@
 	font-size: 24px;
 	margin: 10px;
 	@include tablet {
-		margin: auto;
+		margin-top: auto;
 	}
 }
 
-//dashboard aside navba left r styling
+.nav_icon_mobile
+{
+	margin-top: 1%;
+}
+
+//Sidebar left icon styling
 .fa-table, .fa-edit, .fa-running, .fa-plus-circle
 {
 	color: $green;
@@ -35,7 +40,7 @@
 	margin-top: 1em;
 }
 
-//dashboard right icon styling
+//Sidebar right ico styling
 .fa-money-check-alt, .fa-share-alt, .fa-mail-bulk
 {
 	color: $lighter-green;

@@ -11,82 +11,78 @@
 		</header>
 
 		<div class="card-content"> <!-- card content tag open -->
-			<div class="content">
+
+			<h2 class="subtitle has-text-white has-text-centered is-bold">  Step: {{ formStep.step }} of {{ formStep.totalStep }} </h2>
+
+			<div class="content" style="margin-top: 2%;">
 
 				<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
 
-					<div class="field" v-if="formStep.step == 1">
+					<div class="" v-if="formStep.step == 1"> <!-- step 1 wrapper tag open -->
 
-						<label class="label"> Title <span class="has-text-link"> * </span> <span class="is-pulled-right"> 32/ {{ $v.postForm.title.$params.maxLength.max }} </span> </label>						
-						<div class="control has-icons-left has-icons-right">
-							<input class="input is-success" type="text" v-model.trim="postForm.title" placeholder="Title here" required autofocus autocomplete="on" >
-							<span class="icon is-small is-left">
-								<i class="fas fa-heading has-text-success"></i>
-							</span>
-							<span class="icon is-small is-right">
-								<i class="fas fa-exclamation-triangle has-text-link" v-if="$v.postForm.title.$invalid"> </i>
-								<i class="fas fa-check has-text-success" v-else> </i>
-							</span>
-						</div>
-
-					</div>
-
-					<div class="field"  v-if="formStep.step == 2">
-						<label class="label"> description <span class="has-text-link"> * </span>   					
-							<span class="help is-danger is-pulled-right" v-if="$v.postForm.description.$invalid"> Not minimium than {{ $v.postForm.description.$params.minLength.min }} characters </span>
-							<span class="help is-success is-pulled-right" v-else> You straight </span>
-						</label>
-						<div class="control">
-							<tinymce-editor v-model.trim="postForm.description" :init="initValue"> </tinymce-editor>
-						</div>
-					</div>
-
-					<div class="field" v-if="formStep.step == 3">
-						<div class="control">
-							<div class="select is-multiple">
-								<select multiple size="8">
-									<option value="Argentina">Argentina</option>
-									<option value="Bolivia">Bolivia</option>
-									<option value="Brazil">Brazil</option>
-									<option value="Chile">Chile</option>
-									<option value="Colombia">Colombia</option>
-									<option value="Ecuador">Ecuador</option>
-									<option value="Guyana">Guyana</option>
-									<option value="Paraguay">Paraguay</option>
-									<option value="Peru">Peru</option>
-									<option value="Suriname">Suriname</option>
-									<option value="Uruguay">Uruguay</option>
-									<option value="Venezuela">Venezuela</option>
-								</select>
+						<div class="field">
+							<label class="label"> Title <span class="has-text-link"> * </span> <span class="is-pulled-right"> {{postForm.title.length}}/ {{ $v.postForm.title.$params.maxLength.max }} </span> </label>						
+							<div class="control has-icons-left has-icons-right">
+								<input class="input is-success" type="text" v-model.trim="postForm.title" placeholder="Title here" required autofocus autocomplete="on" >
+								<span class="icon is-small is-left">
+									<i class="fas fa-heading has-text-success"></i>
+								</span>
+								<span class="icon is-small is-right">
+									<i class="fas fa-exclamation-triangle has-text-link" v-if="$v.postForm.title.$invalid"> </i>
+									<i class="fas fa-check has-text-success" v-else> </i>
+								</span>
 							</div>
 						</div>
-					</div>
 
-					<div class="field is-grouped is-grouped-right">
-						<p class="control">
-							<a class="button is-primary" v-if="formStep.step != 1" v-on:click.prevent="prevous">
-								Previous
-							</a>
-						</p>
+					</div> <!-- step 1 wrapper tag close -->
 
-						<p class="control">
-							<a class="button is-primary"  v-if="formStep.step != formStep.totalStep" v-on:click.prevent="next">
-								Next
-							</a>
-						</p>
 
-						<p class="control">
-							<a class="button is-primary"  v-if="formStep.step == formStep.totalStep" v-on:click.prevent="next">
-								Submit
-							</a>
-						</p>
+					<div class="" v-if="formStep.step == 2"> <!-- step 2 wrapper tag open -->
+						<div class="field">
+							<label class="label"> description <span class="has-text-link"> * </span>   					
+								<span class="help is-danger is-pulled-right" v-if="$v.postForm.description.$invalid"> Minimium {{ $v.postForm.description.$params.minLength.min }} characters </span>
+								<span class="help is-success is-pulled-right" v-else> You straight </span>
+							</label>
+							<div class="control">
+								<tinymce-editor v-model.trim="postForm.description" :init="initValue" class='is-success'> </tinymce-editor>
+							</div>
+						</div>
+					</div> <!-- Step 2 wrapper tag close -->
 
-					</div>
+
+					<div class=" " v-if="formStep.step == 3"> <!-- step 3 wrapper tag open -->
+						<div class="field is-grouped is-grouped-centered">
+							<div class="control">
+
+								<!-- Rectangular switch -->
+								<label class="label">  Published </label>	
+								<label class="switch">
+									<input type="checkbox">
+									<span class="slider"></span>
+								</label>
+
+							</div>
+						</div>
+					</div> <!-- Step 3 wrapper tag close -->
 
 				</form>  <!-- Form tag close -->
 
 			</div>
 		</div>  <!-- card content tag close -->
+
+
+				<footer class="card-footer">
+
+			<a class="card-footer-item green is-bold" v-if="formStep.step != 1" v-on:click.prevent="prevous" >Previous</a>
+
+			<a class="card-footer-item green is-bold" v-if="formStep.step != formStep.totalStep" v-on:click.prevent="next">
+				Next
+			</a>
+
+			<a class="card-footer-item green is-bold" v-if="formStep.step == formStep.totalStep"> Submit</a>
+
+		</footer>
+
 
 	</div>  <!-- Card tag close -->
 
@@ -120,7 +116,6 @@ export default{
 			postForm:{
 				title: "",
 				image: [],
-				imageName: '',
 				status: false,
 				description: "",
 				tag: [],
