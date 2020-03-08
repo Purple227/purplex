@@ -25,8 +25,7 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
   */
 	Route::apiResources
 	([
-		'post' => 'PostController',
-		'projects' => 'ProjectController',
+		'post' => 'PostController'
 	]);
 
   Route::get('dashboard', 'DashboardController@dashboard');

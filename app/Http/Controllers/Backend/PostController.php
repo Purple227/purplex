@@ -8,8 +8,6 @@ use App\Model\Post;
 use App\Http\Requests\StorePost;
 use App\Model\Tag;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 
 class PostController extends Controller
@@ -41,7 +39,7 @@ class PostController extends Controller
         $validated = $request->validated();
 
         //Tags save to database
-        $tags = $request->names;
+        $tags = $request->tags;
         foreach ($tags as $tag) {
          $tag_data[] =Tag::firstOrCreate([
             'name' => $tag,
@@ -59,28 +57,13 @@ class PostController extends Controller
     $slug = Str::slug($request->title, '-');
     $truncated = Str::limit($slug, 48);
 
-    //Handling image
-    $image = $request->file('image');
-    if (isset($image)) {
-        $image_name = $slug.'.'.$image->getClientOriginalExtension();
-    } else {
-        $image_name = 'default.png';
-    }
-    if (!Storage::disk('public')->exists('blog')) {
-        Storage::disk('public')->makeDirectory('blog');
-    }
-    // create instance and resize
-    $image_resize = Image::make($image)->resize(600,350)->stream();
-    Storage::disk('public')->put('blog/'.$image_name,$image_resize);
-
     //Creating the new object that will be save to database
     $post = new Post;
     $post->title = $request->title;
     $post->description = $request->description;
-    $post->image = $image_name;
 
 
-    if (isset($request->status)) {
+    if ( $request->status === true) {
         $post->status = true; 
     } else {
         $post->status = false;

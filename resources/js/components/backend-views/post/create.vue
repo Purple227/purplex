@@ -2,6 +2,8 @@
 
 	<div class="card"> <!-- Card tag open -->
 
+		<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
+
 		<header class="card-header">
 			<p class="card-header-title is-centered">
 				<i class="fas fa-file-signature is-bold fa-lg">
@@ -10,13 +12,19 @@
 			</p>
 		</header>
 
+		  <div class="notification has-text-white" v-if="postForm.errors">
+  <button class="delete" @click='postForm.errors = null'></button>
+  <ul>
+  <li> {{ postForm.errors.title[0] }} </li>
+   <li> {{ postForm.errors.description[0] }} </li>
+   </ul>
+  </div>
+
 		<div class="card-content"> <!-- card content tag open -->
 
 			<h2 class="subtitle has-text-white has-text-centered is-bold">  Step: {{ formStep.step }} of {{ formStep.totalStep }} </h2>
 
 			<div class="content" style="margin-top: 2%;">
-
-				<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
 
 					<div class="" v-if="formStep.step == 1"> <!-- step 1 wrapper tag open -->
 
@@ -32,6 +40,11 @@
 									<i class="fas fa-check has-text-success" v-else> </i>
 								</span>
 							</div>
+						</div>
+
+						<div class="field">
+							<label class="label"> Tags </label>
+							<input-tag class="input" v-model="postForm.tags"> </input-tag>
 						</div>
 
 					</div> <!-- step 1 wrapper tag close -->
@@ -57,7 +70,8 @@
 								<!-- Rectangular switch -->
 								<label class="label">  Published </label>	
 								<label class="switch">
-									<input type="checkbox">
+									<input type="checkbox" v-model='postForm.status'  true-value="true"
+									false-value="false">
 									<span class="slider"></span>
 								</label>
 
@@ -65,13 +79,12 @@
 						</div>
 					</div> <!-- Step 3 wrapper tag close -->
 
-				</form>  <!-- Form tag close -->
-
 			</div>
+
 		</div>  <!-- card content tag close -->
 
 
-				<footer class="card-footer">
+		<footer class="card-footer">
 
 			<a class="card-footer-item green is-bold" v-if="formStep.step != 1" v-on:click.prevent="prevous" >Previous</a>
 
@@ -79,10 +92,11 @@
 				Next
 			</a>
 
-			<a class="card-footer-item green is-bold" v-if="formStep.step == formStep.totalStep"> Submit</a>
+			<button class="card-footer-item green is-bold subtitle is-6 is_borderless" style="background-color: #340659; " v-if="formStep.step == formStep.totalStep"> Submit</button>
 
 		</footer>
 
+		</form>  <!-- Form tag close -->
 
 	</div>  <!-- Card tag close -->
 
@@ -96,8 +110,8 @@
 
 import DynamicClassHandler from '../../../mixins/dynamic-class-handler'
 import Editor from '../../../mixins/tinymce-editor'
-
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import InputTag from 'vue-input-tag'
 
 export default{
 
@@ -105,6 +119,10 @@ export default{
 	Editor,
 	DynamicClassHandler
 	],
+
+	components: {
+		'input-tag': InputTag
+	},
 
 	data() {
 		return{
@@ -115,10 +133,11 @@ export default{
 
 			postForm:{
 				title: "",
-				image: [],
-				status: false,
+				isPublished: false,
 				description: "",
-				tag: [],
+				tags: [],
+				status: null,
+				errors: null,
 			},
 		}
 	},
@@ -135,10 +154,6 @@ export default{
 				required,
 				minLength: minLength(30)
 			},
-			image: {
-				required,
-				maxLength: maxLength(47)
-			},
 		}
 	},
 
@@ -153,10 +168,20 @@ export default{
 		},
 
 		submitForm() {
-			let uri = 'http://127.0.0.1:8000/admin/posts';
-			this.axios.get(uri, this.postForm).then((response) => {
-    			console.log(response.headers);
-			})
+			let uri = '/api/admin/post';
+			let tags = []
+			this.axios.post(uri, {
+				title: this.postForm.title,
+				tags: this.postForm.tags,
+				description: this.postForm.description,
+				status: this.postForm.isPublished
+			}).then((response) => {
+    			this.status = true
+    			this.$emit('statusHolder', this.status)
+    			this.$router.push({name:'list-posts'})
+			}).catch(error=>{
+              this.postForm.errors = error.response.data.errors
+          })
 		}
 	},
 

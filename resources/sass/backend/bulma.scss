@@ -151,6 +151,12 @@ html, body
 	font-size: 20px;
 }
 
+.notification
+{
+	background-color: $dark-purple-light;
+	margin-top: 1%;
+}
+
 /****************************************************************************************************
      MY ADDITIONAL HELPERS
 *****************************************************************************************************/
@@ -189,7 +195,7 @@ a:hover
 	color: $death-pink;
 }
 
-.column_2_bg
+.column_2_bg,
 {
 	background-color: $dark-purple-light;
 }

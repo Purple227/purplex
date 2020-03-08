@@ -5,13 +5,15 @@
 		<div class="card-content"> <!-- Card content tag open -->
 			<div class="content">  <!-- Content tag open -->
 
+				<create-post @statusHolder="statusListener" v-if='false'/>
+
 
 				<div class="redundancy"> <!-- Redundancy tag open -->
 
 					<header class="card-header level">
 
 						<p class="card-header-title green">
-							Post Table
+							Posts Table
 						</p>
 
 						<div class="field has-addons">
@@ -76,13 +78,13 @@
 
 		<footer class="card-footer">
 
-			<a href="#" class="card-footer-item green is-bold">Save</a>
+			<a class="card-footer-item green is-bold">Previous</a>
 
-			<a href="#" class="card-footer-item">
-				Edit
+			<a href="#" class="card-footer-item green is-bold">
+				DatePicker
 			</a>
 
-			<a href="#" class="card-footer-item green is-bold">Delete</a>
+			<a class="card-footer-item green is-bold">Next</a>
 
 		</footer>
 
@@ -93,12 +95,19 @@
 
 <script>
 
+import CreatePost from './create.vue'
+
 export default {
+
+	components: {
+		'create-post': CreatePost
+	},
 	
 	data() {
 
 		return{
-			posts: []
+			posts: [],
+			status: null,
 		}
 	},
 
@@ -109,6 +118,12 @@ export default {
 			this.posts = response.data
 		})
 	},
+
+ methods: {
+    statusListener: function (arg) {
+      this.status = arg
+    }
+  }
 
 }
 
