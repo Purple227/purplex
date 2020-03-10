@@ -2445,8 +2445,7 @@ __webpack_require__.r(__webpack_exports__);
         isPublished: false,
         description: "",
         tags: [],
-        status: null,
-        errors: null
+        status: null
       }
     };
   },
@@ -2479,17 +2478,18 @@ __webpack_require__.r(__webpack_exports__);
         title: this.postForm.title,
         tags: this.postForm.tags,
         description: this.postForm.description,
-        status: this.postForm.isPublished
-      }).then(function (response) {
-        _this.status = true;
+        status: this.postForm.isPublished //console.log(status)
 
-        _this.$emit('statusHolder', _this.status);
+      }).then(function (response) {
+        _this.postForm.status = true;
+
+        _this.$emit('statusHolder', _this.postForm.status);
 
         _this.$router.push({
           name: 'list-posts'
         });
       })["catch"](function (error) {
-        _this.postForm.errors = error.response.data.errors;
+        _this.postForm.status = error.response.data.errors;
       });
     }
   }
@@ -2507,6 +2507,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create.vue */ "./resources/js/components/backend-views/post/create.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102053,24 +102063,24 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _vm.postForm.errors
+        _vm.postForm.status
           ? _c("div", { staticClass: "notification has-text-white" }, [
               _c("button", {
                 staticClass: "delete",
                 on: {
                   click: function($event) {
-                    _vm.postForm.errors = null
+                    _vm.postForm.status = null
                   }
                 }
               }),
               _vm._v(" "),
               _c("ul", [
                 _c("li", [
-                  _vm._v(" " + _vm._s(_vm.postForm.errors.title[0]) + " ")
+                  _vm._v(" " + _vm._s(_vm.postForm.status.title[0]) + " ")
                 ]),
                 _vm._v(" "),
                 _c("li", [
-                  _vm._v(" " + _vm._s(_vm.postForm.errors.description[0]) + " ")
+                  _vm._v(" " + _vm._s(_vm.postForm.status.description[0]) + " ")
                 ])
               ])
             ])
@@ -102281,25 +102291,25 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.postForm.status,
-                                  expression: "postForm.status"
+                                  value: _vm.postForm.isPublished,
+                                  expression: "postForm.isPublished"
                                 }
                               ],
                               attrs: {
                                 type: "checkbox",
-                                "true-value": "true",
-                                "false-value": "false"
+                                "true-value.number": "true",
+                                "false-value.number": "false"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.postForm.status)
-                                  ? _vm._i(_vm.postForm.status, null) > -1
-                                  : _vm._q(_vm.postForm.status, "true")
+                                checked: Array.isArray(_vm.postForm.isPublished)
+                                  ? _vm._i(_vm.postForm.isPublished, null) > -1
+                                  : _vm.postForm.isPublished
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.postForm.status,
+                                  var $$a = _vm.postForm.isPublished,
                                     $$el = $event.target,
-                                    $$c = $$el.checked ? "true" : "false"
+                                    $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
                                     var $$v = null,
                                       $$i = _vm._i($$a, $$v)
@@ -102307,21 +102317,21 @@ var render = function() {
                                       $$i < 0 &&
                                         _vm.$set(
                                           _vm.postForm,
-                                          "status",
+                                          "isPublished",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
                                           _vm.postForm,
-                                          "status",
+                                          "isPublished",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.postForm, "status", $$c)
+                                    _vm.$set(_vm.postForm, "isPublished", $$c)
                                   }
                                 }
                               }
@@ -102376,7 +102386,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "card-footer-item green is-bold subtitle is-6 is_borderless",
+                    "card-footer-item green is-bold subtitle is-6 is_borderless pointer",
                   staticStyle: { "background-color": "#340659" }
                 },
                 [_vm._v(" Submit")]
@@ -102434,13 +102444,13 @@ var render = function() {
     _c("div", { staticClass: "card-content" }, [
       _c(
         "div",
-        { staticClass: "content" },
+        { staticClass: "content " },
         [
           false
             ? undefined
             : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "redundancy" }, [
+          _c("div", { staticClass: "redundancy table-container" }, [
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "table_wrapper" }, [
@@ -102451,23 +102461,36 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.posts, function(post) {
-                    return _c("tr", { key: post.id }, [
+                  _vm._l(_vm.posts, function(post, index) {
+                    return _c("tr", { key: index }, [
                       _c("th", { staticClass: "has-text-success" }, [
-                        _vm._v(" " + _vm._s(post.id) + " ")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", {}, [_vm._v(" " + _vm._s(post.title) + " ")]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _vm._v(" " + _vm._s(post.status) + " ")
+                        _vm._v(" " + _vm._s(index + 1) + " ")
                       ]),
                       _vm._v(" "),
                       _c("td", {}, [
-                        _vm._v(" " + _vm._s(post.created_at) + " ")
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm._f("truncate")(post.title, 0, 15)) +
+                            " "
+                        )
                       ]),
                       _vm._v(" "),
-                      _c("td", {}),
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _vm._v(" " + _vm._s(post.status ? "Yes" : "No") + " ")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", {}, [
+                        _vm._v(
+                          " " +
+                            _vm._s(
+                              _vm._f("format")(
+                                post.edited ? post.updated_at : post.created_at,
+                                "D MMM YYYY - h m A"
+                              )
+                            ) +
+                            " "
+                        )
+                      ]),
                       _vm._v(" "),
                       _vm._m(3, true)
                     ])
@@ -102492,7 +102515,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("header", { staticClass: "card-header level" }, [
       _c("p", { staticClass: "card-header-title green" }, [
-        _vm._v("\n\t\t\t\t\t\tPosts Table\n\t\t\t\t\t")
+        _vm._v("\n\t\t\t\t\t\t\tPosts Table\n\t\t\t\t\t\t")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field has-addons" }, [
@@ -102509,7 +102532,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("a", { staticClass: "button is-info is-small is-success" }, [
-            _vm._v("\n\t\t\t\t\t\t\t\tSearch\n\t\t\t\t\t\t\t")
+            _vm._v("\n\t\t\t\t\t\t\t\t\tSearch\n\t\t\t\t\t\t\t\t")
           ])
         ])
       ])
@@ -102530,7 +102553,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "has-text-success has-text-centered" }, [
-          _vm._v(" Status ")
+          _vm._v(" Published ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "has-text-success has-text-centered" }, [
@@ -102576,11 +102599,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", { staticClass: "has-text-centered" }, [
-      _c("i", { staticClass: "fas fa-eye has-text-success" }),
+      _c("span", { staticClass: "icon has-text-success" }, [
+        _c("i", { staticClass: "fas fa-eye" })
+      ]),
       _vm._v(" "),
-      _c("i", { staticClass: "fas fa-trash has-text-success" }),
+      _c("span", { staticClass: "icon has-text-success" }, [
+        _c("i", { staticClass: "fas fa-trash" })
+      ]),
       _vm._v(" "),
-      _c("i", { staticClass: "fas fa-edit has-text-success" })
+      _c("span", { staticClass: "icon has-text-success" }, [
+        _c("i", { staticClass: "fas fa-edit" })
+      ])
     ])
   },
   function() {
@@ -102595,7 +102624,7 @@ var staticRenderFns = [
       _c(
         "a",
         { staticClass: "card-footer-item green is-bold", attrs: { href: "#" } },
-        [_vm._v("\n\t\t\tDatePicker\n\t\t")]
+        [_vm._v("\n\t\t\t\t\tDatePicker\n\t\t\t\t")]
       ),
       _vm._v(" "),
       _c("a", { staticClass: "card-footer-item green is-bold" }, [
@@ -120856,6 +120885,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _layouts_backend_app_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layouts/backend/app.vue */ "./resources/js/layouts/backend/app.vue");
 /* harmony import */ var _router_backend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router/backend */ "./resources/js/router/backend.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -120874,6 +120905,17 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
   mode: 'history',
   IinkActiveClass: 'is-active',
   routes: _router_backend__WEBPACK_IMPORTED_MODULE_5__["default"]
+});
+Vue.filter('truncate', function (value, start, end) {
+  if (!value) return '';
+  return value = value.substring(start, end);
+});
+
+Vue.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_6___default.a; //Vue.use(require('vue-moment'));
+
+Vue.filter('format', function (value, display) {
+  if (!value) return '';
+  return moment__WEBPACK_IMPORTED_MODULE_6___default()(value).format(display);
 });
 var app = new Vue({
   el: '#admin',

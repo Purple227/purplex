@@ -38,50 +38,46 @@ class PostController extends Controller
     // Retrieve the validated input data...
         $validated = $request->validated();
 
-        //Tags save to database
+    //Handling slug
+        $slug = Str::slug($request->title, '-');
+        $truncated = Str::limit($slug, 48);
+
+    //Creating the new object that will be save to database
+        $post = new Post;
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->status = $request->status;
+
+        $post->slug = $truncated;
+    // Retrieve the first model matching the query constraints and modify the slug
+        $slug_check = Post::where('slug', $post->slug)->first();
+        if ($slug_check == true) {
+            $random = Str::random(3);
+            $post_slug_randomize = $post->slug .$random;
+            $post->slug = $post_slug_randomize;
+        }
+
+        $post->save(); 
+
+            //Tags save to database
         $tags = $request->tags;
         foreach ($tags as $tag) {
-         $tag_data[] =Tag::firstOrCreate([
+           $tag_data[] =Tag::firstOrCreate([
             'name' => $tag,
             'slug' => $tag
         ]);     
-     } 
+       } 
 
      //I collected the tag id
-     $tag_count = count($tag_data);
-     for ($i=0; $i<$tag_count; $i++) { 
-        $tag_id[] = $tag_data[$i]['id'];
-    }
-
-    //Handling slug
-    $slug = Str::slug($request->title, '-');
-    $truncated = Str::limit($slug, 48);
-
-    //Creating the new object that will be save to database
-    $post = new Post;
-    $post->title = $request->title;
-    $post->description = $request->description;
-
-
-    if ( $request->status === true) {
-        $post->status = true; 
-    } else {
-        $post->status = false;
-    }
-
-    $post->slug = $truncated;
-    // Retrieve the first model matching the query constraints and modify the slug
-    $slug_check = Post::where('slug', $post->slug)->first();
-    if ($slug_check == true) {
-        $random = Str::random(3);
-        $post_slug_randomize = $post->slug .$random;
-        $post->slug = $post_slug_randomize;
-    }
-
-    $post->save(); 
+       if (isset($tag_data) ) {
+           $tag_count = count($tag_data);
+           for ($i=0; $i<$tag_count; $i++) { 
+            $tag_id[] = $tag_data[$i]['id'];
+        }
 
     // A blast tag id get inserted here for many to many relationship
-    $post->tags()->attach($tag_id);
+        $post->tags()->attach($tag_id);
+    }
 
 }
 
@@ -107,7 +103,7 @@ class PostController extends Controller
     public function update(StorePost $request, $id)
     {   
 
-    $post = Post::find('id');    
+        $post = Post::find('id');    
 
       // The incoming request is valid...
 
@@ -117,15 +113,15 @@ class PostController extends Controller
         //Tags save to database
         $tags = $request->names;
         foreach ($tags as $tag) {
-         $tag_data[] =Tag::firstOrCreate([
+           $tag_data[] =Tag::firstOrCreate([
             'name' => $tag,
             'slug' => $tag
         ]);     
-     } 
+       } 
 
      //I collected the tag id
-     $tag_count = count($tag_data);
-     for ($i=0; $i<$tag_count; $i++) { 
+       $tag_count = count($tag_data);
+       for ($i=0; $i<$tag_count; $i++) { 
         $tag_id[] = $tag_data[$i]['id'];
     }
 
@@ -166,7 +162,7 @@ class PostController extends Controller
     // A blast tag id get inserted here for many to many relationship
     $post->tags()->attach($tag_id);
 
-    }
+}
 
     /**
      * Remove the specified resource from storage.

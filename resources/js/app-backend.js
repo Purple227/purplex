@@ -25,6 +25,18 @@ const router = new VueRouter
 	routes
 });
 
+Vue.filter('truncate', function (value, start, end) {
+  if (!value) return ''
+  return value = value.substring(start, end)
+})
+
+import moment from 'moment'
+Vue.prototype.moment = moment
+//Vue.use(require('vue-moment'));
+Vue.filter('format', function (value, display) {
+  if (!value) return ''
+  return moment(value).format(display);
+})
 
 const app = new Vue({
 	el: '#admin',

@@ -3,12 +3,12 @@
 	<div class="card"> <!-- Card tag open -->
 
 		<div class="card-content"> <!-- Card content tag open -->
-			<div class="content">  <!-- Content tag open -->
+			<div class="content ">  <!-- Content tag open -->
 
 				<create-post @statusHolder="statusListener" v-if='false'/>
 
 
-				<div class="redundancy"> <!-- Redundancy tag open -->
+				<div class="redundancy table-container"> <!-- Redundancy tag open -->
 
 					<header class="card-header level">
 
@@ -40,7 +40,7 @@
 								<tr>
 									<th class="has-text-success"><abbr title="Number">No</abbr></th>
 									<th class="has-text-centered has-text-success "> Title </th>
-									<th class="has-text-success has-text-centered"> Status </th>
+									<th class="has-text-success has-text-centered"> Published </th>
 									<th class="has-text-success has-text-centered"> Created </th>
 									<th class="has-text-success has-text-centered"> Action </th>
 								</tr>
@@ -58,39 +58,49 @@
 
 							<tbody> <!-- tbody tag open -->
 
-								<tr v-for="post in posts" :key="post.id">
-									<th class="has-text-success"> {{ post.id }} </th>
-									<td class=""> {{ post.title }} </td>
-									<td class="has-text-centered"> {{ post.status }} </td>
-									<td class=""> {{ post.created_at }} </td>
-									<td class=""></td>
-									<td class="has-text-centered">  <i class="fas fa-eye has-text-success"></i> <i class="fas fa-trash has-text-success"></i> <i class="fas fa-edit has-text-success"></i> </td>
-								</tr>
+								<tr v-for="(post, index) in posts" :key="index">
+									<th class="has-text-success"> {{ index+1 }} </th>
+									<td class=""> {{ post.title | truncate(0, 15)}} </td>
+									<td class="has-text-centered"> {{ post.status? 'Yes': 'No' }} </td>
+									<td class=""> {{ post.edited ? post.updated_at : post.created_at | format('D MMM YYYY - h m A') }} </td>
+									<td class="has-text-centered">
+										<span class="icon has-text-success">
+											<i class="fas fa-eye"></i>
+										</span>
+										<span class="icon has-text-success">
+  <i class="fas fa-trash"></i>
+</span>
+									 
+<span class="icon has-text-success">
+  <i class="fas fa-edit"></i>
+</span>
+									</td>
+									</tr>
 
-							</tbody>  <!-- tbody tag close -->
-						</table>  <!-- Table tag close -->
+								</tbody>  <!-- tbody tag close -->
+							</table>  <!-- Table tag close -->
 
-					</div>  <!-- Table wrapper tag close -->
-				</div> 	<!-- Redundancy tag close -->
+						</div>  <!-- Table wrapper tag close -->
+					</div> 	<!-- Redundancy tag close -->
 
-			</div>  <!-- Content tag close -->
-		</div>  <!-- Card content tag close -->
+				</div>  <!-- Content tag close -->
+			</div>  <!-- Card content tag close -->
 
-		<footer class="card-footer">
+			<footer class="card-footer">
 
-			<a class="card-footer-item green is-bold">Previous</a>
+				<a class="card-footer-item green is-bold">Previous</a>
 
-			<a href="#" class="card-footer-item green is-bold">
-				DatePicker
-			</a>
+				<a href="#" class="card-footer-item green is-bold">
+					DatePicker
+				</a>
 
-			<a class="card-footer-item green is-bold">Next</a>
+				<a class="card-footer-item green is-bold">Next</a>
 
-		</footer>
+			</footer>
 
-	</div>  <!-- Card tag close -->
+		</div>  <!-- Card tag close -->
 
-</template>
+	</template>
 
 
 <script>

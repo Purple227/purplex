@@ -12,11 +12,11 @@
 			</p>
 		</header>
 
-		  <div class="notification has-text-white" v-if="postForm.errors">
-  <button class="delete" @click='postForm.errors = null'></button>
+		  <div class="notification has-text-white" v-if="postForm.status">
+  <button class="delete" @click='postForm.status = null'></button>
   <ul>
-  <li> {{ postForm.errors.title[0] }} </li>
-   <li> {{ postForm.errors.description[0] }} </li>
+  <li> {{ postForm.status.title[0] }} </li>
+   <li> {{ postForm.status.description[0] }} </li>
    </ul>
   </div>
 
@@ -70,8 +70,8 @@
 								<!-- Rectangular switch -->
 								<label class="label">  Published </label>	
 								<label class="switch">
-									<input type="checkbox" v-model='postForm.status'  true-value="true"
-									false-value="false">
+									<input type="checkbox" v-model='postForm.isPublished'  true-value.number=true
+									false-value.number=false>
 									<span class="slider"></span>
 								</label>
 
@@ -92,7 +92,7 @@
 				Next
 			</a>
 
-			<button class="card-footer-item green is-bold subtitle is-6 is_borderless" style="background-color: #340659; " v-if="formStep.step == formStep.totalStep"> Submit</button>
+			<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659; " v-if="formStep.step == formStep.totalStep"> Submit</button>
 
 		</footer>
 
@@ -137,7 +137,6 @@ export default{
 				description: "",
 				tags: [],
 				status: null,
-				errors: null,
 			},
 		}
 	},
@@ -174,13 +173,14 @@ export default{
 				title: this.postForm.title,
 				tags: this.postForm.tags,
 				description: this.postForm.description,
-				status: this.postForm.isPublished
+				status: this.postForm.isPublished,
+				//console.log(status)
 			}).then((response) => {
-    			this.status = true
-    			this.$emit('statusHolder', this.status)
+    			this.postForm.status = true
+    			this.$emit('statusHolder', this.postForm.status)
     			this.$router.push({name:'list-posts'})
 			}).catch(error=>{
-              this.postForm.errors = error.response.data.errors
+              this.postForm.status = error.response.data.errors
           })
 		}
 	},
