@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->boolean('edited')->default(false);
             $table->boolean('status')->default(false);
-            $table->softDeletes(); 
 
             $table->timestamps();
         });

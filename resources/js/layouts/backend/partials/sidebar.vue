@@ -50,17 +50,19 @@
 
 		<i class="fas fa-plus-circle is-bold fa-lg">  Others </i> 
 		<ul class="menu-list">
-			<li>
-				<a class=" ">
-					About
-				</a>
-			</li>
 
 			<li>
 				<a target="blank" href="http://127.0.0.1:8000/" class=" ">
 					View site
 				</a>
 			</li>
+			
+			<li>
+				<a class=" ">
+					About
+				</a>
+			</li>
+
 		</ul>
 
 		<ProfileImage> </ProfileImage>

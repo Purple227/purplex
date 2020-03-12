@@ -5970,6 +5970,8 @@ readers do not read off random characters that represent icons */
 .fa-trash,
 .fa-eye {
   margin: 8px;
+  cursor: pointer;
+  display: inline;
 }
 
 .fa-circle {

@@ -19,8 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(5);
         return response()->json($posts);
     }
 
@@ -40,7 +39,7 @@ class PostController extends Controller
 
     //Handling slug
         $slug = Str::slug($request->title, '-');
-        $truncated = Str::limit($slug, 48);
+        $truncated = Str::limit($slug, 20);
 
     //Creating the new object that will be save to database
         $post = new Post;
@@ -90,8 +89,15 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        // Testing 
+        $post = Post::find($id);
+
+        foreach ($post->tags as $tag) {
+           $tag->name;
+        }
+
+        return response()->json($post);
+    } // show function calibrace close 
 
     /**
      * Update the specified resource in storage.
@@ -103,15 +109,36 @@ class PostController extends Controller
     public function update(StorePost $request, $id)
     {   
 
-        $post = Post::find('id');    
+        $post = Post::find($id);    
 
-      // The incoming request is valid...
+    // The incoming request is valid...
 
     // Retrieve the validated input data...
         $validated = $request->validated();
 
-        //Tags save to database
-        $tags = $request->names;
+    //Handling slug
+        $slug = Str::slug($request->title, '-');
+        $truncated = Str::limit($slug, 20);
+
+    //Updating the  object that will be save to database
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->status = $request->status;
+        $post->edited = true;
+
+        $post->slug = $truncated;
+    // Retrieve the first model matching the query constraints and modify the slug
+        $slug_check = Post::where('slug', $post->slug)->first();
+        if ($slug_check == true) {
+            $random = Str::random(3);
+            $post_slug_randomize = $post->slug .$random;
+            $post->slug = $post_slug_randomize;
+        }
+
+        $post->save(); 
+
+            //Tags save to database
+        $tags = $request->tags;
         foreach ($tags as $tag) {
            $tag_data[] =Tag::firstOrCreate([
             'name' => $tag,
@@ -120,47 +147,16 @@ class PostController extends Controller
        } 
 
      //I collected the tag id
-       $tag_count = count($tag_data);
-       for ($i=0; $i<$tag_count; $i++) { 
-        $tag_id[] = $tag_data[$i]['id'];
+       if (isset($tag_data) ) {
+           $tag_count = count($tag_data);
+           for ($i=0; $i<$tag_count; $i++) { 
+            $tag_id[] = $tag_data[$i]['id'];
+        }
+
+    // A blast tag id get inserted and syncronized here for many to many relationship
+        $post->tags()->sync($tag_id);
     }
 
-    //Handling image
-    $image = $request->file('image');
-    if (isset($image)) {
-        $image_name = $slug.'.'.$image->getClientOriginalExtension();
-    } else {
-        $image_name = 'default.png';
-    }
-    if (!Storage::disk('public')->exists('blog')) {
-        Storage::disk('public')->makeDirectory('blog');
-    }
-
-    //delete old post image
-    if(Storage::disk('public')->exists('blog/'.$post->image))
-    {
-        Storage::disk('public')->delete('blog/'.$post->image);
-    }
-
-    // create instance and resize
-    $image_resize = Image::make($image)->resize(600,350)->stream();
-    Storage::disk('public')->put('blog/'.$image_name,$image_resize);
-
-    $post->title = $request->title;
-    $post->description = $request->description;
-    $post->email = true;
-
-
-    if (isset($request->status)) {
-        $post->status = true; 
-    } else {
-        $post->status = false;
-    }
-
-    $post->save();  
-
-    // A blast tag id get inserted here for many to many relationship
-    $post->tags()->attach($tag_id);
 
 }
 
@@ -172,6 +168,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        $post->tags()->detach();
+        return response()->json($post);
     }
 }

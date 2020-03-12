@@ -5,7 +5,17 @@
 		<div class="card-content"> <!-- Card content tag open -->
 			<div class="content ">  <!-- Content tag open -->
 
-				<create-post @statusHolder="statusListener" v-if='false'/>
+				<create-post @createStatus="statusListener" v-if='false'> </create-post>
+
+				<div class="notification is-primary" v-if="status">
+					<button class="delete" @click="status = null"></button>
+					<strong>Task Succesfull </strong>
+				</div>
+
+				<div class="notification is-primary" v-if="status == false">
+					<button class="delete" @click="status = null"></button>
+					<strong> Task Failed </strong>
+				</div>
 
 
 				<div class="redundancy table-container"> <!-- Redundancy tag open -->
@@ -18,7 +28,7 @@
 
 						<div class="field has-addons">
 							<div class="control has-icons-left">
-								<input class="input is-small" type="text" placeholder="Search Posts">
+								<input class="input is-small" type="text" placeholder="Search Table">
 								<span class="icon is-small is-left">
 									<i class="fas fa-search has-text-success"></i>
 								</span>
@@ -59,81 +69,155 @@
 							<tbody> <!-- tbody tag open -->
 
 								<tr v-for="(post, index) in posts" :key="index">
-									<th class="has-text-success"> {{ index+1 }} </th>
-									<td class=""> {{ post.title | truncate(0, 15)}} </td>
+									<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
+									<td class=" has-text-centered"> {{ post.title | truncate(0, 15)}} </td>
 									<td class="has-text-centered"> {{ post.status? 'Yes': 'No' }} </td>
-									<td class=""> {{ post.edited ? post.updated_at : post.created_at | format('D MMM YYYY - h m A') }} </td>
+									<td class="has-text-centered"> {{ post.edited ? post.updated_at : post.created_at | format('D MMM YYYY - h:mm A') }} </td>
+
 									<td class="has-text-centered">
 										<span class="icon has-text-success">
 											<i class="fas fa-eye"></i>
 										</span>
+
+
+
+										<div class="modal is-active is-rounded" v-if='isActive'>
+											<div class="modal-background"></div>
+											<div class="modal-card">
+												<section class="modal-card-body">
+													<div class="card-content">
+														<p class="subtitle"> Are You Sure </p>
+													</div>
+													<footer class="card-footer">
+														<a class="card-footer-item is-bold has-text-danger" v-on:click="deleteData(post.id, index)">Delete</a>
+														<a class="card-footer-item is-bold has-text-success" v-on:click="isActive = false, status = false">Cancel</a>
+													</footer>
+												</section>
+											</div>
+										</div>
+										<span class="icon has-text-success" v-on:click="addActiveClass">
+											<i class="fas fa-trash"></i>
+										</span>
+
+
+
+										<router-link :to="{name: 'edit-post', params: {id: post.id}}" v-bind:style="myStyle">
 										<span class="icon has-text-success">
-  <i class="fas fa-trash"></i>
-</span>
-									 
-<span class="icon has-text-success">
-  <i class="fas fa-edit"></i>
-</span>
+											<i class="fas fa-edit"></i>
+										</span>
+									    </router-link>
 									</td>
-									</tr>
+								</tr>
 
-								</tbody>  <!-- tbody tag close -->
-							</table>  <!-- Table tag close -->
+							</tbody>  <!-- tbody tag close -->
+						</table>  <!-- Table tag close -->
 
-						</div>  <!-- Table wrapper tag close -->
-					</div> 	<!-- Redundancy tag close -->
+					</div>  <!-- Table wrapper tag close -->
+				</div> 	<!-- Redundancy tag close -->
 
-				</div>  <!-- Content tag close -->
-			</div>  <!-- Card content tag close -->
+			</div>  <!-- Content tag close -->
+		</div>  <!-- Card content tag close -->
 
-			<footer class="card-footer">
+		<footer class="card-footer">
 
-				<a class="card-footer-item green is-bold">Previous</a>
+			<a class="card-footer-item green is-bold" @click="postsData(pagination.previousPageUrl)">Previous</a>
 
-				<a href="#" class="card-footer-item green is-bold">
-					DatePicker
-				</a>
+			<a href="#" class="card-footer-item green is-bold fa">
+				{{pagination.to}} of {{pagination.total}}
+			</a>
 
-				<a class="card-footer-item green is-bold">Next</a>
+			<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)">Next</a>
 
-			</footer>
+			<a class="card-footer-item green is-bold"> DatePicker</a>
 
-		</div>  <!-- Card tag close -->
+		</footer>
 
-	</template>
+	</div>  <!-- Card tag close -->
+
+</template>
 
 
 <script>
 
 import CreatePost from './create.vue'
+import DynamicClassHandler from '../../../mixins/dynamic-class-handler'
+//import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min.js'
 
 export default {
 
 	components: {
 		'create-post': CreatePost
 	},
+
+	mixins: [
+	DynamicClassHandler
+	],	
 	
 	data() {
 
 		return{
 			posts: [],
 			status: null,
+
+			pagination: {
+				nextPageUrl: null,
+				previousPageUrl: null, 
+				dateSelected: null,
+				to: null,
+				total: null,
+			},
+
+			myStyle: {
+				marginLeft: '8%',
+			},
+
 		}
 	},
 
 	mounted() {
-		let api = '/api/admin/post';
-		this.axios
-		.get(api).then((response) => {
-			this.posts = response.data
-		})
+		this.postsData()
+		//this.bulmaCalendar()
 	},
 
- methods: {
-    statusListener: function (arg) {
-      this.status = arg
-    }
-  }
+	methods: {
+
+		postsData(api) {
+			let api_url = api || "/api/admin/post"
+			this.axios
+			.get(api_url).then((response) => {
+				this.posts = response.data.data
+
+				let nextPageUrl = response.data.next_page_url
+				this.pagination.nextPageUrl = nextPageUrl ? nextPageUrl.slice(21) : null
+
+				let previousPageUrl = response.data.prev_page_url
+				this.pagination.previousPageUrl =  previousPageUrl ? previousPageUrl.slice(21) : null
+
+				this.pagination.to = response.data.to
+				this.pagination.total = response.data.total
+			})
+		},
+
+		deleteData(id, index) {
+			let api = '/api/admin/post/' + id
+			console.log(api)
+			this.axios.delete(api)
+			.then((response) => {
+				this.posts.splice(index, 1);
+				this.status = true
+				this.isActive = false
+			}).catch(function (error) {
+				this.status = false
+			});
+		},
+
+		statusListener(value) {
+			this.status = value
+			console.log(this.status)
+			console.log(value)
+		}
+
+  }//Method calibrace closes
 
 }
 

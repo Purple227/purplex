@@ -27,7 +27,8 @@ const router = new VueRouter
 
 Vue.filter('truncate', function (value, start, end) {
   if (!value) return ''
-  return value = value.substring(start, end)
+  	value = value.toString()
+  return value.substring(start, end)
 })
 
 import moment from 'moment'

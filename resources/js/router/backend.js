@@ -3,9 +3,7 @@
 import Dashboard from '../components/backend-views/dashboard.vue';
 import CreatePost from '../components/backend-views/post/create.vue';
 import ListPosts from '../components/backend-views/post/index.vue';
-import CreateProject from '../components/backend-views/project/create.vue';
-import ListProjects from '../components/backend-views/project/index.vue';
-
+import EditPost from '../components/backend-views/post/edit.vue'
 import Testing from '../components/backend-views/testing.vue';
 
 const routes = 
@@ -17,12 +15,6 @@ const routes =
     component: Dashboard
 },
 
-{
-    name:'list-posts',
-    path: '/admin/posts',
-    component: ListPosts
-},
-
 { 
     name:'create-post',
     path: '/admin/posts/create',
@@ -30,15 +22,15 @@ const routes =
 },
 
 {
-    name:'create-project',
-    path: '/admin/projects/create',
-    component: CreateProject
+    name:'list-posts',
+    path: '/admin/posts',
+    component: ListPosts
 },
 
 {
-    name:'list-projects',
-    path: '/admin/projects',
-    component: ListProjects
+    name:'edit-post',
+    path: '/admin/post/edit/:id',
+    component: EditPost
 },
 
 {
