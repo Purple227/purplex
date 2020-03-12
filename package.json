@@ -25,6 +25,7 @@
         "@tinymce/tinymce-vue": "^3.0.1",
         "animate.css": "^3.7.2",
         "bulma": "^0.7.5",
+        "bulma-calendar": "^6.0.7",
         "chart.js": "^2.8.0",
         "moment": "^2.24.0",
         "tinymce": "^5.0.15",

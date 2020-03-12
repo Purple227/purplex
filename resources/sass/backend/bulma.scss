@@ -15,6 +15,10 @@
 //reuse
 @import "partials/_reuse.scss";
 
+//Bulma DatePicker
+@import '~bulma-calendar/dist/css/bulma-calendar.min.css';
+
+
 html, body
 {
 	@extend %gradient_background;
@@ -297,6 +301,10 @@ input:checked + .slider:before {
   -webkit-transform: translateX(40px);
   -ms-transform: translateX(40px);
   transform: translateX(40px);
+}
+
+.set {
+	background-color: $dark-purple-light
 }
 
 /****************************************************************************************************

@@ -23,6 +23,12 @@ class PostController extends Controller
         return response()->json($posts);
     }
 
+    public function sortByDate($date)
+    {
+        $by_date = Post::whereDate('created_at', $date)->orderBy('id', 'desc')->paginate(5);
+        return response()->json($by_date);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

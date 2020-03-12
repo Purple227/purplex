@@ -23,6 +23,9 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
   | Method:         resource controller have dynamic method map to it. Use the command route:list to see all method
   | Description:    Get, Post, Put, Delete using the resource controller. Visit the official docs if u seem lost.
   */
+
+  Route::get('posts/{date}', 'PostController@sortByDate');
+
 	Route::apiResources
 	([
 		'post' => 'PostController'

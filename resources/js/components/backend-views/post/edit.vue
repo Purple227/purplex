@@ -7,7 +7,7 @@
 		<header class="card-header">
 			<p class="card-header-title is-centered">
 				<i class="fas fa-file-signature is-bold fa-lg">
-					Edit {{postEdit.title | truncate(0,8)}}
+					Edit {{ postEdit.title | truncate(0,8)}}
 				</i> 
 			</p>
 		</header>
@@ -15,8 +15,8 @@
 		  <div class="notification has-text-white is-primary" v-if="postEdit.status">
   <button class="delete" @click='postEdit.status = null'></button>
   <ul>
-  <li> {{ postEdit.status.title[0] }} </li>
-   <li> {{ postEdit.status.description[0] }} </li>
+  <li> {{ postEdit.status.title }} </li>
+   <li> {{ postEdit.status.description }} </li>
    </ul>
   </div>
 
@@ -176,7 +176,7 @@ export default{
 			.get(api).then((response) => {
 				this.postEdit.title = response.data.title
 				this.postEdit.description = response.data.description
-				this.postEdit.isPublished = response.data.status
+				this.postEdit.isPublished = response.data.status 
 
 				let tags = response.data.tags
 				let newTags = []

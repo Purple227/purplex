@@ -15,8 +15,8 @@
 		  <div class="notification has-text-white is-primary" v-if="postForm.status">
   <button class="delete" @click='postForm.status = null'></button>
   <ul>
-  <li> {{ postForm.status.title[0] }} </li>
-   <li> {{ postForm.status.description[0] }} </li>
+  <li> {{ postForm.status.title }} </li>
+   <li> {{ postForm.status.description }} </li>
    </ul>
   </div>
 

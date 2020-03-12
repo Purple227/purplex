@@ -5,7 +5,10 @@
 		<div class="card-content"> <!-- Card content tag open -->
 			<div class="content ">  <!-- Content tag open -->
 
-				<create-post @createStatus="statusListener" v-if='false'> </create-post>
+				<div class="" v-if='false'>
+				<create-post @createStatus="statusListener"> </create-post>
+				<edit-post @editStatus="statusListener" v-if='false'> </edit-post>
+			    </div>
 
 				<div class="notification is-primary" v-if="status">
 					<button class="delete" @click="status = null"></button>
@@ -128,7 +131,7 @@
 
 			<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)">Next</a>
 
-			<a class="card-footer-item green is-bold"> DatePicker</a>
+			<a class="card-footer-item is-marginless" @click="postsData(pagination.dateSelected)"> <input type="date" data-display-mode="dialog" data-show-header="true" data-color="is-primary" data-date-format="YYYY-MM-DD" id="my-element" v-model.lazy="pagination.dateSelected" @click="postsData(pagination.dateSelected)"> <span class="button has-text-primary is-radiusless set"> Set </span> </a>
 
 		</footer>
 
@@ -140,13 +143,15 @@
 <script>
 
 import CreatePost from './create.vue'
+import EditPost from './edit.vue'
 import DynamicClassHandler from '../../../mixins/dynamic-class-handler'
-//import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min.js'
+import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min.js'
 
 export default {
 
 	components: {
-		'create-post': CreatePost
+		'create-post': CreatePost,
+		'edit-post': EditPost
 	},
 
 	mixins: [
@@ -167,6 +172,10 @@ export default {
 				total: null,
 			},
 
+			datePicker: {
+				dateSelected: null,
+			},
+
 			myStyle: {
 				marginLeft: '8%',
 			},
@@ -176,7 +185,7 @@ export default {
 
 	mounted() {
 		this.postsData()
-		//this.bulmaCalendar()
+		this.bulmaCalendar()
 	},
 
 	methods: {
@@ -215,7 +224,35 @@ export default {
 			this.status = value
 			console.log(this.status)
 			console.log(value)
-		}
+		},
+
+
+		bulmaCalendar () {
+// Initialize all input of type date//
+let calendars = bulmaCalendar.attach('[type="date"]');
+
+// Loop on each calendar initialized
+calendars.forEach(calendar => {
+  // Add listener to date:selected event
+  calendar.on('date:selected', date => {
+  	console.log(date);
+  });
+});
+
+// To access to bulmaCalendar instance of an element
+let element = document.querySelector('#my-element');
+if (element) {
+  // bulmaCalendar instance is available as element.bulmaCalendar
+  element.bulmaCalendar.on('select', datepicker => {
+  	let selectedDate = datepicker.data.value()
+  	selectedDate = selectedDate.replace(/\//g, "-")
+  	this.dateSelectedEmpty= selectedDate
+  	this.pagination.dateSelected = "/api/admin/posts/" +selectedDate
+  });
+}
+
+}
+
 
   }//Method calibrace closes
 
