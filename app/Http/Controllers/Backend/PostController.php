@@ -29,6 +29,13 @@ class PostController extends Controller
         return response()->json($by_date);
     }
 
+    public function search(Request $request)
+    {
+        $search_query = $request->searchquery;
+        $data = Post::where('title','like','%'.$search_query.'%')->get();
+        return response()->json($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

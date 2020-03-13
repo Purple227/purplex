@@ -31,10 +31,11 @@
 
 						<div class="field has-addons">
 							<div class="control has-icons-left">
-								<input class="input is-small" type="text" placeholder="Search Table">
+								<input class="input is-small" type="text" placeholder="Search Table" v-model="searchQuery" v-on:keyup="searchData">
 								<span class="icon is-small is-left">
 									<i class="fas fa-search has-text-success"></i>
 								</span>
+								<!-- <div  v-if="searchResult.length"><ul ><li  v-for="posts in searchResult"> {{ posts.title}}</li></ul></div> -->
 							</div>
 							<div class="control">
 								<a class="button is-info is-small is-success">
@@ -59,19 +60,8 @@
 								</tr>
 							</thead>  <!-- thead tag close -->
 
-							<tfoot>  <!-- tfoot tag open -->
-								<tr>
-									<th class="has-text-success"><abbr title="Number">No</abbr></th>
-									<th class="has-text-centered has-text-success"> Title </th>
-									<th class="has-text-success has-text-centered"> Status </th>
-									<th class="has-text-success has-text-centered"> Created </th>
-									<th class="has-text-success has-text-centered"> Action </th>
-								</tr>
-							</tfoot>  <!-- tfoot tag close -->
-
 							<tbody> <!-- tbody tag open -->
-
-								<tr v-for="(post, index) in posts" :key="index">
+								<tr v-for="(post, index) in searchResult.length >1 ? searchResult : posts" :key="index">
 									<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
 									<td class=" has-text-centered"> {{ post.title | truncate(0, 15)}} </td>
 									<td class="has-text-centered"> {{ post.status? 'Yes': 'No' }} </td>
@@ -111,8 +101,8 @@
 									    </router-link>
 									</td>
 								</tr>
-
 							</tbody>  <!-- tbody tag close -->
+
 						</table>  <!-- Table tag close -->
 
 					</div>  <!-- Table wrapper tag close -->
@@ -163,6 +153,8 @@ export default {
 		return{
 			posts: [],
 			status: null,
+            searchQuery: '',
+            searchResult: [],
 
 			pagination: {
 				nextPageUrl: null,
@@ -186,6 +178,7 @@ export default {
 	mounted() {
 		this.postsData()
 		this.bulmaCalendar()
+		this.searchData()
 	},
 
 	methods: {
@@ -207,16 +200,27 @@ export default {
 			})
 		},
 
+        searchData() {
+        this.searchResult= [];
+        if(this.searchQuery.length > 1) {
+         axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
+          this.searchResult = response.data;
+         });
+        }
+       },
+
 		deleteData(id, index) {
 			let api = '/api/admin/post/' + id
 			console.log(api)
 			this.axios.delete(api)
 			.then((response) => {
 				this.posts.splice(index, 1);
+				this.searchResult.splice(index, 1);
 				this.status = true
 				this.isActive = false
 			}).catch(function (error) {
 				this.status = false
+				this.isActive = false
 			});
 		},
 
@@ -253,8 +257,22 @@ if (element) {
 
 }
 
+},//Method calibrace closes
 
-  }//Method calibrace closes
+
+
+/*  computed: {
+    // a computed getter
+    tableToggler: function () {
+      // `this` points to the vm instance
+      console.log(this.searchQuery.length)
+      this.posts = []
+      if (this.searchQuery.length > 1) {
+      	this.posts = this.searchResult
+      }
+      return this.posts
+    }
+  }*/
 
 }
 

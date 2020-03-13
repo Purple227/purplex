@@ -25,6 +25,7 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
   */
 
   Route::get('posts/{date}', 'PostController@sortByDate');
+  Route::get('posts/table/search', 'PostController@search');
 
 	Route::apiResources
 	([
