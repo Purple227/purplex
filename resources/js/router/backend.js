@@ -3,8 +3,8 @@
 import Dashboard from '../components/backend-views/dashboard.vue';
 import CreatePost from '../components/backend-views/post/create.vue';
 import ListPosts from '../components/backend-views/post/index.vue';
-import EditPost from '../components/backend-views/post/edit.vue'
-import Testing from '../components/backend-views/testing.vue';
+import EditPost from '../components/backend-views/post/edit.vue';
+import Tags from '../components/backend-views/tag.vue';
 
 const routes = 
 [
@@ -34,9 +34,9 @@ const routes =
 },
 
 {
-    name:'testing',
-    path: '/admin/testing',
-    component: Testing
+    name:'list-tags',
+    path: '/admin/tags',
+    component: Tags
 },
 
 

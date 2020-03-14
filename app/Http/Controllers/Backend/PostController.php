@@ -32,8 +32,9 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $search_query = $request->searchquery;
-        $data = Post::where('title','like','%'.$search_query.'%')->get();
-        return response()->json($data);
+        $data = Post::where('title','LIKE',"%$search_query%")->get();
+        /*$posts = Post::where('title','LIKE',"%$query%")->approved()->published()->paginate(4);
+*/        return response()->json($data);
     }
 
     /**
@@ -182,8 +183,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $post->delete();
         $post->tags()->detach();
+        $post->delete();
         return response()->json($post);
     }
 }

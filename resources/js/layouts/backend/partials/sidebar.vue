@@ -26,14 +26,14 @@
 		<ul class="menu-list">
 			<li>
 				<router-link :to="{name: 'list-posts'}" active-class='is-active' exact>
-					Posts <span class="tag is-pulled-right"> {{ dashboardSidebarDatas.postCount }} </span>
+					Posts <span class="tag is-pulled-right"> {{ posts }} </span>
 				</router-link>
 			</li>
 
 			<li>
-				<a class=" ">
-					Tags <span class="tag is-pulled-right"> {{ dashboardSidebarDatas.tagCount }} </span>
-				</a>
+				<router-link :to="{name: 'list-tags'}" active-class="is-active">
+					Tags <span class="tag is-pulled-right"> {{ tags }} </span>
+				</router-link>
 			</li>
 		</ul>
 
@@ -94,23 +94,18 @@ export default {
 
 	data() {
 		return {
-
-			dashboardSidebarDatas:
-			{
-			postCount: null,
-  			tagCount: null,
-			},
-
+			posts : null,
+			tags: null,
 		}
 	},
 
 
   	mounted() {
-		let api = '/api/admin/dashboard';
+		let api = '/api/admin/home';
 		this.axios
 		.get(api).then((response) => {
-			this.dashboardSidebarDatas.postCount = response.data[0];
-			this.dashboardSidebarDatas.tagCount =response.data[1];
+			this.posts = response.data[0];
+			this.tags =response.data[1];
 		})
 	},
 

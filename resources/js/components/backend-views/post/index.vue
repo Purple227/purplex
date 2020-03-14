@@ -20,6 +20,11 @@
 					<strong> Task Failed </strong>
 				</div>
 
+				<div class="notification is-primary" v-if="datePicker.dateSelected">
+					<button class="delete" @click="datePicker.dateSelected = null"></button>
+					<strong> Tap set to see posts added on  {{ datePicker.dateSelected }} </strong>
+				</div>
+
 
 				<div class="redundancy table-container"> <!-- Redundancy tag open -->
 
@@ -35,7 +40,6 @@
 								<span class="icon is-small is-left">
 									<i class="fas fa-search has-text-success"></i>
 								</span>
-								<!-- <div  v-if="searchResult.length"><ul ><li  v-for="posts in searchResult"> {{ posts.title}}</li></ul></div> -->
 							</div>
 							<div class="control">
 								<a class="button is-info is-small is-success">
@@ -61,7 +65,7 @@
 							</thead>  <!-- thead tag close -->
 
 							<tbody> <!-- tbody tag open -->
-								<tr v-for="(post, index) in searchResult.length >1 ? searchResult : posts" :key="index">
+								<tr v-for="(post, index) in searchQuery.length > 2 ? searchResult : posts" :key="index">
 									<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
 									<td class=" has-text-centered"> {{ post.title | truncate(0, 15)}} </td>
 									<td class="has-text-centered"> {{ post.status? 'Yes': 'No' }} </td>
@@ -72,27 +76,23 @@
 											<i class="fas fa-eye"></i>
 										</span>
 
-
-
-										<div class="modal is-active is-rounded" v-if='isActive'>
+<!-- 										<div class="modal is-active is-rounded" v-if='isActive'>
 											<div class="modal-background"></div>
 											<div class="modal-card">
 												<section class="modal-card-body">
 													<div class="card-content">
-														<p class="subtitle"> Are You Sure </p>
+														<p class="subtitle"> Are You Sure</p>
 													</div>
 													<footer class="card-footer">
-														<a class="card-footer-item is-bold has-text-danger" v-on:click="deleteData(post.id, index)">Delete</a>
+														<a class="card-footer-item is-bold has-text-danger" v-on:click="deleteData(post.id, index)">Delete {{post.id}} and {{index}}</a>
 														<a class="card-footer-item is-bold has-text-success" v-on:click="isActive = false, status = false">Cancel</a>
 													</footer>
 												</section>
 											</div>
-										</div>
-										<span class="icon has-text-success" v-on:click="addActiveClass">
-											<i class="fas fa-trash"></i>
+										</div> -->
+										<span class="icon has-text-success">
+											<i class="fas fa-trash" v-on:click="deleteData(post.id, index)"> </i>
 										</span>
-
-
 
 										<router-link :to="{name: 'edit-post', params: {id: post.id}}" v-bind:style="myStyle">
 										<span class="icon has-text-success">
@@ -115,7 +115,7 @@
 
 			<a class="card-footer-item green is-bold" @click="postsData(pagination.previousPageUrl)">Previous</a>
 
-			<a href="#" class="card-footer-item green is-bold fa">
+			<a class="card-footer-item green is-bold fa">
 				{{pagination.to}} of {{pagination.total}}
 			</a>
 
@@ -201,8 +201,8 @@ export default {
 		},
 
         searchData() {
-        this.searchResult= [];
-        if(this.searchQuery.length > 1) {
+        this.searchResult= []
+        if(this.searchQuery.length > 2) {
          axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
           this.searchResult = response.data;
          });
@@ -210,8 +210,8 @@ export default {
        },
 
 		deleteData(id, index) {
+			window.alert('Are you sure');
 			let api = '/api/admin/post/' + id
-			console.log(api)
 			this.axios.delete(api)
 			.then((response) => {
 				this.posts.splice(index, 1);
@@ -250,7 +250,7 @@ if (element) {
   element.bulmaCalendar.on('select', datepicker => {
   	let selectedDate = datepicker.data.value()
   	selectedDate = selectedDate.replace(/\//g, "-")
-  	this.dateSelectedEmpty= selectedDate
+  	this.datePicker.dateSelected = selectedDate
   	this.pagination.dateSelected = "/api/admin/posts/" +selectedDate
   });
 }
@@ -259,20 +259,6 @@ if (element) {
 
 },//Method calibrace closes
 
-
-
-/*  computed: {
-    // a computed getter
-    tableToggler: function () {
-      // `this` points to the vm instance
-      console.log(this.searchQuery.length)
-      this.posts = []
-      if (this.searchQuery.length > 1) {
-      	this.posts = this.searchResult
-      }
-      return this.posts
-    }
-  }*/
 
 }
 
