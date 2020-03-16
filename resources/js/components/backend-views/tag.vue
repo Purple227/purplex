@@ -55,7 +55,7 @@
 							</thead>  <!-- thead tag close -->
 
 							<tbody> <!-- tbody tag open -->
-								<tr v-for="(tag, index) in tags" :key="index">
+								<tr v-for="(tag, index) in searchQuery.length > 2 ? searchResult : tags" :key="index">
 									<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
 
 									<td class=" has-text-centered"> {{ tag.name | truncate(0, 15)}} </td>

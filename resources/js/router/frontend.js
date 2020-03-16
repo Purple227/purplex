@@ -4,6 +4,7 @@ import Contact from '../components/frontend-views/contact.vue';
 import Home from '../components/frontend-views/home.vue';
 import About from '../components/frontend-views/about.vue';
 import Portfolio from '../components/frontend-views/portfolio.vue';
+import Blog from '../components/frontend-views/blog.vue';
 
 const routes = 
 [
@@ -29,6 +30,12 @@ const routes =
     name:'portfolio',
     path: '/portfolio',
     component: Portfolio 
+},
+
+{
+    name:'blog',
+    path: '/blog',
+    component: Blog 
 },
 
 ];

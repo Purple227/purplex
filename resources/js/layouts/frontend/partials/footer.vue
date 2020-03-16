@@ -55,14 +55,20 @@
 
 					<div class="column"> <!-- Third column tag start -->
 
+<div class="notification is-danger is-small" v-if="status">
+  Thanks for subscribing
+</div>
+
+
+
 					<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
 
 
-						<div class="field has-addons">
+						<div class="field has-addons" v-if="status == null">
 
 							<div class="control has-icons-left has-icons-right is-expanded">
 
-								<input class="input is-small" type="email" v-model="emailHolder.email" placeholder=" Subscribe" required="">
+								<input class="input is-small" type="email" v-model="email" placeholder=" Subscribe" required="">
 
 								<span class="icon is-medium is-left">
 									<i class="fas fa-envelope fa-lg"></i>
@@ -114,7 +120,6 @@
 <script>
 
 import dynamicClassToggler from '../../../mixins/dynamic-class-handler'
-
 import { required, email } from 'vuelidate/lib/validators'
 
 
@@ -126,10 +131,8 @@ export default {
 
 	data() {
 		return{
-
-			emailHolder:{
-				email: null,
-			},
+			email: null,
+			status: null,
 		}
 	},
 
@@ -144,10 +147,10 @@ export default {
 		submitForm() {
 
 			let api = '/api/subscriber';
-			this.axios.post(api, this.emailHolder)
-
-			.then((response) => {
-				console.log('success')
+			this.axios.post(api, {
+				email: this.email,
+			}).then((response) => {
+				this.status = true
 			})
 		}
 	},

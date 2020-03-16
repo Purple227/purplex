@@ -5,7 +5,7 @@
 		<div class="card"> <!-- card tag open -->
 
 			<header class="card-header">
-				<p class="card-header-title is-size-3 is-centered death_pink">
+				<p class="card-header-title is-size-3 is-centered death_pink fa">
 					Contact me
 				</p>
 			</header>
@@ -20,30 +20,31 @@
 
 							<div class="field">
 								<div class="control has-icons-left has-icons-right">
-									<input class="input" type="text" placeholder="Text input" value="name">
+									<input class="input" type="text" placeholder="Name Here" v-model="contact.name">
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
 
-									<span class="icon is-small is-right">
-										<i class="fas fa-check"></i>
-									</span>
+								<span class="icon is-small is-right">
+									<i class="fas fa-exclamation-triangle" v-if="$v.contact.name.$invalid"> </i>
+									<i class="fas fa-check" v-else> </i>
+								</span>
 								</div>
 								<!--p class="help is-success">This username is available</p-->
 							</div> 
 
 							<div class="field">
 								<div class="control has-icons-left has-icons-right">
-									<input class="input" type="email" placeholder="Email input" value="email@">
+									<input class="input" type="email" placeholder="Email Address" v-model="contact.email">
 									<span class="icon is-small is-left">
 										<i class="fas fa-at"></i>
 									</span>
 
-									<span class="icon is-small is-right">
-										<i class="fas fa-exclamation-triangle"></i>
-									</span>
+								<span class="icon is-small is-right">
+									<i class="fas fa-exclamation-triangle" v-if="$v.contact.email.$invalid"> </i>
+									<i class="fas fa-check" v-else> </i>
+								</span>
 								</div>
-								<!--p class="help is-danger">This email is invalid</p-->
 							</div>
 
 						</div> <!-- column is-4 tag close -->
@@ -52,7 +53,7 @@
 
 							<div class="field">
 								<div class="control ">
-									<textarea class="textarea" placeholder="Message"></textarea> 
+									<textarea class="textarea" placeholder="Message is mandatory"></textarea> 
 								</div>
 							</div>
 						</div> <!-- column is-6 tag close -->
@@ -83,6 +84,41 @@
 	</div> <!-- Container tag close -->
 
 </template>
+
+<script>
+import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+
+export default {
+
+	data: function () {
+		return {
+			contact: {
+				name: null,
+				email: null,
+				Message:null,
+			}
+		}
+	},
+
+		validations: {
+		contact: {
+			name: {
+				required,
+			},
+			email: {
+				required,
+				email,
+			},
+			Message: {
+				required,
+			},
+		}
+	},
+
+}
+
+</script>
+
 
 
 

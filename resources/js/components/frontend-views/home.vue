@@ -12,10 +12,10 @@
 	</div>
 
 	<footer class="card-footer">
-		<p class="card-footer-item is-dark ">
-			<a href="#" class="has-text-white">
-				 Portfolio 
-			</a>
+		<p class="card-footer-item is-dark">
+			<router-link :to="{name:'portfolio'}" class="has-text-white">
+				 Projects 
+			</router-link>
 		</p>
 
 		<p class="card-footer-item is-dark ">

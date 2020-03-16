@@ -32,7 +32,7 @@
 	font-weight: bold;
 }
 
-.is-active, a:hover
+.is-active
 {
 	border-top: solid 2px $death-pink;
 	color: $death-pink;
@@ -116,10 +116,13 @@ a:hover
 	color: $death_pink;
 }
 
-.project_card
+.projects
 {
-	margin: 10px;
+	text-align: left;
+	padding: 5%;
+	margin: 4%;
 }
+
 
 
 

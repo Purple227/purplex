@@ -62,12 +62,12 @@
 
 
 					<router-link :to="{name: 'portfolio'}" class="navbar-item" active-class='is-active'>
-						<span>Portfolio</span>
+						<span> Projects </span>
 					</router-link>
 
-					<a class="navbar-item">
+					<router-link :to="{name: 'blog'}" class="navbar-item" active-class='is-active'>
 						<span>Blog</span>
-					</a>
+					</router-link>
 
 					<router-link :to="{name: 'contact'}" class="navbar-item" active-class='is-active' exact>
 						<span>Contact</span>

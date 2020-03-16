@@ -1,52 +1,65 @@
 <template>
 
-	<div class="container container_mobile"> <!-- Container tag start -->
+	<div class="container has-text-centered"> <!-- Container tag start -->
 
-		<div class="card project_card" v-for="project in projects"> <!-- Card tag open -->
+		<span class="icon is-large">
+			<i class="fas fa-briefcase fa-4x"></i>
+		</span>
 
-			<header class="card-header ">
-				<p class="card-header-title is-centered title is-5">
-					{{ project.title }}
-				</p>
-			</header>
+		<p class="title has-text-white"> Some Projects </p>
 
-			<div class="card-content"> <!-- Card content tag open -->
-				<div class="content">
 
-					{{ project.description }}
+		<div class="columns"> <!-- Columns wrapper tag open -->
 
-					<time datetime="2016-1-1" class="death_pink"> {{ project.updated_at }} </time>
+			<div class="column"> <!-- Column tag open -->
 
+				<div class="projects">
+					<a href="">
+					<i class="fas fa-boxes fa-lg"> Stock Record</i>
+					<p class="fa has-text-white">
+						Is an application that take records of stocks in and out of a storehouse. The application is tiedly coupled to a cocoa store.
+					</p>
+				</a>
 				</div>
-			</div> <!-- Card content tag close -->
 
-		</div>  <!-- Card tag close -->
+				<div class="projects">
+					<a href="">
+					<i class="fas fa-blog fa-lg"> Blog System </i>
+					<p class="fa has-text-white">
+						This a blog system with all the feature of a CMS. User Role, Author Section, Elegant form for writting blog post and so on.
+					</p>
+				</a>
+				</div>
+
+
+			</div> <!-- Column tag close -->
+
+
+
+			<div class="column">  <!-- Column tag open -->
+
+				<div class="projects">
+					<a href="">
+					<i class="fas fa-briefcase fa-lg"> Purplex </i>
+					<p class="fa has-text-white">
+						This my personal website and is fantastic. It come with a nice dashboard which you can't have acess to but i guess the frontend interface speak volume.
+					</p>
+				</a>
+				</div>
+
+				<div class="projects">
+					<a href="">
+					<i class="fas fa-plus-circle fa-lg"> More On Github </i>
+				</a>
+				</div>
+
+			</div>  <!-- Column tag close -->
+
+
+		</div> <!-- Columns wrapper tag close -->
+
 
 	</div> <!-- Container tag close -->
 
-
-
 </template>
 
-
-<script>
-
-export default {
-
-	data: function () {
-		return {
-			projects: []
-		}
-	},
-
-		mounted() {
-		let uri = '/api/admin/projects';
-		this.axios
-		.get(uri).then((response) => {
-			this.projects = response.data
-		})
-	},
-
-}
-
-</script>

@@ -64,7 +64,7 @@ Route::group(['namespace'=>'Frontend' ], function()
   | Post resource
   |-------------------------------------------------------------------------------
   | URL:            api/subscriber
-  | Controller:     AdminInterface\ContactController@send
+  | Controller:     AdminInterface\SubscriberController@send
   | Method:         Post
   | Description:    This hit the store method for storing email
   */

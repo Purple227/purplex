@@ -15,7 +15,7 @@ class Post extends Model
      */
     protected $table = 'posts';
 
-    protected $fillable = ['title', 'image', 'view', 'description', 'slug', 'edited', 'status' ];
+    protected $fillable = ['title', 'view', 'description', 'slug', 'edited', 'status' ];
 
     /**
      * The roles that belong to the user.

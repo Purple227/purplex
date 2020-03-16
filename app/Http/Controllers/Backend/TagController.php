@@ -23,44 +23,12 @@ class TagController extends Controller
         public function search(Request $request)
     {
         $search_query = $request->searchquery;
-        $data = Post::where('name','LIKE',"%$search_query%")->get();
+        $data = Tag::where('name','LIKE',"%$search_query%")->get();
         /*$posts = Post::where('title','LIKE',"%$query%")->approved()->published()->paginate(4);
 */        return response()->json($data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

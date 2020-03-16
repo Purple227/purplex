@@ -76,20 +76,6 @@
 											<i class="fas fa-eye"></i>
 										</span>
 
-<!-- 										<div class="modal is-active is-rounded" v-if='isActive'>
-											<div class="modal-background"></div>
-											<div class="modal-card">
-												<section class="modal-card-body">
-													<div class="card-content">
-														<p class="subtitle"> Are You Sure</p>
-													</div>
-													<footer class="card-footer">
-														<a class="card-footer-item is-bold has-text-danger" v-on:click="deleteData(post.id, index)">Delete {{post.id}} and {{index}}</a>
-														<a class="card-footer-item is-bold has-text-success" v-on:click="isActive = false, status = false">Cancel</a>
-													</footer>
-												</section>
-											</div>
-										</div> -->
 										<span class="icon has-text-success">
 											<i class="fas fa-trash" v-on:click="deleteData(post.id, index)"> </i>
 										</span>
@@ -204,7 +190,9 @@ export default {
         this.searchResult= []
         if(this.searchQuery.length > 2) {
          axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
+
           this.searchResult = response.data;
+          
          });
         }
        },
@@ -226,8 +214,6 @@ export default {
 
 		statusListener(value) {
 			this.status = value
-			console.log(this.status)
-			console.log(value)
 		},
 
 
@@ -239,7 +225,6 @@ let calendars = bulmaCalendar.attach('[type="date"]');
 calendars.forEach(calendar => {
   // Add listener to date:selected event
   calendar.on('date:selected', date => {
-  	console.log(date);
   });
 });
 

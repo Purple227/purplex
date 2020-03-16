@@ -11759,16 +11759,14 @@ label.panel-block:hover {
   font-weight: bold;
 }
 
-.is-active,
-a:hover {
+.is-active {
   border-top: solid 2px #C60A86;
   color: #C60A86;
   transition: 500ms;
 }
 
 @media (max-width: 1023px) {
-  .is-active,
-  a:hover {
+  .is-active {
     display: inline-block;
   }
 }
@@ -11838,7 +11836,9 @@ a:hover {
   color: #C60A86;
 }
 
-.project_card {
-  margin: 10px;
+.projects {
+  text-align: left;
+  padding: 5%;
+  margin: 4%;
 }
 
