@@ -40,7 +40,7 @@
 
 				<div class="projects">
 					<a href="">
-					<i class="fas fa-briefcase fa-lg"> Purplex </i>
+					<i class="fas fa-globe fa-lg"> Purplex </i>
 					<p class="fa has-text-white">
 						This my personal website and is fantastic. It come with a nice dashboard which you can't have acess to but i guess the frontend interface speak volume.
 					</p>

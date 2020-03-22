@@ -1,119 +1,123 @@
-<template>
+	<template>
 
-	<div class="card"> <!-- Card tag open -->
+		<div class="card"> <!-- Card tag open -->
 
-		<div class="card-content"> <!-- Card content tag open -->
-			<div class="content ">  <!-- Content tag open -->
+			<div class="card-content"> <!-- Card content tag open -->
+				<div class="content ">  <!-- Content tag open -->
 
-				<div class="" v-if='false'>
-				<create-post @createStatus="statusListener"> </create-post>
-				<edit-post @editStatus="statusListener" v-if='false'> </edit-post>
-			    </div>
+					<div class="" v-if='false'>
+						<create-post @createStatus="statusListener"> </create-post>
+						<edit-post @editStatus="statusListener" v-if='false'> </edit-post>
+					</div>
 
-				<div class="notification is-primary" v-if="status">
-					<button class="delete" @click="status = null"></button>
-					<strong>Task Succesfull </strong>
-				</div>
+					<div class="notification is-primary" v-if="status">
+						<button class="delete" @click="status = null"></button>
+						<strong>Task Succesfull </strong>
+					</div>
 
-				<div class="notification is-primary" v-if="status == false">
-					<button class="delete" @click="status = null"></button>
-					<strong> Task Failed </strong>
-				</div>
+					<div class="notification is-primary" v-if="status == false">
+						<button class="delete" @click="status = null"></button>
+						<strong> Task Failed </strong>
+					</div>
 
-				<div class="notification is-primary" v-if="datePicker.dateSelected">
-					<button class="delete" @click="datePicker.dateSelected = null"></button>
-					<strong> Tap set to see posts added on  {{ datePicker.dateSelected }} </strong>
-				</div>
+					<div class="notification is-primary" v-if="datePicker.dateSelected">
+						<button class="delete" @click="postsData(), datePicker.dateSelected = null"></button>
+						<strong> Seeing post created at {{ datePicker.dateSelected }} </strong>
+					</div>
 
+					<div class="redundancy table-container"> <!-- Redundancy tag open -->
 
-				<div class="redundancy table-container"> <!-- Redundancy tag open -->
+						<header class="card-header level">
 
-					<header class="card-header level">
+							<p class="card-header-title green">
+								Posts Table
+							</p>
 
-						<p class="card-header-title green">
-							Posts Table
-						</p>
-
-						<div class="field has-addons">
-							<div class="control has-icons-left">
-								<input class="input is-small" type="text" placeholder="Search Table" v-model="searchQuery" v-on:keyup="searchData">
-								<span class="icon is-small is-left">
-									<i class="fas fa-search has-text-success"></i>
-								</span>
+							<div class="field has-addons">
+								<div class="control has-icons-left">
+									<input class="input is-small" type="text" placeholder="Search Table" v-model="searchQuery" v-on:keyup="searchData">
+									<span class="icon is-small is-left">
+										<i class="fas fa-search has-text-success"></i>
+									</span>
+								</div>
+								<div class="control">
+									<a class="button is-info is-small is-success">
+										Search
+									</a>
+								</div>
 							</div>
-							<div class="control">
-								<a class="button is-info is-small is-success">
-									Search
-								</a>
+
+						</header>
+
+						<div class="table_wrapper">  <!-- Redundancy tag close -->
+
+							<table class="table is-bordered">  <!-- Table tag open -->
+
+								<thead>  <!-- thead tag open -->
+									<tr>
+										<th class="has-text-success"><abbr title="Number">No</abbr></th>
+										<th class="has-text-centered has-text-success "> Title </th>
+										<th class="has-text-success has-text-centered"> Published </th>
+										<th class="has-text-success has-text-centered"> Created </th>
+										<th class="has-text-success has-text-centered"> Action </th>
+									</tr>
+								</thead>  <!-- thead tag close -->
+
+								<tbody> <!-- tbody tag open -->
+									<tr v-for="(post, index) in searchQuery.length > 2 ? searchResult : posts" :key="index">
+
+										<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
+										<td class=" has-text-centered"> {{ post.title | truncate(0, 15)}} </td>
+										<td class="has-text-centered"> {{ post.status? 'Yes': 'No' }} </td>
+										<td class="has-text-centered"> {{ post.edited ? post.updated_at : post.created_at | format('D MMM YYYY - h:mm A') }} </td>
+
+										<td class="has-text-centered">
+											<span class="icon has-text-success">
+												<i class="fas fa-eye"></i>
+											</span>
+
+											<span class="icon has-text-success">
+												<i class="fas fa-trash" v-on:click="deleteData(post.id, index)"> </i>
+											</span>
+
+											<router-link :to="{name: 'edit-post', params: {id: post.id}}" v-bind:style="myStyle">
+												<span class="icon has-text-success">
+													<i class="fas fa-edit"></i>
+												</span>
+											</router-link>
+										</td>
+									</tr>
+								</tbody>  <!-- tbody tag close -->
+
+							</table>  <!-- Table tag close -->
+
+							<div class="notification is-primary has-text-centered" v-if="posts.length == 0">
+								<strong> No post found </strong>
 							</div>
-						</div>
 
-					</header>
+						</div>  <!-- Table wrapper tag close -->
+					</div> 	<!-- Redundancy tag close -->
 
-					<div class="table_wrapper">  <!-- Redundancy tag close -->
+				</div>  <!-- Content tag close -->
+			</div>  <!-- Card content tag close -->
 
-						<table class="table is-bordered">  <!-- Table tag open -->
+			<footer class="card-footer">
 
-							<thead>  <!-- thead tag open -->
-								<tr>
-									<th class="has-text-success"><abbr title="Number">No</abbr></th>
-									<th class="has-text-centered has-text-success "> Title </th>
-									<th class="has-text-success has-text-centered"> Published </th>
-									<th class="has-text-success has-text-centered"> Created </th>
-									<th class="has-text-success has-text-centered"> Action </th>
-								</tr>
-							</thead>  <!-- thead tag close -->
+				<a class="card-footer-item green is-bold" @click="postsData(pagination.previousPageUrl)">Previous</a>
 
-							<tbody> <!-- tbody tag open -->
-								<tr v-for="(post, index) in searchQuery.length > 2 ? searchResult : posts" :key="index">
-									<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
-									<td class=" has-text-centered"> {{ post.title | truncate(0, 15)}} </td>
-									<td class="has-text-centered"> {{ post.status? 'Yes': 'No' }} </td>
-									<td class="has-text-centered"> {{ post.edited ? post.updated_at : post.created_at | format('D MMM YYYY - h:mm A') }} </td>
+				<a class="card-footer-item green is-bold fa">
+					{{pagination.to}} of {{pagination.total}}
+				</a>
 
-									<td class="has-text-centered">
-										<span class="icon has-text-success">
-											<i class="fas fa-eye"></i>
-										</span>
+				<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)">Next</a>
 
-										<span class="icon has-text-success">
-											<i class="fas fa-trash" v-on:click="deleteData(post.id, index)"> </i>
-										</span>
+				<a class="card-footer-item is-marginless"> <input type="date" data-display-mode="dialog" data-show-header="true" data-color="is-primary" data-date-format="YYYY-MM-DD" id="my-element" v-model.lazy="pagination.dateSelected" @click="postsData(pagination.dateSelected)"> </a>
 
-										<router-link :to="{name: 'edit-post', params: {id: post.id}}" v-bind:style="myStyle">
-										<span class="icon has-text-success">
-											<i class="fas fa-edit"></i>
-										</span>
-									    </router-link>
-									</td>
-								</tr>
-							</tbody>  <!-- tbody tag close -->
+			</footer>
 
-						</table>  <!-- Table tag close -->
+		</div>  <!-- Card tag close -->
 
-					</div>  <!-- Table wrapper tag close -->
-				</div> 	<!-- Redundancy tag close -->
-
-			</div>  <!-- Content tag close -->
-		</div>  <!-- Card content tag close -->
-
-		<footer class="card-footer">
-
-			<a class="card-footer-item green is-bold" @click="postsData(pagination.previousPageUrl)">Previous</a>
-
-			<a class="card-footer-item green is-bold fa">
-				{{pagination.to}} of {{pagination.total}}
-			</a>
-
-			<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)">Next</a>
-
-			<a class="card-footer-item is-marginless" @click="postsData(pagination.dateSelected)"> <input type="date" data-display-mode="dialog" data-show-header="true" data-color="is-primary" data-date-format="YYYY-MM-DD" id="my-element" v-model.lazy="pagination.dateSelected" @click="postsData(pagination.dateSelected)"> <span class="button has-text-primary is-radiusless set"> Set </span> </a>
-
-		</footer>
-
-	</div>  <!-- Card tag close -->
-
-</template>
+	</template>
 
 
 <script>
@@ -139,8 +143,8 @@ export default {
 		return{
 			posts: [],
 			status: null,
-            searchQuery: '',
-            searchResult: [],
+			searchQuery: "",
+			searchResult: [],
 
 			pagination: {
 				nextPageUrl: null,
@@ -186,16 +190,41 @@ export default {
 			})
 		},
 
-        searchData() {
-        this.searchResult= []
-        if(this.searchQuery.length > 2) {
-         axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
+		searchData() {
+			this.searchResult= []
+			if(this.searchQuery.length > 2) {
+				axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
 
-          this.searchResult = response.data;
-          
-         });
-        }
-       },
+					this.searchResult = response.data
+
+					let sortResult = []
+					let string = this.searchQuery
+
+					for (var i = 0; i < response.data.length; i++)
+					{	
+						let searchTitle = [response.data[i].title]
+						//let blah = searchTitle.indexOf(string) 
+							
+						console.log(searchTitle)
+					}// For loop calibrace close
+
+					console.log(sortResult)
+
+/*					let result = this.searchResult
+					console.log(typeof(response.data))
+
+					let string = this.searchQuery
+
+					function sort(value) {
+                      return value.indexOf(string) >= 0;
+                    }
+
+                    let searchSort = result.filter(sort);
+                    console.log(searchSort)*/
+
+				});
+			}
+		},
 
 		deleteData(id, index) {
 			window.alert('Are you sure');
@@ -237,6 +266,7 @@ if (element) {
   	selectedDate = selectedDate.replace(/\//g, "-")
   	this.datePicker.dateSelected = selectedDate
   	this.pagination.dateSelected = "/api/admin/posts/" +selectedDate
+  	this.postsData(this.pagination.dateSelected)
   });
 }
 

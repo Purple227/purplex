@@ -159,7 +159,7 @@ export default {
          });
         }
        },
-
+             
 		deleteData(id, index) {
 			window.alert('Are you sure');
 			let api = '/api/admin/tag/' + id

@@ -112,7 +112,7 @@
 				</div>  <!-- Box tag close -->
 
 				<div class="box"> <!-- Box tag open -->
-					<i class=" fas fa-mail-bulk fa-4x">  </i>  <span class=" corn_silk is-bold"> {{ dashboardDatas.subscriberCount }}  </span>
+					<i class=" fas fa-mail-bulk fa-4x">  </i>  <span class=" corn_silk is-bold"> {{ subscribers }}  </span>
 					<a class="button is-bold is-block green is-size-7-tablet"> Email Listing </a>
 				</div>  <!-- Box tag close -->
 
@@ -143,12 +143,8 @@ export default {
 
   data() {
   	return {
+  		subscribers: null,
 
-  		dashboardDatas:
-  		{
-  			subscriberCount: null,
-  			mostReadPost: [],
-  		},
 
 	  chartOptions: { // chart option calibrace syntax open 
 
@@ -190,12 +186,10 @@ export default {
   },  // chart option calibrace syntax close
 
   	mounted() {
-		let api = '/api/admin/dashboard';
+		let api = '/api/admin/home';
 		this.axios
 		.get(api).then((response) => {
-			this.dashboardDatas.subscriberCount =response.data[2];
-			this.dashboardDatas.mostReadPost =response.data[3];
-			console.log(this.dashboardDatas.mostReadPost)
+			this.subscribers =response.data[2];
 		})
 	},
 
