@@ -58,9 +58,9 @@
 			</li>
 			
 			<li>
-				<a class=" ">
+				<router-link :to="{name: 'about'}" active-class="is-active">
 					About
-				</a>
+				</router-link>
 			</li>
 
 		</ul>

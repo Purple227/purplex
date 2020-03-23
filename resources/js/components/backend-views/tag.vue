@@ -59,7 +59,7 @@
 									<th class="has-text-success has-text-centered"> {{ index+1 }} </th>
 
 									<td class=" has-text-centered"> {{ tag.name | truncate(0, 15)}} </td>
-								
+
 									<td class="has-text-centered"> {{ tag.created_at | format('D MMM YYYY - h:mm A') }} </td>
 
 									<td class="has-text-centered">
@@ -72,6 +72,10 @@
 							</tbody>  <!-- tbody tag close -->
 
 						</table>  <!-- Table tag close -->
+
+						<div class="notification is-primary has-text-centered" v-if="tags.length == 0">
+							<strong> No tag found. Create a post with a tag attached</strong>
+						</div>
 
 					</div>  <!-- Table wrapper tag close -->
 				</div> 	<!-- Redundancy tag close -->

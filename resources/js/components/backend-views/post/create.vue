@@ -43,8 +43,13 @@
 						</div>
 
 						<div class="field">
-							<label class="label"> Tags </label>
-							<input-tag class="input" v-model="postForm.tags"> </input-tag>
+							<label class="label"> Tags <span class="is-pulled-right"> {{postForm.tags.length}} /  {{postForm.tags.length}}</span> </label>						
+							<div class="control has-icons-left ">
+								<input-tag class="input is-success" type="text" v-model.trim="postForm.tags" placeholder="Tags here" />
+								<span class="icon is-small is-left">
+									<i class="fas fa-tags has-text-success"></i>
+								</span>
+							</div>
 						</div>
 
 					</div> <!-- step 1 wrapper tag close -->

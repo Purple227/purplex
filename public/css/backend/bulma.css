@@ -11722,7 +11722,8 @@ body {
   background: linear-gradient(to bottom right, #FF1493, #23043B);
 }
 
-.table_wrapper_plus {
+.table_wrapper_plus,
+.my_center {
   display: flex;
   justify-content: center;
 }

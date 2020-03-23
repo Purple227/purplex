@@ -92,7 +92,7 @@
 							</table>  <!-- Table tag close -->
 
 							<div class="notification is-primary has-text-centered" v-if="posts.length == 0">
-								<strong> No post found </strong>
+								<strong> No post found. Create a post</strong>
 							</div>
 
 						</div>  <!-- Table wrapper tag close -->
@@ -111,7 +111,7 @@
 
 				<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)">Next</a>
 
-				<a class="card-footer-item is-marginless"> <input type="date" data-display-mode="dialog" data-show-header="true" data-color="is-primary" data-date-format="YYYY-MM-DD" id="my-element" v-model.lazy="pagination.dateSelected" @click="postsData(pagination.dateSelected)"> </a>
+				<a class="card-footer-item is-marginless"> <input type="date" data-display-mode="dialog" data-show-header="true" data-color="is-primary" data-date-format="YYYY-MM-DD" id="my-element" v-model.lazy="pagination.dateSelected"> </a>
 
 			</footer>
 

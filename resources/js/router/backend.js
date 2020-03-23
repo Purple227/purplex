@@ -5,6 +5,7 @@ import CreatePost from '../components/backend-views/post/create.vue';
 import ListPosts from '../components/backend-views/post/index.vue';
 import EditPost from '../components/backend-views/post/edit.vue';
 import Tags from '../components/backend-views/tag.vue';
+import About from '../components/backend-views/about.vue';
 
 const routes = 
 [
@@ -37,6 +38,12 @@ const routes =
     name:'list-tags',
     path: '/admin/tags',
     component: Tags
+},
+
+{
+    name:'about',
+    path: '/admin/about',
+    component: About
 },
 
 
