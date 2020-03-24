@@ -5,7 +5,7 @@
 
     <div class="navbar-brand is_hidden_mobile_tablet" style="margin-left: 4px;">
       <router-link :to="{name: 'dashboard'}" class="is-size-4 is-bold navbar-item has-text-success fa" active-class='is-active' exact>
-        Dashboard
+        Purple-Board
       </router-link>
     </div> 
 
@@ -14,7 +14,7 @@
 
       <div class="is-bold" style="margin-left: 5px">
         <router-link :to="{name: 'dashboard'}" class="is-size-4 has-text-success fa" active-class='is-active' exact>
-          Dashboard
+          Purple-Board
         </router-link>
       </div>
 

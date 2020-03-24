@@ -254,6 +254,13 @@ a:hover
 	@extend %center;
 }
 
+.about
+{
+	padding: 8%;
+	margin: 8%;
+	background-color: $dark-purple;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;

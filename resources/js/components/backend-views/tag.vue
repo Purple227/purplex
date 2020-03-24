@@ -74,7 +74,7 @@
 						</table>  <!-- Table tag close -->
 
 						<div class="notification is-primary has-text-centered" v-if="tags.length == 0">
-							<strong> No tag found. Create a post with a tag attached</strong>
+							<strong> No tag found. <router-link :to="{name: 'create-post'}"> Create post </router-link>  with a tag attached</strong>
 						</div>
 
 					</div>  <!-- Table wrapper tag close -->

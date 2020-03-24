@@ -40,9 +40,9 @@
 
 				<div class="projects">
 					<a href="">
-					<i class="fas fa-globe fa-lg"> Purplex </i>
+					<i class="fas fa-globe fa-lg"> Purple-Board </i>
 					<p class="fa has-text-white">
-						This my personal website and is fantastic. It come with a nice dashboard which you can't have acess to but i guess the frontend interface speak volume.
+						Purple-Board is mini dashboard build for managing oneself content. It was actually crafted because i find other open source dashboard too combustion for my limited need for a dashboard. It's open source you can try it out and it's the backend powering the site you on right now...
 					</p>
 				</a>
 				</div>

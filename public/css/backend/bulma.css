@@ -11917,6 +11917,12 @@ a:hover {
   margin-left: 1em;
 }
 
+.about {
+  padding: 8%;
+  margin: 8%;
+  background-color: #23043B;
+}
+
 /* The switch - the box around the slider */
 
 .switch {

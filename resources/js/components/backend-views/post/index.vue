@@ -92,7 +92,7 @@
 							</table>  <!-- Table tag close -->
 
 							<div class="notification is-primary has-text-centered" v-if="posts.length == 0">
-								<strong> No post found. Create a post</strong>
+								<strong> No post found. <router-link :to="{name: 'create-post'}"> Create post </router-link> </strong>
 							</div>
 
 						</div>  <!-- Table wrapper tag close -->

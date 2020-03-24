@@ -3385,12 +3385,12 @@ var staticRenderFns = [
           _c("div", { staticClass: "projects" }, [
             _c("a", { attrs: { href: "" } }, [
               _c("i", { staticClass: "fas fa-globe fa-lg" }, [
-                _vm._v(" Purplex ")
+                _vm._v(" Purple-Board ")
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "fa has-text-white" }, [
                 _vm._v(
-                  "\n\t\t\t\t\tThis my personal website and is fantastic. It come with a nice dashboard which you can't have acess to but i guess the frontend interface speak volume.\n\t\t\t\t"
+                  "\n\t\t\t\t\tPurple-Board is mini dashboard build for managing oneself content. It was actually crafted because i find other open source dashboard too combustion for my limited need for a dashboard. It's open source you can try it out and it's the backend powering the site you on right now...\n\t\t\t\t"
                 )
               ])
             ])
