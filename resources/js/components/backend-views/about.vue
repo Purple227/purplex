@@ -9,7 +9,7 @@
   </header>
   <div class="card-content has-text-centered has-text-white">
     <div class="content">
-    	<strong class="has-text-white"> Purple-Board is a mini dashboard build for managing oneself as i find other open source dashboard too combustion for my personal need. Is open source so feel free to try it. Happy coding.</strong> <br> 
+    	<strong class="has-text-white"> Purple-Board is a mini dashboard build for managing oneself content as i find other open source dashboard too combustion for my personal need.</strong> <br> 
       Copyright © 2020 - {{todayDate | format('YYYY') }} 
 
     </div>

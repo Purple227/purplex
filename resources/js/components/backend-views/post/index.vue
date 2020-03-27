@@ -195,32 +195,14 @@ export default {
 			if(this.searchQuery.length > 2) {
 				axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
 
-					this.searchResult = response.data
-
-					let sortResult = []
+					let data = response.data
 					let string = this.searchQuery
 
-					for (var i = 0; i < response.data.length; i++)
-					{	
-						let searchTitle = [response.data[i].title]
-						//let blah = searchTitle.indexOf(string) 
-							
-						console.log(searchTitle)
-					}// For loop calibrace close
+					function sortResult(value) {
+  						return value.title.indexOf(string) >= 0;
+					}
 
-					console.log(sortResult)
-
-/*					let result = this.searchResult
-					console.log(typeof(response.data))
-
-					let string = this.searchQuery
-
-					function sort(value) {
-                      return value.indexOf(string) >= 0;
-                    }
-
-                    let searchSort = result.filter(sort);
-                    console.log(searchSort)*/
+					this.searchResult = data.filter(sortResult)
 
 				});
 			}

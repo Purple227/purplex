@@ -60,11 +60,46 @@
 
 export default {
 
-	data: function () {
-		return {
-			blogItem: ['love','hate','passion', 'desire', 'wisdom', 'knowledge', 'acquire']
-		}
-	},
+  data() {
+    return{
+
+      blogList: [],
+
+      pagination: {
+        nextPageUrl: null,
+        previousPageUrl: null, 
+        to: null,
+        total: null,
+      },
+
+    }
+  },
+
+  mounted() {
+    this.postsData()
+  },
+
+  methods: {
+
+    postsData(api) {
+      let api_url = api || "/api/admin/post"
+      this.axios
+      .get(api_url).then((response) => {
+        this.blogList = response.data.data
+        console.log(this.blogList)
+
+        let nextPageUrl = response.data.next_page_url
+        this.pagination.nextPageUrl = nextPageUrl ? nextPageUrl.slice(21) : null
+
+        let previousPageUrl = response.data.prev_page_url
+        this.pagination.previousPageUrl =  previousPageUrl ? previousPageUrl.slice(21) : null
+
+        this.pagination.to = response.data.to
+        this.pagination.total = response.data.total
+      })
+    }
+  }, // Method calibrace closes
+
 
 }
 

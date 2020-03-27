@@ -155,15 +155,23 @@ export default {
 			})
 		},
 
-        searchData() {
-        this.searchResult= []
-        if(this.searchQuery.length > 2) {
-         axios.get('/api/admin/tags/table/search',{params: {search_query: this.searchQuery}}).then(response => {
-          this.searchResult = response.data;
-         });
-        }
-       },
-             
+		searchData() {
+			this.searchResult= []
+			if(this.searchQuery.length > 2) {
+				axios.get('/api/admin/tags/table/search',{params: {search_query: this.searchQuery}}).then(response => {
+					let data = response.data
+					let string = this.searchQuery
+
+					function sortResult(value) {
+						return value.name.indexOf(string) >= 0;
+					}
+
+					this.searchResult = data.filter(sortResult)
+
+				});
+			}
+		},
+
 		deleteData(id, index) {
 			window.alert('Are you sure');
 			let api = '/api/admin/tag/' + id

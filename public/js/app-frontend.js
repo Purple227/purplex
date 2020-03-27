@@ -1758,9 +1758,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      blogItem: ['love', 'hate', 'passion', 'desire', 'wisdom', 'knowledge', 'acquire']
+      blogList: [],
+      pagination: {
+        nextPageUrl: null,
+        previousPageUrl: null,
+        to: null,
+        total: null
+      }
     };
-  }
+  },
+  mounted: function mounted() {
+    this.postsData();
+  },
+  methods: {
+    postsData: function postsData(api) {
+      var _this = this;
+
+      var api_url = api || "/api/admin/post";
+      this.axios.get(api_url).then(function (response) {
+        _this.blogList = response.data.data;
+        console.log(_this.blogList);
+        var nextPageUrl = response.data.next_page_url;
+        _this.pagination.nextPageUrl = nextPageUrl ? nextPageUrl.slice(21) : null;
+        var previousPageUrl = response.data.prev_page_url;
+        _this.pagination.previousPageUrl = previousPageUrl ? previousPageUrl.slice(21) : null;
+        _this.pagination.to = response.data.to;
+        _this.pagination.total = response.data.total;
+      });
+    }
+  } // Method calibrace closes
+
 });
 
 /***/ }),
@@ -3390,7 +3417,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("p", { staticClass: "fa has-text-white" }, [
                 _vm._v(
-                  "\n\t\t\t\t\tPurple-Board is mini dashboard build for managing oneself content. It was actually crafted because i find other open source dashboard too combustion for my limited need for a dashboard. It's open source you can try it out and it's the backend powering the site you on right now...\n\t\t\t\t"
+                  "\n\t\t\t\t\tPurple-Board is mini dashboard build for managing oneself content. It was actually crafted because i find other open source dashboard too combustion for my limited need for a dashboard. It's the backend powering the site you on right now...\n\t\t\t\t"
                 )
               ])
             ])
