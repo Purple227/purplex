@@ -63,7 +63,7 @@ export default {
   data() {
     return{
 
-      blogList: [],
+      blogList: null,
 
       pagination: {
         nextPageUrl: null,

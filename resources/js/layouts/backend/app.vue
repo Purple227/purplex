@@ -13,7 +13,9 @@
 
 
 			<div class="column is-10-desktop is-9-tablet column_10_bg"> <!-- Column  tag open -->
-				<router-view> </router-view>
+				<router-view v-if="false"> </router-view>
+				<register v-if="false"> </register>
+				<login> </login>
 			</div> <!-- Column  tag close -->
 
 		</div>  <!-- Column wrapper tag open -->
@@ -26,6 +28,8 @@
 
 import Navbar from './partials/navbar.vue'
 import Sidebar from './partials/sidebar.vue'
+import Register from '../../components/backend-views/user/register.vue'
+import Login from '../../components/backend-views/user/login.vue'
 
 export default 
 {
@@ -34,6 +38,8 @@ export default
 	{
 		Navbar,
 		Sidebar,
+		Register,
+		Login
 	},
 
 }

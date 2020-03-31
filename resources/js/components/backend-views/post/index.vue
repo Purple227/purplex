@@ -256,7 +256,6 @@ if (element) {
 
 },//Method calibrace closes
 
-
 }
 
 </script>

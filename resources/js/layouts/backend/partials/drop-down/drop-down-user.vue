@@ -8,16 +8,10 @@
 		<div class="dropdown-menu" id="dropdown-menu3" role="menu">
 			<div class="dropdown-content">
 				<a href="#" class="dropdown-item">
-					Overview
+					Update Profile
 				</a>
 				<a href="#" class="dropdown-item">
-					Modifiers
-				</a>
-				<a href="#" class="dropdown-item">
-					Grid
-				</a>
-				<a href="#" class="dropdown-item">
-					Form
+					Change Password
 				</a>
 			</div>
 		</div>
