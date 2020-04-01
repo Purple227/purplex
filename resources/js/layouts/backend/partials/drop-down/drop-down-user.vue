@@ -13,6 +13,9 @@
 				<a href="#" class="dropdown-item">
 					Change Password
 				</a>
+				<a class="dropdown-item" @click="logout">
+					Logout
+				</a>
 			</div>
 		</div>
 	</div>
@@ -35,6 +38,20 @@ export default{
 
     }
   },
+
+methods: {
+
+  logout() {
+    let api = "logout"
+    this.axios.post(api, {
+    }).then((response) => {
+      history.go();
+    }).catch(function (error) {
+      console.log(error)
+    });
+  },
+
+} //method calibrace close
 
 }
 

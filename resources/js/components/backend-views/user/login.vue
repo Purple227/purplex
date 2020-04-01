@@ -70,10 +70,6 @@
 
 			<footer class="card-footer">
 
-				<a class="card-footer-item green is-bold">
-					Register Instead
-				</a>
-
 				<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659;"> Login </button>
 
 			</footer>

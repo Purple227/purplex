@@ -104,10 +104,6 @@
 
 			<footer class="card-footer">
 
-				<a class="card-footer-item green is-bold">
-					Login Instead
-				</a>
-
 				<a class="card-footer-item green is-bold" v-if="formStep.step != 1" v-on:click.prevent="prevous" >Previous</a>
 
 				<a class="card-footer-item green is-bold" v-if="formStep.step != formStep.totalStep" v-on:click.prevent="next">

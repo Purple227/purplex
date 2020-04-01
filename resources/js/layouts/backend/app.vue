@@ -13,9 +13,18 @@
 
 
 			<div class="column is-10-desktop is-9-tablet column_10_bg"> <!-- Column  tag open -->
-				<router-view v-if="false"> </router-view>
-				<register v-if="false"> </register>
-				<login> </login>
+				<router-view v-if="guard"> </router-view>
+<div class="" v-else> <!--start of login and register wrapper -->
+<div class="buttons has-addons is-right" v-bind:style="myStyle">
+  <button class="button"  @click="loginComponent"> Login </button>
+  <button class="button" @click="registerComponent"> Register </button>
+</div>
+
+<keep-alive>
+ <component v-bind:is="componentsToggle"></component>
+</keep-alive>
+</div>  <!--start of login and register wrapper -->
+
 			</div> <!-- Column  tag close -->
 
 		</div>  <!-- Column wrapper tag open -->
@@ -38,9 +47,47 @@ export default
 	{
 		Navbar,
 		Sidebar,
-		Register,
-		Login
+		'register':Register,
+		'login':Login
 	},
+
+	data() {
+		return{
+			guard: false,
+			componentsToggle : 'login',
+
+			myStyle: {
+				marginTop: '2%',
+				marginRight: '1%',
+			},
+		}
+	},
+
+	created() {
+		this.loginGuard()
+	},
+
+	methods: {
+
+		loginGuard() {
+			let api_url = "user"
+			this.axios
+			.get(api_url).then((response) => {
+				this.guard = response.data
+				console.log(this.guard)
+			})
+		},
+
+		loginComponent() {
+			this.componentsToggle = 'login'
+		},
+
+		registerComponent: function() {
+			this.componentsToggle = 'register'
+		},
+
+}//method calibrace closes
+
 
 }
 
