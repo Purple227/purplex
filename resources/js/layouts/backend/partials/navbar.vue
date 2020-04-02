@@ -1,6 +1,5 @@
 <template>
 
-
   <nav class="navbar" role="navigation" aria-label="main navigation">
 
     <div class="navbar-brand is_hidden_mobile_tablet" style="margin-left: 4px;">
@@ -48,7 +47,7 @@ import DropDownUser from './drop-down/drop-down-user.vue'
 
 
 export default{
-
+  
   components: {
     'drop-down-envelope': DropDownEnvelope,
     'drop-down-bell': DropDownBell,

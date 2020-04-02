@@ -86,7 +86,6 @@ export default {
 	dynamicClassToggler
 	],
 
-
 	components:
 	{
 		ProfileImage,
@@ -100,7 +99,7 @@ export default {
 	},
 
 
-  	mounted() {
+	mounted() {
 		let api = '/api/admin/home';
 		this.axios
 		.get(api).then((response) => {

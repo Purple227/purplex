@@ -14,7 +14,7 @@
 					Change Password
 				</a>
 				<a class="dropdown-item" @click="logout">
-					Logout
+					Logout 
 				</a>
 			</div>
 		</div>
@@ -32,10 +32,9 @@ export default{
   DynamicClassHandler
   ],
 
-
   data() {
     return{
-
+    	blah: this.postTitle,
     }
   },
 

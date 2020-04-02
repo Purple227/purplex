@@ -8,47 +8,49 @@
     <div class="tile">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child notification is-primary">
-          <p class="title">Vertical...</p>
-          <p class="subtitle">Top tile</p>
+          <p class="title"> {{blogList[0].title | truncate(0, 15) }} </p>
+          <p class="subtitle"> {{blogList[0].description | truncate(0, 80)}} </p>
+          <a class="button is-small is-fullwidth bold">Read More</a>
         </article>
         <article class="tile is-child notification is-warning">
-          <p class="title">...tiles</p>
-          <p class="subtitle">Bottom tile</p>
+          <p class="title"> {{blogList[1].title | truncate(0, 15) }}</p>
+          <p class="subtitle"> {{blogList[1].description | truncate(0, 80) }} </p>
+          <a class="button is-small is-fullwidth bold">Read More</a>
         </article>
       </div>
       <div class="tile is-parent">
         <article class="tile is-child notification is-info">
-          <p class="title">Middle tile</p>
-          <p class="subtitle">With an image</p>
-          <figure class="image is-4by3">
-            <img src="/images/profile_pic.jpg">
-          </figure>
+          <p class="title"> {{blogList[2].title | truncate(0, 15) }}</p>
+          <p class="subtitle"> {{blogList[2].description | truncate(0, 250) }} </p>
+          <a class="button is-small is-fullwidth bold">Read More</a>
         </article>
       </div>
     </div>
     <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
-        <p class="title">Wide tile</p>
-        <p class="subtitle">Aligned with the right tile</p>
-        <div class="content">
-          <!-- Content -->
-        </div>
+        <p class="title has-text-centered"> {{blogList[3].title | truncate(0, 25) }} </p>
+        <p class="subtitle"> {{blogList[3].description | truncate(0, 150) }}  </p>
+        <a class="button is-small is-fullwidth bold">Read More</a>
       </article>
     </div>
   </div>
   <div class="tile is-parent">
     <article class="tile is-child notification is-success">
       <div class="content">
-        <p class="title">Tall tile</p>
-        <p class="subtitle">With even more content</p>
-        <div class="content">
-          <!-- Content -->
-        </div>
+        <p class="title"> {{blogList[4].title | truncate(0, 15) }} </p>
+        <p class="subtitle"> {{ blogList[4].description | | truncate(0, 350) }} </p>
+        <a class="button is-small is-fullwidth bold">Read More</a>
       </div>
     </article>
   </div>
 
 </div>  <!-- Ancestor tag close -->
+
+<div class="buttons has-addons is-centered">
+  <span class="button" @click="postsData(pagination.previousPageUrl)"> Previous </span>
+  <span class="button"> {{ pagination.to }} of {{pagination.total}} </span>
+  <span class="button" @click="postsData(pagination.nextPageUrl)"> Next </span>
+</div>
 
 
 	</div> <!-- Container tag close -->

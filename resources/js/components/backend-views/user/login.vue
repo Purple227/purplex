@@ -8,7 +8,7 @@
 			<header class="card-header">
 				<p class="card-header-title is-centered">
 					<i class="fas fa-file-signature is-bold fa-lg">
-						Login Form
+						Login to gain permission
 					</i> 
 				</p>
 			</header>

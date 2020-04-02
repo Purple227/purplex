@@ -3,12 +3,12 @@
 
 	<div class="container container_mobile"> <!-- Container tag open -->
 
-		<Navbar> </Navbar>
+		<Navbar v-if="guard"> </Navbar>
 
 		<div class="columns is-gapless is-marginless"> <!-- Column wrapper tag open -->
 
 			<div class="column is-2-desktop is-3-tablet column_2_bg"> <!-- Column  tag open -->
-				<Sidebar> </Sidebar>
+				<Sidebar v-if="guard"> </Sidebar>
 			</div>  <!-- Column  tag close -->
 
 
