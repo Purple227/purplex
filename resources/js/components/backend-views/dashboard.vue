@@ -202,11 +202,7 @@ export default {
   },  // chart option calibrace syntax close
 
   	mounted() {
-		let api = '/api/admin/home';
-		this.axios
-		.get(api).then((response) => {
-			this.subscribers =response.data[2];
-		})
+  		this.homeData()
 	},
 
 
@@ -216,6 +212,14 @@ export default {
       this.status = value
       console.log(this.status)
     },
+
+    homeData: function() {
+    	let api = '/api/admin/home';
+		this.axios
+		.get(api).then((response) => {
+			this.subscribers =response.data[2];
+		})
+    }
 
   },// method calibrace close
 

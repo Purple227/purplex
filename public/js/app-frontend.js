@@ -1757,10 +1757,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       blogList: null,
+      test: null,
       pagination: {
         nextPageUrl: null,
         previousPageUrl: null,
@@ -1787,8 +1801,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.pagination.total = response.data.total;
       });
     }
-  } // Method calibrace closes
-
+  },
+  // Method calibrace closes
+  computed: {
+    // a computed getter
+    arrayWatcher: function arrayWatcher() {
+      // `this` points to the vm instance
+      return this.blogList[4];
+    }
+  }
 });
 
 /***/ }),
@@ -20596,157 +20617,176 @@ var render = function() {
       _c("div", { staticClass: "tile is-vertical is-8" }, [
         _c("div", { staticClass: "tile" }, [
           _c("div", { staticClass: "tile is-parent is-vertical" }, [
-            _c(
-              "article",
-              { staticClass: "tile is-child notification is-primary" },
-              [
-                _c("p", { staticClass: "title" }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(_vm._f("truncate")(_vm.blogList[0].title, 0, 15)) +
-                      " "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "subtitle" }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(
-                        _vm._f("truncate")(_vm.blogList[0].description, 0, 80)
-                      ) +
-                      " "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "button is-small is-fullwidth bold" }, [
-                  _vm._v("Read More")
-                ])
-              ]
-            ),
+            _vm.blogList[0]
+              ? _c(
+                  "article",
+                  { staticClass: "tile is-child notification is-primary" },
+                  [
+                    _c("p", { staticClass: "title fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(_vm.blogList[0].title, 0, 16)
+                          ) +
+                          " "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "subtitle fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(
+                              _vm.blogList[0].description,
+                              0,
+                              100
+                            )
+                          ) +
+                          " "
+                      )
+                    ])
+                  ]
+                )
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "article",
-              { staticClass: "tile is-child notification is-warning" },
-              [
-                _c("p", { staticClass: "title" }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(_vm._f("truncate")(_vm.blogList[1].title, 0, 15))
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "subtitle" }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(
-                        _vm._f("truncate")(_vm.blogList[1].description, 0, 80)
-                      ) +
-                      " "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "button is-small is-fullwidth bold" }, [
-                  _vm._v("Read More")
-                ])
-              ]
-            )
+            _vm.blogList[1]
+              ? _c(
+                  "article",
+                  { staticClass: "tile is-child notification is-warning" },
+                  [
+                    _c("p", { staticClass: "title fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(_vm.blogList[1].title, 0, 16)
+                          ) +
+                          " "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "subtitle fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(
+                              _vm.blogList[1].description,
+                              0,
+                              100
+                            )
+                          ) +
+                          " "
+                      )
+                    ])
+                  ]
+                )
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "tile is-parent" }, [
-            _c(
-              "article",
-              { staticClass: "tile is-child notification is-info" },
-              [
-                _c("p", { staticClass: "title" }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(_vm._f("truncate")(_vm.blogList[2].title, 0, 15))
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "subtitle" }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(
-                        _vm._f("truncate")(_vm.blogList[2].description, 0, 250)
-                      ) +
-                      " "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "button is-small is-fullwidth bold" }, [
-                  _vm._v("Read More")
-                ])
-              ]
-            )
+            _vm.blogList[2]
+              ? _c(
+                  "article",
+                  { staticClass: "tile is-child notification is-info" },
+                  [
+                    _c("p", { staticClass: "title fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(_vm.blogList[2].title, 0, 16)
+                          ) +
+                          " "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "subtitle fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(
+                              _vm.blogList[1].description,
+                              0,
+                              300
+                            )
+                          ) +
+                          " "
+                      )
+                    ])
+                  ]
+                )
+              : _vm._e()
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "tile is-parent" }, [
-          _c(
-            "article",
-            { staticClass: "tile is-child notification is-danger" },
-            [
-              _c("p", { staticClass: "title has-text-centered" }, [
-                _vm._v(
-                  " " +
-                    _vm._s(_vm._f("truncate")(_vm.blogList[3].title, 0, 25)) +
-                    " "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" }, [
-                _vm._v(
-                  " " +
-                    _vm._s(
-                      _vm._f("truncate")(_vm.blogList[3].description, 0, 150)
-                    ) +
-                    "  "
-                )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "button is-small is-fullwidth bold" }, [
-                _vm._v("Read More")
-              ])
-            ]
-          )
+          _vm.blogList[3]
+            ? _c(
+                "article",
+                { staticClass: "tile is-child notification is-danger" },
+                [
+                  _c("p", { staticClass: "title fa" }, [
+                    _vm._v(
+                      " " +
+                        _vm._s(
+                          _vm._f("truncate")(_vm.blogList[3].title, 0, 25)
+                        ) +
+                        " "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "subtitle fa" }, [
+                    _vm._v(
+                      " " +
+                        _vm._s(
+                          _vm._f("truncate")(
+                            _vm.blogList[3].description,
+                            0,
+                            300
+                          )
+                        ) +
+                        " "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "content" })
+                ]
+              )
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "tile is-parent" }, [
-        _c(
-          "article",
-          { staticClass: "tile is-child notification is-success" },
-          [
-            _c("div", { staticClass: "content" }, [
-              _c("p", { staticClass: "title" }, [
-                _vm._v(
-                  " " +
-                    _vm._s(_vm._f("truncate")(_vm.blogList[4].title, 0, 15)) +
-                    " "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" }, [
-                _vm._v(
-                  " " +
-                    _vm._s(
-                      _vm._f("truncate")(
-                        _vm._f("")(_vm.blogList[4].description),
-                        0,
-                        350
-                      )
-                    ) +
-                    " "
-                )
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "button is-small is-fullwidth bold" }, [
-                _vm._v("Read More")
-              ])
-            ])
-          ]
-        )
+        _vm.blogList[4]
+          ? _c(
+              "article",
+              { staticClass: "tile is-child notification is-success" },
+              [
+                _c("div", { staticClass: "content" }, [
+                  _c("p", { staticClass: "title" }, [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm._f("truncate")(_vm.blogList[4].title, 0, 18))
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "subtitle fa" }, [
+                    _vm._v(
+                      " " +
+                        _vm._s(
+                          _vm._f("truncate")(
+                            _vm.blogList[4].description,
+                            0,
+                            450
+                          )
+                        ) +
+                        " "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "content" })
+                ])
+              ]
+            )
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
