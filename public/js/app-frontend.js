@@ -1779,7 +1779,6 @@ __webpack_require__.r(__webpack_exports__);
       var api_url = api || "/api/admin/post";
       this.axios.get(api_url).then(function (response) {
         _this.blogList = response.data.data;
-        console.log(_this.blogList);
         var nextPageUrl = response.data.next_page_url;
         _this.pagination.nextPageUrl = nextPageUrl ? nextPageUrl.slice(21) : null;
         var previousPageUrl = response.data.prev_page_url;
@@ -20751,11 +20750,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "buttons has-addons is-centered" }, [
+    _c("div", { staticClass: "buttons is-centered" }, [
       _c(
         "span",
         {
-          staticClass: "button",
+          staticClass: "button is-success",
           on: {
             click: function($event) {
               return _vm.postsData(_vm.pagination.previousPageUrl)
@@ -20765,7 +20764,7 @@ var render = function() {
         [_vm._v(" Previous ")]
       ),
       _vm._v(" "),
-      _c("span", { staticClass: "button" }, [
+      _c("span", { staticClass: "button is-info" }, [
         _vm._v(
           " " +
             _vm._s(_vm.pagination.to) +
@@ -20778,7 +20777,7 @@ var render = function() {
       _c(
         "span",
         {
-          staticClass: "button",
+          staticClass: "button is-danger",
           on: {
             click: function($event) {
               return _vm.postsData(_vm.pagination.nextPageUrl)

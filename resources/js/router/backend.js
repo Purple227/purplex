@@ -6,6 +6,9 @@ import ListPosts from '../components/backend-views/post/index.vue';
 import EditPost from '../components/backend-views/post/edit.vue';
 import Tags from '../components/backend-views/tag.vue';
 import About from '../components/backend-views/about.vue';
+import EditUser from '../components/backend-views/user/edit-user.vue';
+import UpdateSecurity from '../components/backend-views/user/update-security.vue';
+
 
 const routes = 
 [
@@ -45,6 +48,19 @@ const routes =
     path: '/admin/about',
     component: About
 },
+
+{
+    name:'edit-user',
+    path: '/admin/user-edit',
+    component: EditUser
+},
+
+{
+    name:'update-security',
+    path: '/admin/user-security',
+    component: UpdateSecurity
+},
+
 
 
 ];

@@ -2,6 +2,15 @@
 
 	<div class="card"> <!-- Card tag open -->
 
+		<div class="" v-if="false">
+		<edit-user @senderPlus="statusSignal"> </edit-user>
+		</div>
+
+<div class="notification has-text-centered is-primary" v-if="status">
+  <button class="delete" @click="staus = null"></button>
+  <strong> Succesfull</strong>
+</div>
+
 		<div class="columns is-gapless is-marginless"> <!-- Columns wrapper tag open -->
 
 			<div class="column is-8"> <!-- Column is-8 tag open -->
@@ -134,16 +143,23 @@
 <script>
 
 import DoughnutChart from "./chart/doughnut-chart";
+import EditUser from './user/edit-user.vue'
 
 export default {
-  //name: "App",
+
+  name: "dashboard",
+
   components: {
   	DoughnutChart,
+  	'edit-user': EditUser,
   },
 
   data() {
   	return {
   		subscribers: null,
+  		posts: null,
+  		tags: null,
+  		status: null,
 
 
 	  chartOptions: { // chart option calibrace syntax open 
@@ -192,6 +208,17 @@ export default {
 			this.subscribers =response.data[2];
 		})
 	},
+
+
+  methods: {
+
+    statusSignal: function(value) {
+      this.status = value
+      console.log(this.status)
+    },
+
+  },// method calibrace close
+
 
 };
 </script>

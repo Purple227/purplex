@@ -74,7 +74,6 @@ export default
 			this.axios
 			.get(api_url).then((response) => {
 				this.guard = response.data
-				console.log(this.guard)
 			})
 		},
 

@@ -7,15 +7,19 @@
 
 		<div class="dropdown-menu" id="dropdown-menu3" role="menu">
 			<div class="dropdown-content">
-				<a href="#" class="dropdown-item">
+
+				<router-link :to="{name: 'edit-user'}" active-class="is-active" class="dropdown-item">
 					Update Profile
-				</a>
-				<a href="#" class="dropdown-item">
+				</router-link>
+
+				<router-link :to="{name: 'update-security'}" active-class="is-active" class="dropdown-item">
 					Change Password
-				</a>
+				</router-link>
+
 				<a class="dropdown-item" @click="logout">
-					Logout 
+					Logout
 				</a>
+
 			</div>
 		</div>
 	</div>
@@ -34,7 +38,7 @@ export default{
 
   data() {
     return{
-    	blah: this.postTitle,
+    	//reactive data
     }
   },
 

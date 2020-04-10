@@ -1,6 +1,6 @@
 <template>
 
-	<div class="container container_mobile"> <!-- Container tag start -->
+<div class="container container_mobile"> <!-- Container tag start -->
 		
 <div class="tile is-ancestor"> <!-- Ancestor tag open -->
 
@@ -46,10 +46,10 @@
 
 </div>  <!-- Ancestor tag close -->
 
-<div class="buttons has-addons is-centered">
-  <span class="button" @click="postsData(pagination.previousPageUrl)"> Previous </span>
-  <span class="button"> {{ pagination.to }} of {{pagination.total}} </span>
-  <span class="button" @click="postsData(pagination.nextPageUrl)"> Next </span>
+<div class="buttons is-centered">
+  <span class="button is-success" @click="postsData(pagination.previousPageUrl)"> Previous </span>
+  <span class="button is-info"> {{ pagination.to }} of {{pagination.total}} </span>
+  <span class="button is-danger" @click="postsData(pagination.nextPageUrl)"> Next </span>
 </div>
 
 
@@ -88,7 +88,6 @@ export default {
       this.axios
       .get(api_url).then((response) => {
         this.blogList = response.data.data
-        console.log(this.blogList)
 
         let nextPageUrl = response.data.next_page_url
         this.pagination.nextPageUrl = nextPageUrl ? nextPageUrl.slice(21) : null

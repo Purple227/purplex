@@ -3,10 +3,14 @@
 Route::group(['namespace'=>'Auth', 'prefix'=>'admin' ], function() 
 {
 
+Route::post('user/update', 'UserController@update');
+Route::post('user/update/security', 'UserController@updateSecurity');
+
 Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
-Route::resource('user', 'UserController');
 Route::post('logout', 'LoginController@logout');
+
+Route::resource('user', 'UserController');
 
 });
 
