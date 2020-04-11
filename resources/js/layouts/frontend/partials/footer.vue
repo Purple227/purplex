@@ -1,7 +1,7 @@
 <template>
 
 	<div class="container"> <!-- Container tag start -->
-		<footer class="footer">
+		<footer class="footer border_curve">
 
 			<div class="content has-text-centered"> <!-- Contend center tag open -->
 

@@ -2,7 +2,7 @@
 
 	<div class="container container_mobile"> <!-- Container tag start -->
 
-		<div class="card"> <!-- card tag open -->
+		<div class="card border_curve"> <!-- card tag open -->
 
 			<header class="card-header">
 				<p class="card-header-title is-size-3 is-centered death_pink fa">

@@ -2,7 +2,7 @@
 
 	<section class="container hero container_mobile">
 
-		<div class="hero-body is-dark has-text-centered">
+		<div class="hero-body is-dark has-text-centered border_curve">
 			<h1 class="title has-text-white">
 				Hi, There.
 			</h1> 
@@ -12,7 +12,7 @@
 		</div>
 
 
-		<div class="card">
+		<div class="card border_curve" style="margin-top:10px;">
 			<div class="card-content">
 
 				<div class="content has-text-centered bold">

@@ -14,7 +14,7 @@ Route::group(['namespace'=>'Backend', 'prefix'=>'admin' ], function()
 	Route::apiResources
 	([
 		'post' => 'PostController',
-    'tag' => 'TagController'
+    'tag' => 'TagController',
 	]);
 
 });
@@ -25,6 +25,11 @@ Route::group(['namespace'=>'Frontend' ], function()
 
   Route::post('contact', 'ContactController@sendMail');
   Route::post('subscriber', 'SubscriberController@store');
+
+    Route::apiResources
+  ([
+    'blog' => 'BlogController',
+  ]);
 
 });
 

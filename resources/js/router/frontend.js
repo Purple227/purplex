@@ -5,7 +5,7 @@ import Home from '../components/frontend-views/home.vue';
 import About from '../components/frontend-views/about.vue';
 import Portfolio from '../components/frontend-views/portfolio.vue';
 import Blog from '../components/frontend-views/blog.vue';
-import BlogPost from '../components/frontend-views/blog-post.vue';
+import Post from '../components/frontend-views/post.vue';
 
 const routes = 
 [
@@ -40,9 +40,9 @@ const routes =
 },
 
 {
-    name:'blog-post',
+    name:'post',
     path: '/blog/:slug',
-    component: BlogPost
+    component: Post
 },
 
 
