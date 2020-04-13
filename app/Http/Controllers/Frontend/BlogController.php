@@ -23,6 +23,14 @@ class BlogController extends Controller
         return response()->json($posts);
     }
 
+    public function search(Request $request)
+    {
+        $search_query = $request->searchquery;
+        $data = Post::where('title','LIKE',"%$search_query%")->get();
+        /*$posts = Post::where('title','LIKE',"%$query%")->approved()->published()->paginate(4);
+*/        return response()->json($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

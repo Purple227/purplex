@@ -1,3 +1,4 @@
+
 <template>
 
 
@@ -21,13 +22,13 @@
 				<div class="level-item has-text-centered">
 					<div class="field has-addons">
 						<p class="control has-icons-left">
-							<input class="input" type="email" placeholder="Search blog">
+							<input class="input" type="email" placeholder="Search article">
 							<span class="icon is-small is-left">
 								<i class="fas fa-search"></i>
 							</span>
 						</p>
 						<div class="control">
-							<button class="button is-dark">Search</button>
+							<button class="button is-dark border_curve">Search</button>
 						</div>
 					</div>
 				</div>
@@ -81,15 +82,29 @@
 				<div class="navbar-end is_hidden_mobile_tablet"> <!-- navbar end tag open -->
 					<div class="navbar-item">
 						<div class="field has-addons" style="margin-top: 3%;">
+
+							<!-- Droppdown when a user start typing -->
+							<div class="dropdown"  v-bind:class="classObject">
+								<div class="dropdown-menu" id="dropdown-menu2" role="menu">
+									<div class="dropdown-content">
+										<div class="dropdown-item"  v-for="(data, index) in searchResult" :key="index">
+											<router-link :to="{name: 'post', params: {slug: data.slug}}" class="has-text-white"> <span class="fa" @click="searchQuery = '' ">  {{ data.title | truncate(0, 35)}} </span> </router-link>
+											<hr>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
 							<p class="control has-icons-left has-icons-right">
-								<input class="input" type="email" placeholder="Search">
+								<input class="input" type="email" placeholder="Search article" v-model="searchQuery" v-on:keyup="searchData">
 								<span class="icon is-small is-left">
 									<i class="fas fa-search"></i>
 								</span>
 							</p>
 
 							<div class="control">
-								<button class="button is-dark">Submit</button>
+								<button class="button is-dark border_curve">Submit</button>
 							</div>
 
 						</div>
@@ -128,9 +143,45 @@ export default {
 
 	data: function () {
 		return {
-
+			searchQuery: "",
+			searchResult: [],
 		}
-	}
+	},
+
+  mounted() {
+    this.searchData()
+  },
+
+	methods: {
+
+		searchData() {
+			this.searchResult = []
+			if(this.searchQuery.length > 2) {
+				axios.get('/api/blog/search',{params: {search_query: this.searchQuery}}).then(response => {
+
+					let data = response.data
+					let string = this.searchQuery
+
+					function sortResult(value) {
+  						return value.title.indexOf(string) >= 0;
+					}
+
+					this.searchResult = data.filter(sortResult)
+
+				});
+			}
+		},
+
+	},//method calibrace close
+
+computed: {
+  classObject: function () {
+    return {
+      'is-active': this.searchQuery.length > 2,
+      //'text-danger': this.error && this.error.type === 'fatal'
+    }
+  }
+}
 
 }
 

@@ -55,7 +55,7 @@
 
 					<div class="column"> <!-- Third column tag start -->
 
-<div class="notification is-danger is-small" v-if="status">
+<div class="notification is-dark is-small border_curve" v-if="status">
   Thanks for subscribing
 </div>
 

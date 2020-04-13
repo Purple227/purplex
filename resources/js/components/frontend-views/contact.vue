@@ -20,7 +20,7 @@
 
 							<div class="field">
 								<div class="control has-icons-left has-icons-right">
-									<input class="input" type="text" placeholder="Name Here" v-model="contact.name">
+									<input class="input " type="text" placeholder="Name Here" v-model="contact.name">
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>

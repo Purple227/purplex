@@ -25,6 +25,7 @@ Route::group(['namespace'=>'Frontend' ], function()
 
   Route::post('contact', 'ContactController@sendMail');
   Route::post('subscriber', 'SubscriberController@store');
+  Route::get('blog/search', 'BlogController@search');
 
     Route::apiResources
   ([

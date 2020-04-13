@@ -25,3 +25,5 @@ mix.js('resources/js/app-backend.js', 'public/js')
    .sass('resources/sass/animate.scss', 'public/css')
 
    //.copyDirectory('node_modules/tinymce/skins', 'public/css/tinymce/skin');
+
+   //.copy('node_modules/vue-social-sharing/dist/vue-social-sharing.js', 'public/js/vue-social-sharing.js');

@@ -5902,6 +5902,7 @@ readers do not read off random characters that represent icons */
 .fa-linkedin,
 .fa-phone-alt {
   color: #FFFFFF;
+  cursor: pointer;
 }
 
 /*!
