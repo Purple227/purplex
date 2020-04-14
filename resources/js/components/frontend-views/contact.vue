@@ -4,80 +4,98 @@
 
 		<div class="card border_curve"> <!-- card tag open -->
 
-			<header class="card-header">
-				<p class="card-header-title is-size-3 is-centered death_pink fa">
-					Contact me
-				</p>
-			</header>
+
+			<form v-on:submit.prevent="submit"> <!-- Form tag open -->	
+
+				<header class="card-header">
+					<p class="card-header-title is-size-3 is-centered death_pink fa">
+						Contact me
+					</p>
+				</header>
 
 
-			<div class="card-content">
-				<div class="content">
+				<div class="card-content">
 
-					<div class="columns is-vcentered"> <!-- Columns wrapper tag open -->
+					<div class="content">
 
-						<div class="column is-4"> <!-- column is-4 tag open -->
 
-							<div class="field">
-								<div class="control has-icons-left has-icons-right">
-									<input class="input " type="text" placeholder="Name Here" v-model="contact.name">
-									<span class="icon is-small is-left">
-										<i class="fas fa-user"></i>
-									</span>
+						<div class="columns is-vcentered" v-if="false"> <!-- Columns wrapper tag open -->
 
-								<span class="icon is-small is-right">
-									<i class="fas fa-exclamation-triangle" v-if="$v.contact.name.$invalid"> </i>
-									<i class="fas fa-check" v-else> </i>
-								</span>
+							<div class="column is-4"> <!-- column is-4 tag open -->
+
+								<div class="field">
+									<div class="control has-icons-left has-icons-right">
+										<input class="input border_curve" type="text" placeholder="Subject Here" v-model="contact.subject">
+										<span class="icon is-small is-left">
+											<i class="fas fa-heading"></i>
+										</span>
+
+										<span class="icon is-small is-right">
+											<i class="fas fa-exclamation-triangle" v-if="$v.contact.subject.$invalid"> </i>
+											<i class="fas fa-check" v-else> </i>
+										</span>
+									</div>
+									<!--p class="help is-success">This username is available</p-->
+								</div> 
+
+								<div class="field">
+									<div class="control has-icons-left has-icons-right">
+										<input class="input border_curve" type="email" placeholder="Email Address" v-model="contact.email">
+										<span class="icon is-small is-left">
+											<i class="fas fa-at"></i>
+										</span>
+
+										<span class="icon is-small is-right">
+											<i class="fas fa-exclamation-triangle" v-if="$v.contact.email.$invalid"> </i>
+											<i class="fas fa-check" v-else> </i>
+										</span>
+									</div>
 								</div>
-								<!--p class="help is-success">This username is available</p-->
-							</div> 
 
-							<div class="field">
-								<div class="control has-icons-left has-icons-right">
-									<input class="input" type="email" placeholder="Email Address" v-model="contact.email">
-									<span class="icon is-small is-left">
-										<i class="fas fa-at"></i>
-									</span>
+							</div> <!-- column is-4 tag close -->
 
-								<span class="icon is-small is-right">
-									<i class="fas fa-exclamation-triangle" v-if="$v.contact.email.$invalid"> </i>
-									<i class="fas fa-check" v-else> </i>
-								</span>
+							<div class="column is-6"> <!-- column is-6 tag start -->
+
+								<div class="field">
+									<div class="control ">
+										<textarea class="textarea border_curve" placeholder="Message is mandatory" v-model.trim="contact.message"></textarea> 
+									</div>
 								</div>
+							</div> <!-- column is-6 tag close -->
+
+							<div class="column"> <!-- column tag open -->
+								<button class="button is-dark is-fullwidth border_curve">
+									Send
+								</button>
+							</div> <!-- column tag close -->
+
+						</div> <!-- Columns wrapper tag close -->
+
+						<!-- Notification section -->
+						<div class="columns is-mobile is-centered" v-if="true">
+							<div class="column is-half">
+
+								<div class="notification is-dark is-inline center border_curve">
+									Hi is Joseph will get back to you immediately.  
+								</div>
+
 							</div>
+						</div>
 
-						</div> <!-- column is-4 tag close -->
-
-						<div class="column is-6"> <!-- column is-6 tag start -->
-
-							<div class="field">
-								<div class="control ">
-									<textarea class="textarea" placeholder="Message is mandatory"></textarea> 
-								</div>
-							</div>
-						</div> <!-- column is-6 tag close -->
-
-						<div class="column"> <!-- column tag open -->
-							<a class="button is-dark is-block">
-								Send
-							</a>
-						</div> <!-- column tag close -->
-
-					</div> <!-- Columns wrapper tag close -->
-
+					</div>
 				</div>
-			</div>
 
-			<footer class="card-footer">
-				<p class="card-footer-item">
-					<a class="bolder" href="tel:1234567"> 
-						<i class="fas fa-mobile-alt fa-2x"> 
-							Call me
-						</i>  
-					</a>
-				</p>
-			</footer>
+				<footer class="card-footer">
+					<p class="card-footer-item">
+						<a class="bolder" href="tel:1234567"> 
+							<i class="fas fa-mobile-alt fa-2x"> 
+								Call me
+							</i>  
+						</a>
+					</p>
+				</footer>
+
+			</form>  <!-- Form tag close -->
 
 		</div> <!-- card tag close -->
 
@@ -93,16 +111,18 @@ export default {
 	data: function () {
 		return {
 			contact: {
-				name: null,
+				subject: null,
 				email: null,
 				Message:null,
-			}
+				status: false,
+				errors: null,
+			},
 		}
 	},
 
 		validations: {
 		contact: {
-			name: {
+			subject: {
 				required,
 			},
 			email: {
@@ -112,6 +132,23 @@ export default {
 			Message: {
 				required,
 			},
+		}
+	},
+
+	methods: {
+
+		submit() {
+			let uri = '/api/contact';
+			this.axios.post(uri, {
+				subject: this.contact.subject,
+				email: this.contact.email,
+				message: this.contact.message,
+				//console.log(status)
+			}).then((response) => {
+    			this.contact.status = true
+			}).catch(error=>{
+              this.contact.errors = error.response.data.errors
+          })
 		}
 	},
 

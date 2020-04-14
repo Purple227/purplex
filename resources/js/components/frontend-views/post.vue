@@ -48,8 +48,7 @@
 		<div class="card-content">
 
 			<div class="content has-text-centered bold">
-				{{ post.description }} 
-				<a>@bulmaio</a>.
+				{{ post.description }} <a>@bulmaio</a>.
 				<a href="#">#css</a> 
 				<a href="#">#responsive</a>
 				<br>
@@ -82,7 +81,7 @@ export default{
 				tags: [],
 			},
 
-			currentUrl: window.location.href
+			currentUrl: window.location.href,
 
 		}
 	},

@@ -160,10 +160,10 @@ export default {
 			if(this.searchQuery.length > 2) {
 				axios.get('/api/admin/tags/table/search',{params: {search_query: this.searchQuery}}).then(response => {
 					let data = response.data
-					let string = this.searchQuery
+					let string = this.searchQuery.toLowerCase();
 
 					function sortResult(value) {
-						return value.name.indexOf(string) >= 0;
+						return value.name.toLowerCase().indexOf(string) >= 0;
 					}
 
 					this.searchResult = data.filter(sortResult)
@@ -173,14 +173,18 @@ export default {
 		},
 
 		deleteData(id, index) {
-			window.alert('Are you sure');
+			let alert = confirm(" Are you sure ");
 			let api = '/api/admin/tag/' + id
 			console.log(api)
 			this.axios.delete(api)
 			.then((response) => {
+				if (alert == true) {
 				this.tags.splice(index, 1);
 				this.searchResult.splice(index, 1);
 				this.status = true
+				} else {
+					this.status = false
+				}
 			}).catch(function (error) {
 				this.status = false
 			});

@@ -42,7 +42,7 @@
 					<a href="">
 					<i class="fas fa-globe fa-lg"> Purple-Board </i>
 					<p class="fa has-text-white">
-						Purple-Board is mini dashboard build for managing oneself content. It was actually crafted because i find other open source dashboard too combustion for my limited need for a dashboard. It's the backend powering the site you on right now...
+						Purple-Board is mini dashboard build for managing frontend content. It was actually crafted because i find other open source dashboard too combustion for my limited need for a dashboard. It's the dashboard backend powering the site you on right now...
 					</p>
 				</a>
 				</div>

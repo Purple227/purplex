@@ -6,21 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+use App\Http\Requests\sendMail;
 
 class ContactController extends Controller
 {
 
-	public function sendMail(SendMail $request)
+	public function sendMail(sendMail $request)
     {   
-        $validatedData = $request->validate([
-            'email' => 'required|email',
-            'subject' => 'required',
-            'message' => 'required'
-         ]);
 
-    	return '$validatedData';
+
+        $data = [
+            'subject' => $request->subject,
+            'email' => $request->email,
+            'message' => $request->message
+        ];
 
     	//Send an email
-    	Mail::to('purplex@purplex.com')->send(new ContactMail($data));
+    	Mail::to('psychosocial227@gmail.com')->send(new ContactMail($data));
     }
 }

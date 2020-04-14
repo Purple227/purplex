@@ -34,17 +34,22 @@
 											Dashboard
 										</a>
 
-										<a class="dropdown-item">
-											Other dropdown item
-										</a>
+										<router-link :to="{name: 'portfolio'}" class="dropdown-item" active-class='is-active'>
+											Projects 
+										</router-link>
 
-										<a href="#" class="dropdown-item">
-											Dropdown item
-										</a>
+										<router-link :to="{name: 'blog'}" class="dropdown-item" active-class='is-active'>
+											Blog
+										</router-link>
 
-										<a class="dropdown-item">
-											Other dropdown item
-										</a>
+
+										<router-link :to="{name: 'contact'}" class="dropdown-item" active-class='is-active' exact>
+											Contact
+										</router-link>
+
+										<router-link :to="{name: 'about'}" class="dropdown-item" active-class='is-active'>
+											About
+										</router-link>
 
 									</div>
 								</div>
@@ -55,41 +60,41 @@
 
 					<div class="column"> <!-- Third column tag start -->
 
-<div class="notification is-dark is-small border_curve" v-if="status">
-  Thanks for subscribing
-</div>
-
-
-
-					<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
-
-
-						<div class="field has-addons" v-if="status == null">
-
-							<div class="control has-icons-left has-icons-right is-expanded">
-
-								<input class="input is-small" type="email" v-model="email" placeholder=" Subscribe" required="">
-
-								<span class="icon is-medium is-left">
-									<i class="fas fa-envelope fa-lg"></i>
-								</span>
-
-								<span class="icon is-small is-right">
-									<i class="fas fa-exclamation-triangle fa-lg" v-if="$v.email.$invalid"></i>
-									<i class="fas fa-check fa-lg" v-else></i> 
-								</span>
-
-							</div>
-
-							<div class="control">
-								<button class="button is-dark is-small" type="submit">
-									<i class="fas fa-long-arrow-alt-right has-text-white fa-lg"> </i>
-								</button>
-							</div>
-
+						<div class="notification is-dark is-small border_curve" v-if="status">
+							Thanks for subscribing
 						</div>
 
-					</form>
+
+
+						<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
+
+
+							<div class="field has-addons" v-if="status == null">
+
+								<div class="control has-icons-left has-icons-right is-expanded">
+
+									<input class="input is-small border_curve" type="email" v-model="email" placeholder=" Subscribe" required="">
+
+									<span class="icon is-medium is-left">
+										<i class="fas fa-envelope fa-lg"></i>
+									</span>
+
+									<span class="icon is-small is-right">
+										<i class="fas fa-exclamation-triangle fa-lg" v-if="$v.email.$invalid"></i>
+										<i class="fas fa-check fa-lg" v-else></i> 
+									</span>
+
+								</div>
+
+								<div class="control">
+									<button class="button is-dark is-small" type="submit">
+										<i class="fas fa-long-arrow-alt-right has-text-white fa-lg"> </i>
+									</button>
+								</div>
+
+							</div>
+
+						</form>
 
 					</div> <!-- Third column tag close -->
 				</div>
