@@ -46,7 +46,7 @@
 	<div class="card border_curve" style="margin-top:10px;">
 		<div class="card-content">
 
-			<div class="content" v-html="post.description">
+			<div class="content post_wrap" v-html="post.description">
 				<a>@bulmaio</a>.
 				<a href="#">#css</a> 
 				<a href="#">#responsive</a>
@@ -67,7 +67,7 @@
 
   <div class="control">
     <div class="tags"  >
-      <span class="tag is-white bold" v-for="(tag, index) in  post.tags"> {{ tag }} </span>
+      <span class="tag is-white" v-for="(tag, index) in  post.tags"> {{ tag }} </span>
     </div>
   </div>
 

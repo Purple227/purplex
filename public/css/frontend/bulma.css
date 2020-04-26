@@ -11887,3 +11887,11 @@ pre {
   padding: 15%;
 }
 
+.post_wrap {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+

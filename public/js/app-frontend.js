@@ -20986,7 +20986,7 @@ var render = function() {
                     "router-link",
                     {
                       staticClass:
-                        "tile is-child notification is-warning blog border_curve",
+                        "tile is-child notification is-info blog border_curve",
                       attrs: {
                         to: {
                           name: "post",
@@ -21239,7 +21239,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-content" }, [
             _c("div", { staticClass: "content" }, [
-              true
+              !_vm.contact.status
                 ? _c("div", { staticClass: "columns is-vcentered" }, [
                     _c("div", { staticClass: "column is-4" }, [
                       _c("div", { staticClass: "field" }, [
@@ -21389,10 +21389,12 @@ var render = function() {
                     _vm._v(" "),
                     _vm._m(3)
                   ])
-                : undefined,
+                : _vm._e(),
               _vm._v(" "),
-              false
-                ? undefined
+              _vm.contact.status
+                ? _c("div", { staticClass: "columns is-mobile is-centered" }, [
+                    _vm._m(4)
+                  ])
                 : _vm._e()
             ])
           ]),
@@ -21456,7 +21458,7 @@ var staticRenderFns = [
         { staticClass: "notification is-dark is-inline center border_curve" },
         [
           _vm._v(
-            "\n\t\t\t\t\t\t\t\tHi is Joseph will get back to you immediately.  \n\t\t\t\t\t\t\t"
+            "\n\t\t\t\t\t\t\t\tHi is Joseph. I will get back to you immediately.  \n\t\t\t\t\t\t\t"
           )
         ]
       )
@@ -21804,7 +21806,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "content",
+                staticClass: "content post_wrap",
                 domProps: { innerHTML: _vm._s(_vm.post.description) }
               },
               [
@@ -21847,7 +21849,7 @@ var render = function() {
               "div",
               { staticClass: "tags" },
               _vm._l(_vm.post.tags, function(tag, index) {
-                return _c("span", { staticClass: "tag is-white bold" }, [
+                return _c("span", { staticClass: "tag is-white" }, [
                   _vm._v(" " + _vm._s(tag) + " ")
                 ])
               }),

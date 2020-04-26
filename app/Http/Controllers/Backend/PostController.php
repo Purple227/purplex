@@ -75,14 +75,13 @@ class PostController extends Controller
 
         $post->save(); 
 
-        /*
+        
         $subscribers = Subscriber::all();
         foreach ($subscribers as $subscriber)
         {
             Notification::route('mail',$subscriber->email)
                 ->notify(new NewPostNotify($post));
         }
-        */
 
             //Tags save to database
         $tags = $request->tags;

@@ -35,6 +35,8 @@ import 'tinymce/plugins/save';
 import 'tinymce/plugins/table';
 import 'tinymce/plugins/template';
 import 'tinymce/plugins/paste';
+import 'tinymce/plugins/visualchars';
+import 'tinymce/plugins/directionality';
 
 
 export default {

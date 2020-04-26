@@ -24,7 +24,7 @@
            </router-link>
           
 
-             <router-link :to="{name: 'post', params: {slug: blogList[1].slug}}" v-if="blogList[1]"  class="tile is-child notification is-warning blog border_curve">
+             <router-link :to="{name: 'post', params: {slug: blogList[1].slug}}" v-if="blogList[1]"  class="tile is-child notification is-info blog border_curve">
               <article >
               <p class="title fa"> {{ blogList[1].title | truncate(0, 16)}} </p>
               <p class="subtitle fa" v-html="blogList[1].description.substring(0, 99)"> </p>
