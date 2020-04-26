@@ -53,7 +53,7 @@
 	border-top: none;
 }
 
-.dropdown
+.dropdown, .tag
 {
 	cursor: pointer;
 }
@@ -132,6 +132,44 @@ a:hover
 {
 	 transform: rotate(-90deg);
 }
+
+pre
+{
+	background-color: $dark-purple;
+	display: inline-block;
+	color: $corn-silk;
+	border-radius: 15px 50px; 
+	width: 800px;
+    height: 250px;
+    font-weight: bold;
+
+    @include tablet {
+ 	width: 300px;
+    height: 250px;
+	}
+
+}
+
+.social
+{
+  position: fixed;
+  bottom: 35%;
+  left: 0;
+  writing-mode: vertical-rl;
+}
+
+.post
+{
+	@include tablet {
+ 	margin-left: 12px;
+	}
+}
+
+.blog
+{
+	padding: 15%;
+}
+
 
 
 

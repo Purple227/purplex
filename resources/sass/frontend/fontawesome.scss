@@ -16,9 +16,10 @@
 
 //Solid icons
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
-.fa, .fas
+.fa, .fas, .fab
 {
 	color: $death_pink;
+	cursor: pointer;
 }
 
 

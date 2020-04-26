@@ -11780,7 +11780,8 @@ label.panel-block:hover {
   border-top: none;
 }
 
-.dropdown {
+.dropdown,
+.tag {
   cursor: pointer;
 }
 
@@ -11848,5 +11849,41 @@ a:hover {
 
 .icon_wrapper {
   transform: rotate(-90deg);
+}
+
+pre {
+  background-color: #1B042C;
+  display: inline-block;
+  color: #FFF8DC;
+  border-radius: 15px 50px;
+  width: 800px;
+  height: 250px;
+  font-weight: bold;
+}
+
+@media (max-width: 1023px) {
+  pre {
+    width: 300px;
+    height: 250px;
+  }
+}
+
+.social {
+  position: fixed;
+  bottom: 35%;
+  left: 0;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+}
+
+@media (max-width: 1023px) {
+  .post {
+    margin-left: 12px;
+  }
+}
+
+.blog {
+  padding: 15%;
 }
 

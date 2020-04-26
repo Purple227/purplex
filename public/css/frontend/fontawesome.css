@@ -5926,7 +5926,9 @@ readers do not read off random characters that represent icons */
 }
 
 .fa,
-.fas {
+.fas,
+.fab {
   color: #C60A86;
+  cursor: pointer;
 }
 

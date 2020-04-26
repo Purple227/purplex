@@ -1,5 +1,6 @@
 <?php
 
+
 Route::group(['namespace'=>'Auth', 'prefix'=>'admin' ], function() 
 {
 
@@ -9,8 +10,6 @@ Route::post('user/update/security', 'UserController@updateSecurity');
 Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
-
-Route::get('register/jk', 'RegisterController@register');
 
 Route::resource('user', 'UserController');
 

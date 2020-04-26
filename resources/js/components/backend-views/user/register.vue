@@ -16,9 +16,7 @@
 			<div class="notification has-text-white is-primary" v-if="register.errors">
 				<button class="delete" @click='register.errors = null'></button>
 				<ul>
-					<li>{{register.errors.email[0]}}</li>
-					<li>{{register.errors.password[0]}}</li>
-					<li>{{register.errors.name[0]}}</li>
+					<li v-for="(value, name, index) in register.errors"> {{ index+1 }}. {{ value[0] }} </li>
 				</ul>
 			</div>
 

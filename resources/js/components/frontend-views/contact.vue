@@ -19,7 +19,7 @@
 					<div class="content">
 
 
-						<div class="columns is-vcentered" v-if="false"> <!-- Columns wrapper tag open -->
+						<div class="columns is-vcentered" v-if="true"> <!-- Columns wrapper tag open -->
 
 							<div class="column is-4"> <!-- column is-4 tag open -->
 
@@ -72,7 +72,7 @@
 						</div> <!-- Columns wrapper tag close -->
 
 						<!-- Notification section -->
-						<div class="columns is-mobile is-centered" v-if="true">
+						<div class="columns is-mobile is-centered" v-if="false">
 							<div class="column is-half">
 
 								<div class="notification is-dark is-inline center border_curve">

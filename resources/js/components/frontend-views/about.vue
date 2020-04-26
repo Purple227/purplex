@@ -15,8 +15,8 @@
 		<div class="card border_curve" style="margin-top:10px;">
 			<div class="card-content">
 
-				<div class="content has-text-centered bold">
-{{ aboutMe.description }} <a>@bulmaio</a>.
+				<div class="content has-text-centered bold" v-html="aboutMe.description ">
+ <a>@bulmaio</a>.
 					<a href="#">#css</a> <a href="#">#responsive</a>
 					<br>
 					<time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>

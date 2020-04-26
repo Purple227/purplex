@@ -1,7 +1,7 @@
 
 <template>
   
-      <div class="dropdown level-item" v-bind:class="{ 'is-active': isActive }" v-on-clickaway="away" @click="addActiveClass">
+      <div class="dropdown level-item is-right" v-bind:class="{ 'is-active': isActive }" v-on-clickaway="away" @click="addActiveClass">
         <div class="dropdown-trigger">
           <i class="fas fa-bell">  <span class="notify_dot"> . </span>  </i>  
         </div>

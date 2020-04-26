@@ -11,7 +11,14 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    /**
+     * The data instance.
+     *
+     * @var Data
+     */
     public $data;
+
 
     /**
      * Create a new message instance.
@@ -20,7 +27,7 @@ class ContactMail extends Mailable
      */
     public function __construct($data)
     {
-        $this->data = $data;
+         $this->data = $data;
     }
 
     /**

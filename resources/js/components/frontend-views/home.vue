@@ -19,7 +19,7 @@
 		</p>
 
 		<p class="card-footer-item is-dark border_curve">
-			<a href="#" class="has-text-white"> 
+			<a href="https://www.linkedin.com/in/purple227" target="_blank" class="has-text-white"> 
 			Hire me
 			</a>
 		</p>

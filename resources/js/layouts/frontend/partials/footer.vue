@@ -51,6 +51,10 @@
 											About
 										</router-link>
 
+										<a href="https://www.linkedin.com/in/purple227" target="_blank" class="dropdown-item">
+											Hire Me
+										</a>
+
 									</div>
 								</div>
 							</div>

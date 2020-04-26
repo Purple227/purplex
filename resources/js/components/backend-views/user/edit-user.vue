@@ -16,7 +16,7 @@
 			<div class="notification has-text-white is-primary" v-if="updateData.errors">
 				<button class="delete" @click='updateData.errors = null'></button>
 				<ul>
-					<li> {{ updateData.errors.name[0] }} </li>
+					<li v-for="(value, name, index) in postForm.errors"> {{ index+1 }}. {{ value[0] }} </li>
 				</ul>
 			</div>
 

@@ -42,9 +42,9 @@
 								<i class="fas fa-search"></i>
 							</span>
 						</p>
-						<div class="control">
+						<!-- div class="control">
 							<button class="button is-dark border_curve">Search</button>
-						</div>
+						</div -->
 					</div>
 				</div>
 			</span>
@@ -57,8 +57,8 @@
 					<center>
 						<span class="icon are-large mobile_icon_center" >
 
-							<span class="fa-stack ">
-								<a class="navbar-item" href="#">
+							<span class="fa-stack has-text-white">
+								<a class="navbar-item" href="https://www.facebook.com/Psychosocial227" target="_blank">
 									<i class="fas fa-stack-2x"> </i>
 									<i class="fab fa-facebook-square fa-2x"> </i>
 								</a>
@@ -66,7 +66,7 @@
 
 
 							<span class="fa-stack">
-								<a class="navbar-item" href="#" >
+								<a class="navbar-item" href="https://www.linkedin.com/in/purple227" target="_blank" >
 									<i class="fas fa-stack-2x"> </i>
 									<i class="fab fa-linkedin fa-2x"> </i>
 								</a>
@@ -124,12 +124,12 @@
 
 						</div>
 
-						<a class="navbar-item" href="#" target="blank">
-							<i class="fab fa-facebook-square fa-2x"></i>
+						<a class="navbar-item" href="https://www.facebook.com/Psychosocial227" target="_blank">
+							<i class="fab fa-facebook-square fa-2x has-text-white"></i>
 						</a>
 
-						<a class="navbar-item" href="#" target="blank">
-							<i class="fab fa-linkedin fa-2x"></i>
+						<a class="navbar-item" href="https://www.linkedin.com/in/purple227" target="_blank">
+							<i class="fab fa-linkedin fa-2x has-text-white"></i>
 						</a>
 
 					</div>
