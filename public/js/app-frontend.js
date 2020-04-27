@@ -1848,15 +1848,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2571,28 +2562,26 @@ __webpack_require__.r(__webpack_exports__);
     this.searchData();
   },
   methods: {
-    searchData: function searchData() {
+    searchData: function searchData(api) {
       var _this = this;
 
       this.searchResult = [];
 
       if (this.searchQuery.length > 2) {
-        axios.get('/api/blog/search', {
+        axios.get("/api/blog/search", {
           params: {
             search_query: this.searchQuery
           }
         }).then(function (response) {
-          var data = response.data;
-
-          var string = _this.searchQuery.toLowerCase();
-
-          function sortResult(value) {
-            return value.title.toLowerCase().indexOf(string) >= 0;
-          }
-
-          _this.searchResult = data.filter(sortResult);
+          _this.searchResult = response.data;
         });
       }
+    },
+    navigate: function navigate() {
+      this.searchResult = "";
+      setTimeout(function () {
+        history.go();
+      }, 500);
     }
   },
   //method calibrace close
@@ -21068,51 +21057,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "tile is-parent" },
-          [
-            _vm.blogList[3]
-              ? _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "tile is-child notification is-danger border_curve",
-                    staticStyle: { padding: "10%" },
-                    attrs: {
-                      to: {
-                        name: "post",
-                        params: { slug: _vm.blogList[3].slug }
-                      }
-                    }
-                  },
-                  [
-                    _c("p", { staticClass: "title fa" }, [
-                      _vm._v(
-                        " " +
-                          _vm._s(
-                            _vm._f("truncate")(_vm.blogList[3].title, 0, 25)
-                          ) +
-                          " "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", {
-                      staticClass: "subtitle fa",
-                      domProps: {
-                        innerHTML: _vm._s(
-                          _vm.blogList[3].description.substring(0, 300)
-                        )
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" })
-                  ]
-                )
-              : _vm._e()
-          ],
-          1
-        )
+        _c("div", { staticClass: "tile is-parent" })
       ]),
       _vm._v(" "),
       _c(
@@ -21124,32 +21069,30 @@ var render = function() {
                 "router-link",
                 {
                   staticClass:
-                    "tile is-child notification is-primary border_curve blog",
+                    "tile is-child notification is-danger border_curve blog",
                   attrs: {
                     to: { name: "post", params: { slug: _vm.blogList[4].slug } }
                   }
                 },
                 [
-                  _c("article", [
-                    _c("div", { staticClass: "content" }, [
-                      _c("p", { staticClass: "title" }, [
-                        _vm._v(
-                          " " +
-                            _vm._s(
-                              _vm._f("truncate")(_vm.blogList[4].title, 0, 18)
-                            )
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", {
-                        staticClass: "subtitle fa",
-                        domProps: {
-                          innerHTML: _vm._s(
-                            _vm.blogList[4].description.substring(4, 520)
+                  _c("div", { staticClass: "content" }, [
+                    _c("p", { staticClass: "title" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(_vm.blogList[4].title, 0, 18)
                           )
-                        }
-                      })
-                    ])
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", {
+                      staticClass: "subtitle fa",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.blogList[4].description.substring(0, 350)
+                        )
+                      }
+                    })
                   ])
                 ]
               )
@@ -22291,7 +22234,7 @@ var render = function() {
                   [
                     _c(
                       "div",
-                      { staticClass: "dropdown-content" },
+                      { staticClass: "dropdown-content border_curve" },
                       _vm._l(_vm.searchResult, function(data, index) {
                         return _c(
                           "div",
@@ -22500,7 +22443,7 @@ var render = function() {
                         [
                           _c(
                             "div",
-                            { staticClass: "dropdown-content" },
+                            { staticClass: "dropdown-content border_curve" },
                             _vm._l(_vm.searchResult, function(data, index) {
                               return _c(
                                 "div",
@@ -22521,11 +22464,7 @@ var render = function() {
                                         "span",
                                         {
                                           staticClass: "has-text-white",
-                                          on: {
-                                            click: function($event) {
-                                              _vm.searchQuery = ""
-                                            }
-                                          }
+                                          on: { click: _vm.navigate }
                                         },
                                         [
                                           _vm._v(

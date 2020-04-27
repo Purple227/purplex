@@ -11885,6 +11885,8 @@ pre {
 
 .blog {
   padding: 15%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .post_wrap {

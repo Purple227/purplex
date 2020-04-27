@@ -22,8 +22,10 @@ class TagController extends Controller
 
         public function search(Request $request)
     {
-        $search_query = $request->searchquery;
-        $data = Tag::where('name','LIKE',"%$search_query%")->get();
+        $search_query = $request->search_query;
+        $data = Tag::where('name','LIKE',"%$search_query%")
+        ->take(5)
+        ->get();
         /*$posts = Post::where('title','LIKE',"%$query%")->approved()->published()->paginate(4);
 */        return response()->json($data);
     }

@@ -83,7 +83,7 @@
 			</div>  <!-- Content tag close -->
 		</div>  <!-- Card content tag close -->
 
-		<footer class="card-footer">
+		<footer class="card-footer" v-show="searchQuery.length <= 2">
 
 			<a class="card-footer-item green is-bold" @click="tagsData(pagination.previousPageUrl)">Previous</a>
 
@@ -159,14 +159,7 @@ export default {
 			this.searchResult= []
 			if(this.searchQuery.length > 2) {
 				axios.get('/api/admin/tags/table/search',{params: {search_query: this.searchQuery}}).then(response => {
-					let data = response.data
-					let string = this.searchQuery.toLowerCase();
-
-					function sortResult(value) {
-						return value.name.toLowerCase().indexOf(string) >= 0;
-					}
-
-					this.searchResult = data.filter(sortResult)
+					this.searchResult = response.data
 
 				});
 			}

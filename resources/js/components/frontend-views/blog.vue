@@ -49,29 +49,20 @@
   </div>
   <div class="tile is-parent">
 
-             <router-link :to="{name: 'post', params: {slug: blogList[3].slug}}" v-if="blogList[3]"  class="tile is-child notification is-danger border_curve" style="padding: 10%;">
-            
-        <p class="title fa"> {{ blogList[3].title | truncate(0, 25)}} </p>
-        <p class="subtitle fa" v-html="blogList[3].description.substring(0, 300)"> </p>
-        <div class="content">
-          <!-- Content -->
-        </div>
-  </router-link>
+
 
   </div>
 </div>
 <div class="tile is-parent">
   
-             <router-link :to="{name: 'post', params: {slug: blogList[4].slug}}" v-if="blogList[4]"  class="tile is-child notification is-primary border_curve blog">
-              <article >
+             <router-link :to="{name: 'post', params: {slug: blogList[4].slug}}" v-if="blogList[4]"  class="tile is-child notification is-danger border_curve blog">
       <div class="content">
         <p class="title"> {{ blogList[4].title | truncate(0, 18) }}</p>
-        <p class="subtitle fa" v-html="blogList[4].description.substring(4, 520)"> </p>
+        <p class="subtitle fa" v-html="blogList[4].description.substring(0, 350)"> </p>
         <!--div class="content">
            // Content 
          </div-->
        </div>
-     </article>
      </router-link>
  </div>
 

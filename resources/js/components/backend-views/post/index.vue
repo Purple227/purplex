@@ -101,7 +101,7 @@
 				</div>  <!-- Content tag close -->
 			</div>  <!-- Card content tag close -->
 
-			<footer class="card-footer">
+			<footer class="card-footer" v-show="searchQuery.length <= 2">
 
 				<a class="card-footer-item green is-bold" @click="postsData(pagination.previousPageUrl)">Previous</a>
 
@@ -109,7 +109,7 @@
 					{{pagination.to}} of {{pagination.total}}
 				</a>
 
-				<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)">Next</a>
+				<a class="card-footer-item green is-bold" @click="postsData(pagination.nextPageUrl)"> Next </a>
 
 				<a class="card-footer-item is-marginless"> <input type="date" data-display-mode="dialog" data-show-header="true" data-color="is-primary" data-date-format="YYYY-MM-DD" id="my-element" v-model.lazy="pagination.dateSelected"> </a>
 
@@ -195,14 +195,18 @@ export default {
 			if(this.searchQuery.length > 2) {
 				axios.get('/api/admin/posts/table/search',{params: {search_query: this.searchQuery}}).then(response => {
 
-					let data = response.data
-					let string = this.searchQuery.toLowerCase();
+					this.searchResult = response.data
+
+					//spaghetti code
+
+
+/*					let string = this.searchQuery.toLowerCase();
 
 					function sortResult(value) {
   						return value.title.toLowerCase().indexOf(string) >= 0;
 					}
 
-					this.searchResult = data.filter(sortResult)
+					this.searchResult = data.filter(sortResult)*/
 
 				});
 			}

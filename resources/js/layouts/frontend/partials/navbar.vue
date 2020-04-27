@@ -26,7 +26,7 @@
 							<!-- Droppdown when a user start typing -->
 							<div class="dropdown"  v-bind:class="classObject">
 								<div class="dropdown-menu" id="dropdown-menu2" role="menu">
-									<div class="dropdown-content">
+									<div class="dropdown-content border_curve">
 										<div class="dropdown-item"  v-for="(data, index) in searchResult" :key="index">
 											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="searchQuery = '' ">  {{ data.title | truncate(0, 38)}} </span> </router-link>
 											<hr>
@@ -101,9 +101,9 @@
 							<!-- Droppdown when a user start typing -->
 							<div class="dropdown"  v-bind:class="classObject">
 								<div class="dropdown-menu" id="dropdown-menu2" role="menu">
-									<div class="dropdown-content">
+									<div class="dropdown-content border_curve">
 										<div class="dropdown-item"  v-for="(data, index) in searchResult" :key="index">
-											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="searchQuery = '' ">  {{ data.title | truncate(0, 38)}} </span> </router-link>
+											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="navigate">  {{ data.title | truncate(0, 38)}} </span> </router-link>
 											<hr>
 										</div>
 									</div>
@@ -169,23 +169,26 @@ export default {
 
 	methods: {
 
-		searchData() {
+		searchData(api) {
 			this.searchResult = []
 			if(this.searchQuery.length > 2) {
-				axios.get('/api/blog/search',{params: {search_query: this.searchQuery}}).then(response => {
+				axios.get("/api/blog/search" ,{params: {search_query: this.searchQuery}}).then(response => {
 
-					let data = response.data
-					let string = this.searchQuery.toLowerCase();
-
-					function sortResult(value) {
-  						return value.title.toLowerCase().indexOf(string) >= 0;
-					}
-
-					this.searchResult = data.filter(sortResult)
+					this.searchResult = response.data
 
 				});
 			}
 		},
+
+		navigate() {
+
+			this.searchResult = ""
+
+			setTimeout(() => {
+				history.go();
+			}, 500)
+		}
+
 
 	},//method calibrace close
 

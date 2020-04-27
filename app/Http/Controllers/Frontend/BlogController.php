@@ -25,10 +25,12 @@ class BlogController extends Controller
 
     public function search(Request $request)
     {
-        $search_query = $request->searchquery;
-        $data = Post::where('title','LIKE',"%$search_query%")->get();
-        /*$posts = Post::where('title','LIKE',"%$query%")->approved()->published()->paginate(4);
-*/        return response()->json($data);
+        $search_query = $request->search_query;
+
+        $data = Post::where('title', 'LIKE', "%$search_query%")
+                ->take(4)
+                ->get();
+        return response()->json($data);
     }
 
     /**
