@@ -46,16 +46,6 @@
 		</ul>
 
 
-		<i class="fas fa-running is-bold fa-lg">  Docs </i> 
-		<ul class="menu-list">
-			<li>
-				<a class=" ">
-					Get started
-				</a>
-			</li>
-		</ul>
-
-
 		<i class="fas fa-plus-circle is-bold fa-lg">  Others </i> 
 		<ul class="menu-list">
 

@@ -63,7 +63,7 @@ export default
 		}
 	},
 
-	created() {
+	beforeMount() {
 		this.loginGuard()
 	},
 

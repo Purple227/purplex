@@ -11722,7 +11722,6 @@ body {
   background: linear-gradient(to bottom right, #FF1493, #23043B);
 }
 
-.table_wrapper_plus,
 .my_center {
   display: flex;
   justify-content: center;
@@ -11819,20 +11818,6 @@ body {
   background-color: #23043B;
 }
 
-.box,
-.aside_bg {
-  background-color: #23043B;
-  position: relative;
-}
-
-.is_bordered {
-  border: 5px solid #00d1b2;
-}
-
-.is_borderless {
-  border: none;
-}
-
 .is-current {
   font-size: 20px;
 }
@@ -11915,11 +11900,6 @@ a:hover {
 
 .button {
   background-color: #FFF8DC;
-}
-
-.play_play {
-  border-left: 2px solid #FFF8DC;
-  margin-left: 1em;
 }
 
 .about {

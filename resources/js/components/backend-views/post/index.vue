@@ -72,9 +72,14 @@
 										<td class="has-text-centered"> {{ post.edited ? post.updated_at : post.created_at | format('D MMM YYYY - h:mm A') }} </td>
 
 										<td class="has-text-centered">
+
+											<a target="_blank" :href="'/blog/'+post.slug" v-bind:style="myStyle">
 											<span class="icon has-text-success">
 												<i class="fas fa-eye"></i>
 											</span>
+											 </a>
+
+										
 
 											<span class="icon has-text-success">
 												<i class="fas fa-trash" v-on:click="deleteData(post.id, index)"> </i>

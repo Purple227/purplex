@@ -11,119 +11,26 @@
   <strong> Succesfull</strong>
 </div>
 
-		<div class="columns is-gapless is-marginless"> <!-- Columns wrapper tag open -->
 
-			<div class="column is-8"> <!-- Column is-8 tag open -->
 
+<div class="columns is-mobile">
+  <div class="column is-11 is-offset-0">
+  	
 				<div class="card-content"> <!-- card content tag open -->
 					<DoughnutChart :data="chartData" :options="chartOptions" class="doughnut_chart" aria-label="Hello ARIA World" role="img"> <p> Update your browser or make sure javascript is turn on. Chart not supported </p> </DoughnutChart>
 				</div>  <!-- card content tag close -->
+
+
+  </div>
+</div>
+
+
 
 
 		 <!--
 		 	My new box for card start here section am working on start here. this for clarity 
 		 -->
 
-		 <div class="card-content"> <!-- card content tag open -->
-
-		 	<div class="redundancy"> <!-- This just insolence open -->
-
-		 		<p class="title is-5 has-text-centered has-text-success ">
-		 			Most Read
-		 		</p>
-
-		 		<div class="table_wrapper_plus"> <!-- Table wrapper plus tag open -->
-
-		 			<table class="table is-bordered "> <!-- table wrapper tag open -->
-
-		 				<thead>  <!-- thead tag open -->
-		 					<tr>
-
-		 						<th title="Number" class="has-text-success"> No. </th>
-		 						<th class="has-text-centered has-text-success is_hidden_mobile_tablet"> Title </th>
-		 						<th class="has-text-success"> Views </th>
-		 						<th class="has-text-success "> Created </th>
-		 						<th class="has-text-success"> Action </th>
-
-		 					</tr>
-		 				</thead>  <!-- thead tag close -->
-
-		 				<tfoot>  <!-- tfoot tag open -->
-		 					<tr>
-
-		 						<th title="Number" class="has-text-success"> No. </th>
-		 						<th class="has-text-centered has-text-success is_hidden_mobile_tablet"> Title </th>
-		 						<th class="has-text-success"> Views </th>
-		 						<th class="has-text-success "> Created </th>
-		 						<th class="has-text-success"> Action </th>
-
-		 					</tr>
-		 				</tfoot>  <!-- tfoot tag open -->
-
-		 				<tbody>  <!-- tbody tag open -->
-
-		 					<tr>
-		 						<th class="has-text-success"> 1 </th>
-		 						<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah... </td>
-		 						<td class="has-text-centered"> 54 </td>
-		 						<td class=""> 3 Oct </td>
-		 						<td class="has-text-centered"> <i class="fas fa-eye has-text-success"></i> </td>
-		 					</tr>
-
-		 					<tr>
-		 						<th class="has-text-success"> 2 </th>
-		 						<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah... </td>
-		 						<td class="has-text-centered"> 32 </td>
-		 						<td class=""> 4 Oct </td>
-		 						<td class="has-text-centered"> <i class="fas fa-eye has-text-success"></i> </td>
-		 					</tr>
-
-		 					<tr>
-		 						<th class="has-text-success"> 3 </th>
-		 						<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah... </td>
-		 						<td class="has-text-centered"> 22 </td>
-		 						<td class=""> 3 Oct </td>
-		 						<td class="has-text-centered"> <i class="fas fa-eye has-text-success"></i> </td>
-		 					</tr>
-
-		 					<tr>
-		 						<th class="has-text-success"> 4 </th>
-		 						<td class="is_hidden_mobile_tablet"> Blah blah blah blah blah blah...  </td>
-		 						<td class="has-text-centered"> 22 </td>
-		 						<td class=""> 3 Oct </td>
-		 						<td class="has-text-centered"> <i class="fas fa-eye has-text-success"></i> </td>
-		 					</tr>
-
-		 				</tbody>  <!-- tbody tag close -->
-		 			</table>  <!-- table wrapper tag close -->
-		 		</div>  <!-- Table wrapper plus tag close -->
-
-		 	</div> <!-- This just insolence close-->
-
-		 </div>  <!-- card content tag close -->
-
-		</div>  <!-- Column is-8 tag close -->
-
-
-
-
-		<div class="column is-4">  <!-- Column is-4 tag open -->
-
-			<div class="card-content">  <!-- card content tag close -->
-				<div class="box"> <!-- Box tag open -->
-					<i class=" fas fa-money-check-alt fa-4x">  </i>  <span class=" corn_silk is-bold"> $56,000  </span>
-					<a class="button green is-bold is-block is-size-7-tablet"> Site Revenue </a>
-				</div>  <!-- Box tag open -->
-
-				<div class="box"> <!-- Box tag open -->
-					<i class=" fas fa-share-alt fa-4x">  </i>  <span class=" corn_silk is-bold"> 26,000  </span>
-					<a class="button is-bold is-block green is-size-7-tablet"> Social Share </a>
-				</div>  <!-- Box tag close -->
-
-			</div>  <!-- card content tag close -->
-
-
-		</div>  <!-- Column is-4 tag open -->
 
 	</div>  <!-- Columns wrapper tag close -->
 

@@ -48,7 +48,7 @@
 							<thead>  <!-- thead tag open -->
 								<tr>
 									<th class="has-text-success"><abbr title="Number">No</abbr></th>
-									<th class="has-text-centered has-text-success "> Name </th>
+									<th class="has-text-centered has-text-success "> Email </th>
 									<th class="has-text-success has-text-centered"> Created </th>
 									<th class="has-text-success has-text-centered"> Action </th>
 								</tr>
