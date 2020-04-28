@@ -46,7 +46,7 @@ class NewPostNotify extends Notification
             ->greeting('Hello, Subscriber')
             ->line('There is a new post. We hope you will like it.')
             ->line('Post Title : '.$this->post->title)
-            ->action('View Post', url('/'))
+            ->action('View Post', url('/blog/'.$this->post->slug))
             ->line('Thank you for using our application!');
     }
 

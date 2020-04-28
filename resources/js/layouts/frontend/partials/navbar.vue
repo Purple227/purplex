@@ -28,7 +28,7 @@
 								<div class="dropdown-menu" id="dropdown-menu2" role="menu">
 									<div class="dropdown-content border_curve">
 										<div class="dropdown-item"  v-for="(data, index) in searchResult" :key="index">
-											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="searchQuery = '' ">  {{ data.title | truncate(0, 38)}} </span> </router-link>
+											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="navigate">  {{ data.title | truncate(0, 38)}} </span> </router-link>
 											<hr>
 										</div>
 									</div>

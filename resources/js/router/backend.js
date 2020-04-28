@@ -8,6 +8,7 @@ import Tags from '../components/backend-views/tag.vue';
 import About from '../components/backend-views/about.vue';
 import EditUser from '../components/backend-views/user/edit-user.vue';
 import UpdateSecurity from '../components/backend-views/user/update-security.vue';
+import Subscriber from '../components/backend-views/subscribers.vue';
 
 
 const routes = 
@@ -41,6 +42,12 @@ const routes =
     name:'list-tags',
     path: '/admin/tags',
     component: Tags
+},
+
+{
+    name:'email-list',
+    path: '/admin/subscribers',
+    component: Subscriber
 },
 
 {

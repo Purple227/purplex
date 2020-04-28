@@ -1848,6 +1848,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -20975,7 +20979,7 @@ var render = function() {
                     "router-link",
                     {
                       staticClass:
-                        "tile is-child notification is-info blog border_curve",
+                        "tile is-child notification is-danger blog border_curve",
                       attrs: {
                         to: {
                           name: "post",
@@ -21062,26 +21066,27 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "tile is-parent" },
+        { staticClass: "tile is-parent is-vertical" },
         [
-          _vm.blogList[4]
+          _vm.blogList[3]
             ? _c(
                 "router-link",
                 {
                   staticClass:
-                    "tile is-child notification is-danger border_curve blog",
+                    "tile is-child notification is-danger blog border_curve",
                   attrs: {
-                    to: { name: "post", params: { slug: _vm.blogList[4].slug } }
+                    to: { name: "post", params: { slug: _vm.blogList[3].slug } }
                   }
                 },
                 [
-                  _c("div", { staticClass: "content" }, [
-                    _c("p", { staticClass: "title" }, [
+                  _c("article", [
+                    _c("p", { staticClass: "title fa" }, [
                       _vm._v(
                         " " +
                           _vm._s(
-                            _vm._f("truncate")(_vm.blogList[4].title, 0, 18)
-                          )
+                            _vm._f("truncate")(_vm.blogList[3].title, 0, 16)
+                          ) +
+                          " "
                       )
                     ]),
                     _vm._v(" "),
@@ -21089,7 +21094,42 @@ var render = function() {
                       staticClass: "subtitle fa",
                       domProps: {
                         innerHTML: _vm._s(
-                          _vm.blogList[4].description.substring(0, 350)
+                          _vm.blogList[3].description.substring(0, 99)
+                        )
+                      }
+                    })
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.blogList[4]
+            ? _c(
+                "router-link",
+                {
+                  staticClass:
+                    "tile is-child notification is-primary blog border_curve",
+                  attrs: {
+                    to: { name: "post", params: { slug: _vm.blogList[4].slug } }
+                  }
+                },
+                [
+                  _c("article", [
+                    _c("p", { staticClass: "title fa" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm._f("truncate")(_vm.blogList[4].title, 0, 16)
+                          ) +
+                          " "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", {
+                      staticClass: "subtitle fa",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.blogList[4].description.substring(0, 99)
                         )
                       }
                     })
@@ -22255,11 +22295,7 @@ var render = function() {
                                   "span",
                                   {
                                     staticClass: "has-text-white",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.searchQuery = ""
-                                      }
-                                    }
+                                    on: { click: _vm.navigate }
                                   },
                                   [
                                     _vm._v(

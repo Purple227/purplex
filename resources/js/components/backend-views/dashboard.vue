@@ -120,11 +120,6 @@
 					<a class="button is-bold is-block green is-size-7-tablet"> Social Share </a>
 				</div>  <!-- Box tag close -->
 
-				<div class="box"> <!-- Box tag open -->
-					<i class=" fas fa-mail-bulk fa-4x">  </i>  <span class=" corn_silk is-bold"> {{ subscribers }}  </span>
-					<a class="button is-bold is-block green is-size-7-tablet"> Email Listing </a>
-				</div>  <!-- Box tag close -->
-
 			</div>  <!-- card content tag close -->
 
 
@@ -156,7 +151,6 @@ export default {
 
   data() {
   	return {
-  		subscribers: null,
   		posts: null,
   		tags: null,
   		status: null,
@@ -212,14 +206,6 @@ export default {
       this.status = value
       console.log(this.status)
     },
-
-    homeData: function() {
-    	let api = '/api/admin/home';
-		this.axios
-		.get(api).then((response) => {
-			this.subscribers =response.data[2];
-		})
-    }
 
   },// method calibrace close
 

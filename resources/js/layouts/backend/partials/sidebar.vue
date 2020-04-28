@@ -35,6 +35,14 @@
 					Tags <span class="tag is-pulled-right"> {{ tags }} </span>
 				</router-link>
 			</li>
+
+			<li>
+				<router-link :to="{name: 'email-list'}" active-class="is-active">
+					Subscribers <span class="tag is-pulled-right"> {{ subscribers }} </span>
+				</router-link>
+			</li>
+
+
 		</ul>
 
 
@@ -95,6 +103,7 @@ export default {
 		return {
 			posts : null,
 			tags: null,
+			subscribers: null,
 		}
 	},
 
@@ -105,6 +114,7 @@ export default {
 		.get(api).then((response) => {
 			this.posts = response.data[0];
 			this.tags =response.data[1];
+			this.subscribers =response.data[2];
 		})
 	},
 
