@@ -125,7 +125,7 @@ export default{
 	],
 
 	components: {
-		'input-tag': InputTag
+		'input-tag': InputTag,
 	},
 
 	data() {
@@ -142,6 +142,8 @@ export default{
 				tags: [],
 				status: null,
 			},
+
+			status: null,
 		}
 	},
 
@@ -170,7 +172,7 @@ export default{
 			this.formStep.step--;
 		},
 
-		submitForm() {
+		submitForm(value) {
 			let uri = '/api/admin/post';
 			let tags = []
 			this.axios.post(uri, {
@@ -180,8 +182,8 @@ export default{
 				status: this.postForm.isPublished,
 				//console.log(status)
 			}).then((response) => {
-    			let status = true
-    			this.$emit('createStatus', status)
+    			this.status = true
+    			this.$emit('create-status', this.status)
     			this.$router.push({name:'list-posts'})
 			}).catch(error=>{
               this.postForm.status = error.response.data.errors

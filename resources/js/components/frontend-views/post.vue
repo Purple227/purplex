@@ -46,7 +46,7 @@
 	<div class="card border_curve" style="margin-top:10px;">
 		<div class="card-content">
 
-			<div class="content post_wrap" v-html="post.description">
+			<div class="content post_wrap has-text-black" v-html="post.description">
 				<a>@bulmaio</a>.
 				<a href="#">#css</a> 
 				<a href="#">#responsive</a>

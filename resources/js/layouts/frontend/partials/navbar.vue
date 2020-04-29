@@ -19,6 +19,9 @@
 					<span class="mobile_menu_design level-item"></span>
 				</div>
 
+		<form v-on:submit.prevent="searchData"> <!-- Form tag open -->
+
+
 				<div class="level-item has-text-centered">
 					<div class="field has-addons">
 
@@ -27,10 +30,17 @@
 							<div class="dropdown"  v-bind:class="classObject">
 								<div class="dropdown-menu" id="dropdown-menu2" role="menu">
 									<div class="dropdown-content border_curve">
+
 										<div class="dropdown-item"  v-for="(data, index) in searchResult" :key="index">
 											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="navigate">  {{ data.title | truncate(0, 38)}} </span> </router-link>
 											<hr>
 										</div>
+
+										<div class="dropdown-item"  v-if="searchResult.length == 0">
+											 <span class="has-text-white" @click="navigate">  No match found</span>
+											<hr>
+										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -47,6 +57,7 @@
 						</div -->
 					</div>
 				</div>
+			</form> <!-- form tag close -->
 			</span>
 
 
@@ -57,10 +68,10 @@
 					<center>
 						<span class="icon are-large mobile_icon_center" >
 
-							<span class="fa-stack has-text-white">
+							<span class="fa-stack">
 								<a class="navbar-item" href="https://www.facebook.com/Psychosocial227" target="_blank">
 									<i class="fas fa-stack-2x"> </i>
-									<i class="fab fa-facebook-square fa-2x"> </i>
+									<i class="fab fa-facebook-square fa-2x has-text-white"> </i>
 								</a>
 							</span>
 
@@ -68,7 +79,7 @@
 							<span class="fa-stack">
 								<a class="navbar-item" href="https://www.linkedin.com/in/purple227" target="_blank" >
 									<i class="fas fa-stack-2x"> </i>
-									<i class="fab fa-linkedin fa-2x"> </i>
+									<i class="fab fa-linkedin fa-2x has-text-white"> </i>
 								</a>
 							</span>
 
@@ -94,6 +105,10 @@
 					</router-link>
 				</div> <!-- navbar start tag close -->
 
+
+<form v-on:submit.prevent="searchData"> <!-- Form tag open -->
+
+
 				<div class="navbar-end is_hidden_mobile_tablet"> <!-- navbar end tag open -->
 					<div class="navbar-item">
 						<div class="field has-addons" style="margin-top: 3%;">
@@ -102,10 +117,17 @@
 							<div class="dropdown"  v-bind:class="classObject">
 								<div class="dropdown-menu" id="dropdown-menu2" role="menu">
 									<div class="dropdown-content border_curve">
+
 										<div class="dropdown-item"  v-for="(data, index) in searchResult" :key="index">
 											<router-link :to="{name: 'post', params: {slug: data.slug}}"> <span class="has-text-white" @click="navigate">  {{ data.title | truncate(0, 38)}} </span> </router-link>
 											<hr>
 										</div>
+
+										<div class="dropdown-item"  v-if="searchResult.length == 0">
+											 <span class="has-text-white" @click="navigate">  No match found</span>
+											<hr>
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -134,6 +156,8 @@
 
 					</div>
 				</div> <!-- Navbar end tag close -->
+
+				</form> <!-- form tag close -->
 
 			</div> <!-- navbar menu tag open -->
 

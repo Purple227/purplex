@@ -6,7 +6,7 @@
 				<div class="content ">  <!-- Content tag open -->
 
 					<div class="" v-if='false'>
-						<create-post @createStatus="statusListener"> </create-post>
+						<create-post @create-status="statusListener"> </create-post>
 						<edit-post @editStatus="statusListener" v-if='false'> </edit-post>
 					</div>
 
@@ -202,17 +202,6 @@ export default {
 
 					this.searchResult = response.data
 
-					//spaghetti code
-
-
-/*					let string = this.searchQuery.toLowerCase();
-
-					function sortResult(value) {
-  						return value.title.toLowerCase().indexOf(string) >= 0;
-					}
-
-					this.searchResult = data.filter(sortResult)*/
-
 				});
 			}
 		},
@@ -238,6 +227,7 @@ export default {
 
 		statusListener(value) {
 			this.status = value
+			console.log(this.status)
 		},
 
 

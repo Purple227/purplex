@@ -11,6 +11,8 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
+		<title> Welcome to Purplex</title>
+
 		<!-- Styles -->
 		<link href=" {{ asset('css//frontend/fontawesome.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/frontend/bulma.css') }}" rel="stylesheet">

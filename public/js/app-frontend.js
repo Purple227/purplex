@@ -2553,6 +2553,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_dynamic_class_handler__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -21789,7 +21813,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "content post_wrap",
+                staticClass: "content post_wrap has-text-black",
                 domProps: { innerHTML: _vm._s(_vm.post.description) }
               },
               [
@@ -22231,9 +22255,9 @@ var render = function() {
             }
           },
           [
-            _vm._v("\n\t\t\tPur "),
+            _vm._v("\n\t\t\t\tPur "),
             _c("span", { staticStyle: { color: "#FF1493" } }, [_vm._v("p")]),
-            _vm._v(" lex\n\t\t")
+            _vm._v(" lex\n\t\t\t")
           ]
         )
       ],
@@ -22262,93 +22286,131 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "level-item has-text-centered" }, [
-            _c("div", { staticClass: "field has-addons" }, [
-              _c("div", { staticClass: "dropdown", class: _vm.classObject }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "dropdown-menu",
-                    attrs: { id: "dropdown-menu2", role: "menu" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "dropdown-content border_curve" },
-                      _vm._l(_vm.searchResult, function(data, index) {
-                        return _c(
-                          "div",
-                          { key: index, staticClass: "dropdown-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  to: {
-                                    name: "post",
-                                    params: { slug: data.slug }
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "has-text-white",
-                                    on: { click: _vm.navigate }
-                                  },
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.searchData($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "level-item has-text-centered" }, [
+                _c("div", { staticClass: "field has-addons" }, [
+                  _c(
+                    "div",
+                    { staticClass: "dropdown", class: _vm.classObject },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu",
+                          attrs: { id: "dropdown-menu2", role: "menu" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "dropdown-content border_curve" },
+                            [
+                              _vm._l(_vm.searchResult, function(data, index) {
+                                return _c(
+                                  "div",
+                                  { key: index, staticClass: "dropdown-item" },
                                   [
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(
-                                          _vm._f("truncate")(data.title, 0, 38)
-                                        ) +
-                                        " "
-                                    )
-                                  ]
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: {
+                                            name: "post",
+                                            params: { slug: data.slug }
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "has-text-white",
+                                            on: { click: _vm.navigate }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "  " +
+                                                _vm._s(
+                                                  _vm._f("truncate")(
+                                                    data.title,
+                                                    0,
+                                                    38
+                                                  )
+                                                ) +
+                                                " "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("hr")
+                                  ],
+                                  1
                                 )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("hr")
-                          ],
-                          1
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "control has-icons-left" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.searchQuery,
-                      expression: "searchQuery"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Search article" },
-                  domProps: { value: _vm.searchQuery },
-                  on: {
-                    keyup: _vm.searchData,
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                              }),
+                              _vm._v(" "),
+                              _vm.searchResult.length == 0
+                                ? _c("div", { staticClass: "dropdown-item" }, [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "has-text-white",
+                                        on: { click: _vm.navigate }
+                                      },
+                                      [_vm._v("  No match found")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("hr")
+                                  ])
+                                : _vm._e()
+                            ],
+                            2
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "control has-icons-left" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchQuery,
+                          expression: "searchQuery"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text", placeholder: "Search article" },
+                      domProps: { value: _vm.searchQuery },
+                      on: {
+                        keyup: _vm.searchData,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchQuery = $event.target.value
+                        }
                       }
-                      _vm.searchQuery = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(0)
+                    }),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ])
+                ])
               ])
-            ])
-          ])
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -22370,7 +22432,7 @@ var render = function() {
                   "span",
                   { staticClass: "icon are-large mobile_icon_center" },
                   [
-                    _c("span", { staticClass: "fa-stack has-text-white" }, [
+                    _c("span", { staticClass: "fa-stack" }, [
                       _c(
                         "a",
                         {
@@ -22384,7 +22446,8 @@ var render = function() {
                           _c("i", { staticClass: "fas fa-stack-2x" }),
                           _vm._v(" "),
                           _c("i", {
-                            staticClass: "fab fa-facebook-square fa-2x"
+                            staticClass:
+                              "fab fa-facebook-square fa-2x has-text-white"
                           })
                         ]
                       )
@@ -22403,7 +22466,9 @@ var render = function() {
                         [
                           _c("i", { staticClass: "fas fa-stack-2x" }),
                           _vm._v(" "),
-                          _c("i", { staticClass: "fab fa-linkedin fa-2x" })
+                          _c("i", {
+                            staticClass: "fab fa-linkedin fa-2x has-text-white"
+                          })
                         ]
                       )
                     ])
@@ -22457,120 +22522,167 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "navbar-end is_hidden_mobile_tablet" }, [
-            _c("div", { staticClass: "navbar-item" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "field has-addons",
-                  staticStyle: { "margin-top": "3%" }
-                },
-                [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.searchData($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "navbar-end is_hidden_mobile_tablet" }, [
+                _c("div", { staticClass: "navbar-item" }, [
                   _c(
                     "div",
-                    { staticClass: "dropdown", class: _vm.classObject },
+                    {
+                      staticClass: "field has-addons",
+                      staticStyle: { "margin-top": "3%" }
+                    },
                     [
                       _c(
                         "div",
-                        {
-                          staticClass: "dropdown-menu",
-                          attrs: { id: "dropdown-menu2", role: "menu" }
-                        },
+                        { staticClass: "dropdown", class: _vm.classObject },
                         [
                           _c(
                             "div",
-                            { staticClass: "dropdown-content border_curve" },
-                            _vm._l(_vm.searchResult, function(data, index) {
-                              return _c(
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { id: "dropdown-menu2", role: "menu" }
+                            },
+                            [
+                              _c(
                                 "div",
-                                { key: index, staticClass: "dropdown-item" },
+                                {
+                                  staticClass: "dropdown-content border_curve"
+                                },
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "post",
-                                          params: { slug: data.slug }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass: "has-text-white",
-                                          on: { click: _vm.navigate }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "  " +
-                                              _vm._s(
-                                                _vm._f("truncate")(
-                                                  data.title,
-                                                  0,
-                                                  38
+                                  _vm._l(_vm.searchResult, function(
+                                    data,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: index,
+                                        staticClass: "dropdown-item"
+                                      },
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: {
+                                                name: "post",
+                                                params: { slug: data.slug }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "has-text-white",
+                                                on: { click: _vm.navigate }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "  " +
+                                                    _vm._s(
+                                                      _vm._f("truncate")(
+                                                        data.title,
+                                                        0,
+                                                        38
+                                                      )
+                                                    ) +
+                                                    " "
                                                 )
-                                              ) +
-                                              " "
-                                          )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("hr")
+                                      ],
+                                      1
+                                    )
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.searchResult.length == 0
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "dropdown-item" },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass: "has-text-white",
+                                              on: { click: _vm.navigate }
+                                            },
+                                            [_vm._v("  No match found")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("hr")
                                         ]
                                       )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("hr")
+                                    : _vm._e()
                                 ],
-                                1
+                                2
                               )
-                            }),
-                            0
+                            ]
                           )
                         ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    { staticClass: "control has-icons-left has-icons-right" },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.searchQuery,
-                            expression: "searchQuery"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: { type: "text", placeholder: "Search article" },
-                        domProps: { value: _vm.searchQuery },
-                        on: {
-                          keyup: _vm.searchData,
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.searchQuery = $event.target.value
-                          }
-                        }
-                      }),
+                      ),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _c(
+                        "p",
+                        {
+                          staticClass: "control has-icons-left has-icons-right"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.searchQuery,
+                                expression: "searchQuery"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Search article"
+                            },
+                            domProps: { value: _vm.searchQuery },
+                            on: {
+                              keyup: _vm.searchData,
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.searchQuery = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(2)
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(2)
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._m(4)
-            ])
-          ])
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ])
+              ])
+            ]
+          )
         ]
       )
     ])
