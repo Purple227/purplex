@@ -102,10 +102,6 @@ export default {
 };
   },  // chart option calibrace syntax close
 
-  	mounted() {
-  		this.homeData()
-	},
-
 
   methods: {
 

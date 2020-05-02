@@ -19,6 +19,20 @@
 					<div class="content">
 
 
+<div class="notification" v-if="contact.errors">
+  <button class="delete" @click="contact.errors = null"></button>
+  <ul>
+  	<li v-for="value in contact.errors">
+  		{{ value[0] }}
+  	</li>
+  </ul>
+</div>
+
+
+
+
+
+
 						<div class="columns is-vcentered" v-if="!contact.status"> <!-- Columns wrapper tag open -->
 
 							<div class="column is-4"> <!-- column is-4 tag open -->
@@ -64,7 +78,7 @@
 							</div> <!-- column is-6 tag close -->
 
 							<div class="column"> <!-- column tag open -->
-								<button class="button is-dark is-fullwidth border_curve">
+								<button class="button is-dark is-fullwidth border_curve" v-bind:class="{ 'is-loading': loading }" @click="loading = true">
 									Send
 								</button>
 							</div> <!-- column tag close -->
@@ -105,6 +119,7 @@
 
 <script>
 import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+import SkeletonCard from 'vue-skeleton-screen';
 
 export default {
 
@@ -117,7 +132,13 @@ export default {
 				status: false,
 				errors: null,
 			},
+
+			loading: null,
 		}
+	},
+
+	components: {
+		SkeletonCard
 	},
 
 		validations: {
@@ -146,8 +167,12 @@ export default {
 				//console.log(status)
 			}).then((response) => {
     			this.contact.status = true
+    			this.loading = false
 			}).catch(error=>{
               this.contact.errors = error.response.data.errors
+
+				this.loading = false
+
           })
 		}
 	},

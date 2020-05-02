@@ -11856,16 +11856,13 @@ pre {
   display: inline-block;
   color: #FFF8DC;
   border-radius: 15px 50px;
-  width: 800px;
-  height: 250px;
+  width: auto;
+  height: 380px;
   font-weight: bold;
-}
-
-@media (max-width: 1023px) {
-  pre {
-    width: 300px;
-    height: 250px;
-  }
+  /*    @include tablet {
+   	width: 300px;
+      height: 250px;
+  	}*/
 }
 
 .social {
@@ -11883,17 +11880,12 @@ pre {
   }
 }
 
-.blog {
-  padding: 15%;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
 .post_wrap {
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
+  color: black;
 }
 

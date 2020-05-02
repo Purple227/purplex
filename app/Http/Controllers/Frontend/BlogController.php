@@ -17,9 +17,9 @@ class BlogController extends Controller
     public function index()
     {
         //$posts = Post::orderBy('id', 'desc')->paginate(5);
-        $posts = Post::where('status', 1 )->
-                orderBy('id', 'desc')->
-                paginate(5);
+        $posts = Post::where('status', 1 )
+                 ->orderBy('id', 'desc')
+                 ->paginate(5);
         return response()->json($posts);
     }
 

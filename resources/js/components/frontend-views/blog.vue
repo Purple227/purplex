@@ -7,80 +7,69 @@
       <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
       <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
     </div>
-    
-    <div class="tile is-ancestor"> <!-- Ancestors tag open-->
 
+    <div class="tile is-ancestor">
       <div class="tile is-vertical is-8">
         <div class="tile">
           <div class="tile is-parent is-vertical">
-
-             <router-link :to="{name: 'post', params: {slug: blogList[0].slug}}" v-if="blogList[0]"  class="tile is-child notification is-primary blog border_curve">
-              <article >
-              <p class="title fa"> {{ blogList[0].title | truncate(0, 16)}} </p>
-              <p class="subtitle fa" v-html="blogList[0].description.substring(0, 99)"> </p>
-          </article>
-           </router-link>
-          
-
-             <router-link :to="{name: 'post', params: {slug: blogList[1].slug}}" v-if="blogList[1]"  class="tile is-child notification is-danger blog border_curve">
-              <article >
-              <p class="title fa"> {{ blogList[1].title | truncate(0, 16)}} </p>
-              <p class="subtitle fa" v-html="blogList[1].description.substring(0, 99)"> </p>
+            <article class="tile is-child notification is-primary border_curve">
+              <p class="title" v-html=" blogList[0].title.substring(0, 16) "> </p>
+              <p class="subtitle" v-html="blogList[0].description.substring(0, 54)">  </p>
+              <div class="buttons has-addons is-centered">
+                <router-link :to="{name: 'post', params: {slug: blogList[0].slug}}" class="button"> Read more </router-link> 
+              </div>
             </article>
-            </router-link>
 
+            <article class="tile is-child notification is-warning border_curve">
+              <p class="title" v-html=" blogList[1].title.substring(0, 16) "> </p>
+              <p class="subtitle" v-html="blogList[1].description.substring(0, 54)">  </p>
+              <div class="buttons has-addons is-centered">
+                <router-link :to="{name: 'post', params: {slug: blogList[1].slug}}" class="button"> Read more </router-link> 
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-info border_curve">
+              <p class="title" v-html=" blogList[2].title.substring(0, 16) "> </p>
+              <p class="subtitle" v-html="blogList[2].description.substring(0, 400)">  </p>
+              <div class="buttons has-addons is-centered">
+                <router-link :to="{name: 'post', params: {slug: blogList[2].slug}}" class="button"> Read more </router-link> 
+              </div>
+            </article>
+          </div>
         </div>
-
         <div class="tile is-parent">
-
-             <router-link :to="{name: 'post', params: {slug: blogList[2].slug}}" v-if="blogList[2]"  class="tile is-child notification is-info blog border_curve">
-              <article >
-              <p class="title fa"> {{ blogList[2].title | truncate(0, 16)}} </p>
-              <p class="subtitle fa" v-html="blogList[2].description.substring(0, 350)"> </p>
-          <!--figure class="image is-4by3">
-            <img src="../../../images/placeholders/640x480.png">
-          </figure-->
-        </article>
-        </router-link>
-
-    </div>
-  </div>
-  <div class="tile is-parent">
-
-
-
-  </div>
-</div>
-          <div class="tile is-parent is-vertical">
-
-             <router-link :to="{name: 'post', params: {slug: blogList[3].slug}}" v-if="blogList[3]"  class="tile is-child notification is-danger blog border_curve">
-              <article >
-              <p class="title fa"> {{ blogList[3].title | truncate(0, 16)}} </p>
-              <p class="subtitle fa" v-html="blogList[3].description.substring(0, 99)"> </p>
+          <article class="tile is-child notification is-danger border_curve">
+            <p class="title has-text-centered" v-html=" blogList[3].title.substring(0, 15) "> </p>
+            <p class="subtitle" v-html="blogList[3].description.substring(0, 140)">  </p>
+            <div class="buttons has-addons is-centered">
+              <router-link :to="{name: 'post', params: {slug: blogList[3].slug}}" class="button"> Read more </router-link> 
+            </div>
           </article>
-           </router-link>
-          
-
-             <router-link :to="{name: 'post', params: {slug: blogList[4].slug}}" v-if="blogList[4]"  class="tile is-child notification is-primary blog border_curve">
-              <article >
-              <p class="title fa"> {{ blogList[4].title | truncate(0, 16)}} </p>
-              <p class="subtitle fa" v-html="blogList[4].description.substring(0, 99)"> </p>
-            </article>
-            </router-link>
-
         </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-success border_curve">
+          <div class="content">
+            <p class="title">AD Space</p>
+            <p class="subtitle"> Google advertisement space</p>
+            <div class="content">
+              <p> ads content just incase</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
 
-</div> <!-- Ancestors tag close -->
-
-<div class="buttons is-centered" v-if="pagination.total > 5">
-  <span class="button is-success border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
-  <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
-  <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
-</div>
+    <div class="buttons is-centered" v-if="pagination.total > 5">
+      <span class="button is-success border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
+      <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
+      <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
+    </div>
 
 
 
-</div> <!-- Container tag close -->
+  </div> <!-- Container tag close -->
 
 </template>
 
@@ -93,6 +82,7 @@ export default {
     return{
 
       blogList: [],
+      loading: true,
 
       pagination: {
         nextPageUrl: null,
@@ -106,6 +96,7 @@ export default {
 
   mounted() {
     this.postsData()
+    //this.loading = false
   },
 
   methods: {
@@ -126,6 +117,7 @@ export default {
 
         this.pagination.to = response.data.to
         this.pagination.total = response.data.total
+
       })
     }
   }, // Method calibrace closes

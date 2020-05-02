@@ -2,7 +2,9 @@
 	<div>
 
 		<Navbar> </Navbar>
+
 		<router-view> </router-view>
+
 		<Foot> </Foot>
 
 	</div>
@@ -14,11 +16,12 @@
 import Navbar from './partials/navbar.vue'
 import Foot from './partials/footer.vue';
 
+
 export default {
 
 	components: {
 		Navbar,
-		Foot
+		Foot,
 	},
 
 }
