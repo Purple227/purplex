@@ -2,6 +2,13 @@
 
 	<section class="container hero container_mobile">
 
+
+        <skeleton-card actions round hover isLoading v-if="dataLoading"></skeleton-card>
+
+
+    <div class="wrapper" v-else> <!-- Wrapper tag open -->
+
+
 		<div class="hero-body is-dark has-text-centered border_curve">
 			<h1 class="title has-text-white">
 				{{ aboutMe.title }}
@@ -24,42 +31,69 @@
 			</div>
 		</div>
 
+  </div> <!-- Wrapper tag close -->
+
 	</section>
 
 </template>
 
 
 <script>
+import SkeletonCard from 'vue-skeleton-screen';
+
 
 export default {
 
-  data() {
-    return{
-
-      aboutMe: {
-      	title: null,
-      	subtitle: null,
-      	description: null,
-      },
-
-    }
+  components: {
+    SkeletonCard,
   },
 
-  mounted() {
-    this.aboutData()
-  },
 
-  methods: {
+ metaInfo() {
+  return {
+    title: 'Joseph Purple Akpere',
 
-    aboutData() {
+    meta: [
+    { name: 'description', content:  'Epiloge is about connecting in your field of interest. Our vision is to help people share their knowledge, work, projects, papers and ideas and build their network through what they do rather where they live, study or work.'},
+    { property: 'og:title', content: "Epiloge - Build your network in your field of interest"},
+    { property: 'og:site_name', content: 'Epiloge'},
+    {property: 'og:type', content: 'website'},    
+    {name: 'robots', content: 'index,follow'} 
+    ]
 
-      let api_url = "api/about/data"
-      this.axios
-      .get(api_url).then((response) => {
-        this.aboutMe = response.data
-      })
+  }
+},
 
-    }
+data() {
+  return{
+
+    aboutMe: {
+     title: null,
+     subtitle: null,
+     description: null,
+   },
+
+   dataLoading: true,
+
+ }
+},
+
+mounted() {
+  this.aboutData()
+},
+
+methods: {
+
+  aboutData() {
+
+    let api_url = "api/about/data"
+    this.axios
+    .get(api_url).then((response) => {
+      this.aboutMe = response.data
+      this.dataLoading = false 
+    })
+
+  }
 
   }, // Method calibrace closes
 

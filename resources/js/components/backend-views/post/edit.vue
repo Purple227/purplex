@@ -2,7 +2,11 @@
 
 	<div class="card"> <!-- Card tag open -->
 
-		<form v-on:submit.prevent="submitForm"> <!-- Form tag open -->
+<skeleton-card actions round hover isLoading v-if="dataLoading"></skeleton-card>
+
+
+
+		<form v-on:submit.prevent="submitForm" v-else> <!-- Form tag open -->
 
 		<header class="card-header">
 			<p class="card-header-title is-centered">
@@ -91,7 +95,7 @@
 				Next
 			</a>
 
-			<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659; " v-if="formStep.step == formStep.totalStep"> Submit</button>
+			<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659;" v-bind:class="[{ 'is-loading': loading, 'button': loading  }]" @click="loading = true" v-if="formStep.step == formStep.totalStep"> Submit</button>
 
 		</footer>
 
@@ -111,6 +115,8 @@ import DynamicClassHandler from '../../../mixins/dynamic-class-handler'
 import Editor from '../../../mixins/tinymce-editor'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import InputTag from 'vue-input-tag'
+import SkeletonCard from 'vue-skeleton-screen';
+
 
 export default{
 
@@ -120,7 +126,8 @@ export default{
 	],
 
 	components: {
-		'input-tag': InputTag
+		'input-tag': InputTag,
+		SkeletonCard,
 	},
 
 	data() {
@@ -137,6 +144,9 @@ export default{
 				tags: [],
 				status: null,
 			},
+
+			loading: null,
+			dataLoading: true,
 		}
 	},
 
@@ -183,6 +193,7 @@ export default{
 					newTags.push(tags[i].name)
 				}
 				this.postEdit.tags = newTags
+				this.dataLoading = false
 				
 			})
 		},
@@ -199,9 +210,11 @@ export default{
 			}).then((response) => {
 				let status = true
 				this.$emit('editStaus', status)
+				this.loading = false
 				this.$router.push({name:'list-posts'})
 			}).catch(error=>{
 				this.postEdit.status = error.response.data.errors
+				this.loading = false
 			})
 		}
 

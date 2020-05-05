@@ -70,7 +70,7 @@
 
 			<footer class="card-footer">
 
-				<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659;"> Login </button>
+				<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659;" v-bind:class="[{ 'is-loading': loading, 'button': loading  }]" @click="loading = true"> Login </button>
 
 			</footer>
 
@@ -101,6 +101,7 @@
           errors: null,
         },
         status: null,
+        loading: null,
       }
     },
 
@@ -134,10 +135,12 @@
           remember: this.login.remember,
         }).then((response) => {
             //will make a decision as a progress
+            this.loading = false
             this.$router.go()
           }).catch(error=>{
             if(error.response.status==422){
               this.login.errors = error.response.data.errors.email[0]
+              this.loading = false
             }
           })
         } //submitForm function calibrace closes

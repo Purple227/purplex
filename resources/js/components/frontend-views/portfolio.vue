@@ -63,3 +63,22 @@
 
 </template>
 
+
+<script>
+
+export default {
+
+
+   metaInfo: {
+      title: 'Project',
+      htmlAttrs: {
+        lang: 'en',
+        amp: true
+      }
+    },
+
+}
+
+</script>
+
+

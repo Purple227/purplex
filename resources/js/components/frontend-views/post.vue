@@ -3,6 +3,11 @@
 
 	<section class="container hero container_mobile post">
 
+		    <skeleton-card actions round hover isLoading v-if="dataLoading"></skeleton-card>
+
+    <div class="wrapper" v-else> <!-- Wrapper tag open -->
+
+
 		<div class="hero-body is-dark has-text-centered border_curve">
 			<h1 class="title has-text-white">
 				{{ post.title }} 
@@ -73,6 +78,9 @@
 
 </div>
 
+</div> <!-- Wrapper tag close -->
+
+
 
 </section>
 
@@ -81,11 +89,24 @@
 
 <script>
 import SocialShare from '../../../../public/js/vue-social-sharing.js'
+import SkeletonCard from 'vue-skeleton-screen';
 
 export default{
 
+
+	metaInfo() {
+		return {
+			title: `${this.post.title} - Purplex`,
+			htmlAttrs: {
+				lang: 'en',
+				amp: true
+			}
+		}
+	},
+
 	components: {
- 		'social-sharing': SocialShare
+		'social-sharing': SocialShare,
+		SkeletonCard,
 	},
 
 	data() {
@@ -99,6 +120,7 @@ export default{
 			},
 
 			currentUrl: window.location.href,
+			dataLoading: true,
 
 		}
 	},
@@ -125,6 +147,8 @@ export default{
 				}
 
 				this.post.tags = newTags
+
+				this.dataLoading = false 
 				
 			})
 		},

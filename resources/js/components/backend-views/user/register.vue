@@ -20,6 +20,16 @@
 				</ul>
 			</div>
 
+
+
+			<div class="notification has-text-white is-primary" v-if="status">
+				<button class="delete" @click='status = null'></button>
+				<ul>
+					<li> {{ status }} </li>
+				</ul>
+			</div>
+
+
 			<div class="card-content"> <!-- card content tag open -->
 
 				<h2 class="subtitle has-text-white has-text-centered is-bold">  Step: {{ formStep.step }} of {{ formStep.totalStep }} </h2>
@@ -130,6 +140,8 @@ export default{
 	data() {
 		return{
 
+			status: null,
+
 			register: {
 				name: "",
 				email: null,
@@ -187,7 +199,9 @@ export default{
 				password_confirmation: this.register.passwordConfirmation
 			}).then((response) => {
             //will make a decision as i progress
-            this.$router.go()
+            this.status = response.data
+
+            //this.$router.go()
 
         }).catch(error=>{
         	this.register.errors = error.response.data.errors

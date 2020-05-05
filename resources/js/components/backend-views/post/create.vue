@@ -96,7 +96,7 @@
 				Next
 			</a>
 
-			<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659; " v-if="formStep.step == formStep.totalStep"> Submit</button>
+			<button class="card-footer-item green is-bold subtitle is-6 is_borderless pointer" style="background-color: #340659;" v-bind:class="[{ 'is-loading': loading, 'button': loading  }]" @click="loading = true" v-if="formStep.step == formStep.totalStep"> Submit</button>
 
 		</footer>
 
@@ -144,6 +144,7 @@ export default{
 			},
 
 			status: null,
+			loading: null,
 		}
 	},
 
@@ -184,9 +185,11 @@ export default{
 			}).then((response) => {
     			this.status = true
     			this.$emit('create-status', this.status)
+    			this.loading = false
     			this.$router.push({name:'list-posts'})
 			}).catch(error=>{
               this.postForm.status = error.response.data.errors
+              this.loading = false
           })
 		}
 	},

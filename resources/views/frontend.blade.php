@@ -11,7 +11,9 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<title> Welcome to Purplex</title>
+
+<title> Let love lead</title>
+
 
 		<!-- Styles -->
 		<link href=" {{ asset('css//frontend/fontawesome.css') }}" rel="stylesheet">

@@ -19,6 +19,15 @@ import Foot from './partials/footer.vue';
 
 export default {
 
+	metaInfo: {
+		title: 'Home',
+		titleTemplate: '%s - Purplex',
+		htmlAttrs: {
+			lang: 'en',
+			amp: true
+		}
+	},
+
 	components: {
 		Navbar,
 		Foot,

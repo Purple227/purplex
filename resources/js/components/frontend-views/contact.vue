@@ -19,18 +19,14 @@
 					<div class="content">
 
 
-<div class="notification" v-if="contact.errors">
-  <button class="delete" @click="contact.errors = null"></button>
-  <ul>
-  	<li v-for="value in contact.errors">
-  		{{ value[0] }}
-  	</li>
-  </ul>
-</div>
-
-
-
-
+						<div class="notification" v-if="contact.errors">
+							<button class="delete" @click="contact.errors = null"></button>
+							<ul>
+								<li v-for="value in contact.errors">
+									{{ value[0] }}
+								</li>
+							</ul>
+						</div>
 
 
 						<div class="columns is-vcentered" v-if="!contact.status"> <!-- Columns wrapper tag open -->
@@ -122,6 +118,18 @@ import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
 import SkeletonCard from 'vue-skeleton-screen';
 
 export default {
+
+
+
+   metaInfo: {
+      title: 'Contact',
+      htmlAttrs: {
+        lang: 'en',
+        amp: true
+      }
+    },
+
+
 
 	data: function () {
 		return {

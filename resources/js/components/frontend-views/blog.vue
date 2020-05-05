@@ -2,6 +2,11 @@
 
   <div class="container container_mobile"> <!-- Container tag start -->
 
+    <skeleton-card actions round hover isLoading v-if="dataLoading"></skeleton-card>
+
+
+    <div class="wrapper" v-else> <!-- Wrapper tag open -->
+
     <div class="buttons is-centered" v-if="pagination.total > 5">
       <span class="button is-success border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
       <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
@@ -67,6 +72,7 @@
       <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
     </div>
 
+</div> <!-- Wrapper tag close -->
 
 
   </div> <!-- Container tag close -->
@@ -75,14 +81,30 @@
 
 
 <script>
+import SkeletonCard from 'vue-skeleton-screen';
+
 
 export default {
+
+   metaInfo: {
+      title: 'blog',
+      htmlAttrs: {
+        lang: 'en',
+        amp: true
+      }
+    },
+
+  components: {
+    SkeletonCard,
+  },
+
 
   data() {
     return{
 
       blogList: [],
       loading: true,
+      dataLoading: true,
 
       pagination: {
         nextPageUrl: null,
@@ -117,6 +139,8 @@ export default {
 
         this.pagination.to = response.data.to
         this.pagination.total = response.data.total
+
+        this.dataLoading = false
 
       })
     }
