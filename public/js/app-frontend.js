@@ -22758,6 +22758,7 @@ var render = function() {
     [
       _vm.loader
         ? _c("skeleton-card", {
+            staticClass: "border_curve",
             attrs: { actions: "", round: "", hover: "", isLoading: "" }
           })
         : _c("div", { staticClass: "columns" }, [
@@ -22847,7 +22848,7 @@ var render = function() {
                     _c(
                       "span",
                       {
-                        staticClass: "button is-success border_curve",
+                        staticClass: "button is-warning border_curve",
                         on: {
                           click: function($event) {
                             return _vm.postsData(_vm.pagination.previousPageUrl)

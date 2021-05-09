@@ -2,7 +2,7 @@
 
   <div class="container container_mobile"> <!-- Container tag start -->
 
-    <skeleton-card actions round hover isLoading v-if="loader"></skeleton-card>    
+    <skeleton-card actions round hover isLoading v-if="loader" class="border_curve"></skeleton-card>    
 
 
 
@@ -38,7 +38,7 @@
 
 
     <div class="buttons is-centered" v-if="pagination.total > 4">
-      <span class="button is-success border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
+      <span class="button is-warning border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
       <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
       <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
     </div>
@@ -107,6 +107,7 @@ export default {
   methods: {
 
     postsData(api) {
+
       let api_url = api || "/api/blog"
       this.axios
       .get(api_url).then((response) => {
