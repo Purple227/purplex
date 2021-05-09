@@ -17,9 +17,9 @@
 		<social-sharing class="social" :url="currentUrl"
 		:title="post.title"
 		:description="post.description"
-		quote="Vue is a progressive framework for building user interfaces."
+		:quote="post.title"
 		:hashtags="post.tags.toString()"
-		twitter-user="vuejs"
+		:twitter-user="purplex"
 		inline-template>
 		<div>
 
@@ -121,6 +121,7 @@ export default{
 
 			currentUrl: window.location.href,
 			dataLoading: true,
+			purplex: 'Purplex',
 
 		}
 	},

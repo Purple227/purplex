@@ -2414,7 +2414,8 @@ __webpack_require__.r(__webpack_exports__);
         tags: []
       },
       currentUrl: window.location.href,
-      dataLoading: true
+      dataLoading: true,
+      purplex: 'Purplex'
     };
   },
   mounted: function mounted() {
@@ -23126,9 +23127,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.contact.status
-                ? _c("div", { staticClass: "columns is-mobile is-centered" }, [
-                    _vm._m(3)
-                  ])
+                ? _c("div", { staticClass: "columns is-centered" }, [_vm._m(3)])
                 : _vm._e()
             ])
           ]),
@@ -23461,10 +23460,9 @@ var render = function() {
                   url: _vm.currentUrl,
                   title: _vm.post.title,
                   description: _vm.post.description,
-                  quote:
-                    "Vue is a progressive framework for building user interfaces.",
+                  quote: _vm.post.title,
                   hashtags: _vm.post.tags.toString(),
-                  "twitter-user": "vuejs"
+                  "twitter-user": _vm.purplex
                 },
                 inlineTemplate: {
                   render: function() {

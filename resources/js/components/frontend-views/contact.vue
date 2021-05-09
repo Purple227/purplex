@@ -82,7 +82,7 @@
 						</div> <!-- Columns wrapper tag close -->
 
 						<!-- Notification section -->
-						<div class="columns is-mobile is-centered" v-if="contact.status">
+						<div class="columns is-centered" v-if="contact.status">
 							<div class="column is-half">
 
 								<div class="notification is-dark is-inline center border_curve">

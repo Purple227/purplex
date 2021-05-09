@@ -22,6 +22,6 @@ class ContactController extends Controller
         ];
 
     	//Send an email
-    	Mail::to('psychosocial227@gmail.com')->send(new ContactMail($data));
+    	Mail::to('purplex227@gmail.com')->send(new ContactMail($data));
     }
 }
