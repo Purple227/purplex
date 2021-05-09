@@ -1869,6 +1869,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -22773,9 +22776,9 @@ var render = function() {
                       _c("header", { staticClass: "card-header" }, [
                         _c("p", { staticClass: "card-header-title" }, [
                           _vm._v(
-                            "\n                " +
+                            "\n                  " +
                               _vm._s(blog.title.substring(0, 30)) +
-                              " \n              "
+                              " \n                "
                           )
                         ])
                       ]),
@@ -22789,32 +22792,7 @@ var render = function() {
                                 blog.description.substring(0, 86)
                               )
                             }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "time",
-                            {
-                              attrs: {
-                                datetime: blog.edited
-                                  ? blog.updated_at
-                                  : blog.created_at
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "Posted: " +
-                                  _vm._s(
-                                    _vm._f("format")(
-                                      blog.edited
-                                        ? blog.updated_at
-                                        : blog.created_at,
-                                      "D MMM YYYY - h:mm A"
-                                    )
-                                  ) +
-                                  " "
-                              )
-                            ]
-                          )
+                          })
                         ])
                       ]),
                       _vm._v(" "),
@@ -22886,7 +22864,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "column is-3" }, [
-              _vm._v("\n\n      Second column\n\n    ")
+              _vm._v("\n\n        Second column\n\n      ")
             ])
           ])
     ],
@@ -24194,7 +24172,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("span", { staticClass: "fa-stack" }, [
+                    _c("span", { staticClass: "fa-stack " }, [
                       _c(
                         "a",
                         {

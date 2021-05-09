@@ -22,8 +22,11 @@
               <div class="card-content">
                 <div class="content">
                   <p class="subtitle" v-html="blog.description.substring(0, 86)"> </p>
+<!--
 
                   <time :datetime="blog.edited ? blog.updated_at : blog.created_at">Posted: {{ blog.edited ? blog.updated_at : blog.created_at | format('D MMM YYYY - h:mm A') }} </time>
+-->
+
                 </div>
               </div>
               <footer class="card-footer border_curve is-dark">

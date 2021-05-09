@@ -76,7 +76,7 @@
 						</span>
 
 
-						<span class="fa-stack">
+						<span class="fa-stack ">
 							<a class="navbar-item" href="https://www.linkedin.com/in/purple227" target="_blank" >
 								<i class="fas fa-stack-2x"> </i>
 								<i class="fab fa-linkedin fa-2x has-text-white"> </i>
