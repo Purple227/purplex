@@ -13,9 +13,9 @@
 
 	<footer class="card-footer">
 		<p class="card-footer-item is-dark border_curve">
-			<router-link :to="{name:'portfolio'}" class="has-text-white">
+			<a href="https://github.com/Purple227" target="_blank" class="has-text-white">
 				 Projects 
-			</router-link>
+			</a>
 		</p>
 
 		<p class="card-footer-item is-dark border_curve">

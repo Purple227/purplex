@@ -23,7 +23,7 @@
 							<button class="delete" @click="contact.errors = null"></button>
 							<ul>
 								<li v-for="value in contact.errors">
-									{{ value[0] }}
+									{{ value[0] }} Failed
 								</li>
 							</ul>
 						</div>
@@ -97,7 +97,7 @@
 
 				<footer class="card-footer">
 					<p class="card-footer-item">
-						<a class="bolder" href="tel:1234567"> 
+						<a class="bolder" href="tel:+2348157871972"> 
 							<i class="fas fa-mobile-alt fa-2x"> 
 								Call me
 							</i>  

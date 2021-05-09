@@ -34,9 +34,9 @@
 											Dashboard
 										</a>
 
-										<router-link :to="{name: 'portfolio'}" class="dropdown-item" active-class='is-active'>
+										<a href="https://github.com/Purple227" target="_blank" class="dropdown-item" active-class='is-active'>
 											Projects 
-										</router-link>
+										</a>
 
 										<router-link :to="{name: 'blog'}" class="dropdown-item" active-class='is-active'>
 											Blog
@@ -91,7 +91,7 @@
 								</div>
 
 								<div class="control">
-									<button class="button is-dark is-small" type="submit">
+									<button class="button is-dark is-small" type="submit" v-bind:class="{ 'is-loading': isSpinning }">
 										<i class="fas fa-long-arrow-alt-right has-text-white fa-lg"> </i>
 									</button>
 								</div>
@@ -142,6 +142,7 @@ export default {
 		return{
 			email: null,
 			status: null,
+			isSpinning: false
 		}
 	},
 
@@ -154,12 +155,13 @@ export default {
 
 	methods: {
 		submitForm() {
-
+			this.isSpinning = true
 			let api = '/api/subscriber';
 			this.axios.post(api, {
 				email: this.email,
 			}).then((response) => {
 				this.status = true
+				this.isSpinning = false
 			})
 		}
 	},

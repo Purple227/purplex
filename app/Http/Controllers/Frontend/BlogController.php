@@ -19,7 +19,7 @@ class BlogController extends Controller
         //$posts = Post::orderBy('id', 'desc')->paginate(5);
         $posts = Post::where('status', 1 )
                  ->orderBy('id', 'desc')
-                 ->paginate(5);
+                 ->paginate(4);
         return response()->json($posts);
     }
 

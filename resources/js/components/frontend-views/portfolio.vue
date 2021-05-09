@@ -66,6 +66,8 @@
 
 <script>
 
+import SkeletonCard from 'vue-skeleton-screen';
+
 export default {
 
 
@@ -76,6 +78,37 @@ export default {
         amp: true
       }
     },
+
+  components: {
+    SkeletonCard,
+  },
+
+  data() {
+    return{
+      projects: [],
+      loader: true,
+    }
+  },
+
+  mounted() {
+    this.getProject()
+  },
+
+  methods: {
+
+    getProject(api) {
+      let api_url = "https://api.github.com/users/purple227/repos"
+      this.axios
+      .get(api_url).then((response) => {
+      	console.log(response)
+        this.projects = 'test'
+        this.loader = false
+      })
+    }
+
+}
+
+
 
 }
 

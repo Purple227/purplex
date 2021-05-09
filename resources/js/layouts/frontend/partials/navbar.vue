@@ -88,9 +88,9 @@
 				<!-- Social icons end mobile-->
 
 
-				<router-link :to="{name: 'portfolio'}" class="navbar-item" active-class='is-active'>
+				<a href="https://github.com/Purple227" target="_blank" class="navbar-item" active-class='is-active'>
 					<span> Projects </span>
-				</router-link>
+				</a>
 
 				<router-link :to="{name: 'blog'}" class="navbar-item" active-class='is-active'>
 					<span>Blog</span>
@@ -196,7 +196,7 @@ export default {
 
 		searchData(api) {
 			this.searchResult = []
-			if(this.searchQuery.length > 2) {
+			if(this.searchQuery.length > 1) {
 				axios.get("/api/blog/search" ,{params: {search_query: this.searchQuery}}).then(response => {
 
 					this.searchResult = response.data
@@ -229,7 +229,7 @@ export default {
 	computed: {
 		classObject: function () {
 			return {
-				'is-active': this.searchQuery.length > 2,
+				'is-active': this.searchQuery.length > 1,
       //'text-danger': this.error && this.error.type === 'fatal'
   }
 }

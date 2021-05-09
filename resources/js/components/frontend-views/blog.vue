@@ -2,77 +2,61 @@
 
   <div class="container container_mobile"> <!-- Container tag start -->
 
-    <skeleton-card actions round hover isLoading v-if="dataLoading"></skeleton-card>
+    <skeleton-card actions round hover isLoading v-if="loader"></skeleton-card>    
 
 
-    <div class="wrapper" v-else> <!-- Wrapper tag open -->
 
-    <div class="buttons is-centered" v-if="pagination.total > 5">
+    <div class="columns" v-else>
+
+      <div class="column is-9">
+
+        <div class="columns is-multiline">
+          <div class="column is-6" v-for="blog in blogList">
+
+            <div class="card border_curve">
+              <header class="card-header">
+                <p class="card-header-title">
+                  {{ blog.title.substring(0, 30) }} 
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <p class="subtitle" v-html="blog.description.substring(0, 86)"> </p>
+
+                  <time :datetime="blog.edited ? blog.updated_at : blog.created_at">Posted: {{ blog.edited ? blog.updated_at : blog.created_at | format('D MMM YYYY - h:mm A') }} </time>
+                </div>
+              </div>
+              <footer class="card-footer border_curve is-dark">
+                <router-link :to="{name: 'post', params: {slug: blog.slug}}" class="card-footer-item has-text-white"> Read More </router-link>
+              </footer>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+    <div class="buttons is-centered" v-if="pagination.total > 4">
       <span class="button is-success border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
       <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
       <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
     </div>
 
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-8">
-        <div class="tile">
-          <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification is-primary border_curve">
-              <p class="title" v-html=" blogList[0].title.substring(0, 16) "> </p>
-              <p class="subtitle" v-html="blogList[0].description.substring(0, 54)">  </p>
-              <div class="buttons has-addons is-centered">
-                <router-link :to="{name: 'post', params: {slug: blogList[0].slug}}" class="button"> Read more </router-link> 
-              </div>
-            </article>
 
-            <article class="tile is-child notification is-warning border_curve">
-              <p class="title" v-html=" blogList[1].title.substring(0, 16) "> </p>
-              <p class="subtitle" v-html="blogList[1].description.substring(0, 54)">  </p>
-              <div class="buttons has-addons is-centered">
-                <router-link :to="{name: 'post', params: {slug: blogList[1].slug}}" class="button"> Read more </router-link> 
-              </div>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-info border_curve">
-              <p class="title" v-html=" blogList[2].title.substring(0, 16) "> </p>
-              <p class="subtitle" v-html="blogList[2].description.substring(0, 400)">  </p>
-              <div class="buttons has-addons is-centered">
-                <router-link :to="{name: 'post', params: {slug: blogList[2].slug}}" class="button"> Read more </router-link> 
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-danger border_curve">
-            <p class="title has-text-centered" v-html=" blogList[3].title.substring(0, 15) "> </p>
-            <p class="subtitle" v-html="blogList[3].description.substring(0, 140)">  </p>
-            <div class="buttons has-addons is-centered">
-              <router-link :to="{name: 'post', params: {slug: blogList[3].slug}}" class="button"> Read more </router-link> 
-            </div>
-          </article>
-        </div>
       </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-success border_curve">
-          <div class="content">
-            <p class="title">AD Space</p>
-            <p class="subtitle"> Google advertisement space</p>
-            <div class="content">
-              <p> ads content just incase</p>
-            </div>
-          </div>
-        </article>
+
+      <div class="column is-3">
+
+        Second column
+
       </div>
+
     </div>
 
-    <div class="buttons is-centered" v-if="pagination.total > 5">
-      <span class="button is-success border_curve" @click="postsData(pagination.previousPageUrl)"> Previous </span>
-      <span class="button is-info border_curve"> {{ pagination.to }} of {{pagination.total}} </span>
-      <span class="button is-danger border_curve" @click="postsData(pagination.nextPageUrl)"> Next </span>
-    </div>
 
-</div> <!-- Wrapper tag close -->
+
+
 
 
   </div> <!-- Container tag close -->
@@ -87,7 +71,7 @@ import SkeletonCard from 'vue-skeleton-screen';
 export default {
 
    metaInfo: {
-      title: 'blog',
+      title: 'Blogs',
       htmlAttrs: {
         lang: 'en',
         amp: true
@@ -103,8 +87,7 @@ export default {
     return{
 
       blogList: [],
-      loading: true,
-      dataLoading: true,
+      loader: true,
 
       pagination: {
         nextPageUrl: null,
@@ -140,7 +123,7 @@ export default {
         this.pagination.to = response.data.to
         this.pagination.total = response.data.total
 
-        this.dataLoading = false
+        this.loader = false
 
       })
     }
