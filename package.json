@@ -27,7 +27,7 @@
     "bulma": "^0.7.5",
     "bulma-calendar": "^6.0.7",
     "chart.js": "^2.8.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "tinymce": "^5.0.15",
     "validate.js": "^0.13.1",
     "vue-axios": "^2.1.4",
